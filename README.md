@@ -12,7 +12,7 @@
 
 COON is a compression format designed to reduce token count in Dart/Flutter code by 60-70% while maintaining semantic meaning and reversibility. It addresses the token inefficiency problem in code transmission and storage for LLM-based applications.
 
-Inspired by [TOON (Token-Oriented Object Notation)](https://github.com/context7/toon), COON applies similar compression principles to source code.
+Inspired by [TOON (Token-Oriented Object Notation)](https://github.com/toon-format/toon), COON applies similar compression principles to source code.
 
 ### Problem
 
@@ -420,7 +420,7 @@ This project is licensed under the MIT License. See [LICENSE](LICENSE) for detai
 
 ## Acknowledgments
 
-Inspired by [TOON](https://github.com/context7/toon) by Context7.
+Inspired by [TOON](https://github.com/toon-format/toon) by Context7.
 
 ---
 
