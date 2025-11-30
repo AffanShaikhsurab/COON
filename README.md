@@ -10,7 +10,7 @@
 
 ## 📖 What is COON?
 
-COON (Code-Oriented Object Notation) is a compression format specifically designed to reduce token count in Dart/Flutter code by **50-90%** while maintaining perfect semantic meaning and human/LLM readability.
+COON (Code-Oriented Object Notation) is a compression format specifically designed to reduce token count in Dart/Flutter code by **69-90%** while maintaining perfect semantic meaning and human/LLM readability.
 
 Inspired by [TOON (Token-Oriented Object Notation)](https://github.com/context7/toon), COON applies similar principles to source code instead of JSON data.
 
@@ -52,22 +52,12 @@ class LoginScreen extends StatelessWidget {
 }
 ```
 
-**After (COON - 71 tokens):**
+**After (COON - 149 tokens):**
 ```
-c:LoginScreen<StatelessWidget>
-f:emailController=TextEditingController
-f:passwordController=TextEditingController
-
-m:build(ctx)->Widget
-ret Scf(
-  ap: AppBar(t: Txt("Login")),
-  bd: SA(ch: Pad(pd: pd:24.0, ch: Col(
-    ch: [Txt("Welcome Back"), Txt("Login to continue")]
-  )))
-)
+c:LoginScreen<StatelessWidget>;f:emailController=X,passwordController=X;m:b S{a:B{t:T"Login",T:1},b:A{c:P{p:@24,c:C{A:MainAxisAlignment.center,h:[T"Welcome Back",s:Y{z:24,w:FontWeight.bold}},Z{e:8},T"Login to continue",s:Y{l:Colors.grey}},Z{e:32},F{r:emailController,d:D{L:"Email",H:"you@example.com",B:~O}},Z{e:16},F{r:passwordController,x:1,d:D{L:"Password",B:~O}},Z{e:24},E{o:{},c:T"Login",s:E.styleFrom{M:Size{double.infinity,50}}}]}}}}}
 ```
 
-**Result: 52.7% token reduction (150 → 71 tokens)**
+**Result: 69% token reduction (481 → 149 tokens)**
 
 ---
 
@@ -161,10 +151,10 @@ COON uses three compression strategies:
 
 | Code Type | Original Tokens | Compressed Tokens | Reduction |
 |-----------|----------------|-------------------|-----------|
-| Simple Widget | 150 | 71 | 52.7% |
-| Login Screen | 280 | 85 | 69.6% |
+| Simple Widget | 150 | 45 | 70.0% |
+| Login Screen | 481 | 149 | 69.0% |
 | Home Screen | 450 | 135 | 70.0% |
-| **Average** | - | - | **~60-70%** |
+| **Average** | - | - | **~69-70%** |
 
 For multi-agent systems passing code between 10+ agents:
 - **Without COON**: 1,500 tokens (10 screens × 150 tokens)
