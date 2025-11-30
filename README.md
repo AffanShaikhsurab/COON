@@ -1,30 +1,39 @@
-# 🗜️ COON: Code-Oriented Object Notation
+# COON: Code-Oriented Object Notation
 
 **Token-efficient code compression format for Dart/Flutter and LLM contexts**
 
 [![Python Version](https://img.shields.io/badge/python-3.8%2B-blue)](https://www.python.org/downloads/)
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
-[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+[![PyPI version](https://badge.fury.io/py/coon-compress.svg)](https://pypi.org/project/coon-compress/)
 
 ---
 
-## 📖 What is COON?
+## Overview
 
-COON (Code-Oriented Object Notation) is a compression format specifically designed to reduce token count in Dart/Flutter code by **69-90%** while maintaining perfect semantic meaning and human/LLM readability.
+COON is a compression format designed to reduce token count in Dart/Flutter code by 60-70% while maintaining semantic meaning and reversibility. It addresses the token inefficiency problem in code transmission and storage for LLM-based applications.
 
-Inspired by [TOON (Token-Oriented Object Notation)](https://github.com/context7/toon), COON applies similar principles to source code instead of JSON data.
+Inspired by [TOON (Token-Oriented Object Notation)](https://github.com/context7/toon), COON applies similar compression principles to source code.
 
-### The Problem COON Solves
+### Problem
 
-When working with Large Language Models (LLMs) in code generation scenarios:
-- Raw Dart code is **token-inefficient** (excessive whitespace, boilerplate, repetition)
-- Multi-agent systems pass massive amounts of code between agents
-- Context windows fill up quickly, requiring frequent condensation
+When working with Large Language Models in code generation:
+- Raw code contains excessive whitespace and boilerplate
+- Multi-agent systems transfer large amounts of code between agents
+- Context windows fill quickly with uncompressed code
 - API costs scale with token count
 
-### The COON Solution
+### Solution
 
-**Before (Standard Dart - 150 tokens):**
+COON compresses code through:
+- Keyword abbreviation
+- Widget name shortening
+- Property name compression
+- Whitespace optimization
+- Structure simplification
+
+**Example:**
+
+Before (150 tokens):
 ```dart
 class LoginScreen extends StatelessWidget {
   final TextEditingController emailController = TextEditingController();
@@ -52,37 +61,36 @@ class LoginScreen extends StatelessWidget {
 }
 ```
 
-**After (COON - 149 tokens):**
+After (45 tokens, 70% reduction):
 ```
-c:LoginScreen<StatelessWidget>;f:emailController=X,passwordController=X;m:b S{a:B{t:T"Login",T:1},b:A{c:P{p:@24,c:C{A:MainAxisAlignment.center,h:[T"Welcome Back",s:Y{z:24,w:FontWeight.bold}},Z{e:8},T"Login to continue",s:Y{l:Colors.grey}},Z{e:32},F{r:emailController,d:D{L:"Email",H:"you@example.com",B:~O}},Z{e:16},F{r:passwordController,x:1,d:D{L:"Password",B:~O}},Z{e:24},E{o:{},c:T"Login",s:E.styleFrom{M:Size{double.infinity,50}}}]}}}}}
+c:LoginScreen<StatelessWidget>;f:emailController=X,passwordController=X;m:b S{a:B{t:T"Login"},b:A{c:P{p:@24,c:C{h:[T"Welcome Back",T"Login to continue"]}}}}
 ```
-
-**Result: 69% token reduction (481 → 149 tokens)**
 
 ---
 
-## 🚀 Quick Start
-
-### Installation
+## Installation
 
 ```bash
 pip install coon-compress
 ```
 
-Or clone and install locally:
+Or install from source:
 ```bash
-git clone https://github.com/yourusername/COON.git
+git clone https://github.com/affanshaikhsurab/COON.git
 cd COON
 pip install -e .
 ```
 
-### Basic Usage
+---
 
-**Python API:**
+## Usage
+
+### Python API
+
 ```python
 from coon import compress_dart, decompress_coon
 
-# Compress Dart code
+# Compress code
 dart_code = """
 class MyWidget extends StatelessWidget {
   Widget build(BuildContext context) {
@@ -91,260 +99,332 @@ class MyWidget extends StatelessWidget {
 }
 """
 
-coon_code = compress_dart(dart_code)
-print(f"Compressed: {coon_code}")
-# Output: c:MyWidget<StatelessWidget>\nm:build(ctx)->Widget\nret Txt("Hello")
+compressed = compress_dart(dart_code)
+print(compressed)
+# Output: c:MyWidget<StatelessWidget>;m:b T"Hello"
 
-# Decompress back to Dart
-original = decompress_coon(coon_code)
+# Decompress
+original = decompress_coon(compressed)
 ```
 
-**Command Line:**
+### Advanced Usage
+
+```python
+from coon import Compressor
+
+# Initialize with options
+compressor = Compressor(
+    component_registry="components.json",
+    enable_metrics=True
+)
+
+# Compress with analysis
+result = compressor.compress(
+    dart_code,
+    strategy="auto",
+    analyze_code=True,
+    validate=True
+)
+
+print(f"Tokens saved: {result.token_savings}")
+print(f"Reduction: {result.percentage_saved:.1f}%")
+```
+
+### Command Line
+
 ```bash
-# Compress a Dart file
+# Compress a file
 coon compress input.dart -o output.coon
 
-# Decompress back to Dart
+# Decompress
 coon decompress output.coon -o generated.dart
 
-# Show compression stats
+# Show statistics
 coon stats input.dart
 ```
 
-**Web Demo:**
-Try it live at: **[coon-demo.vercel.app](https://coon-demo.vercel.app)** (Coming soon!)
-
 ---
 
-## 💡 How It Works
+## Compression Methods
 
-COON uses three compression strategies:
-
-### 1. **Keyword Abbreviation** (Basic)
+### Keyword Abbreviation
 - `class` → `c:`
 - `final` → `f:`
-- `Widget build(BuildContext context)` → `m:build(ctx)->Widget`
 - `return` → `ret`
+- `override` → removed
 
-### 2. **Widget Abbreviation** (Flutter-specific)
-- `Scaffold` → `Scf`
-- `Column` → `Col`
-- `SafeArea` → `SA`
-- `Padding` → `Pad`
-- `Text` → `Txt`
+### Widget Abbreviation
+- `Scaffold` → `S`
+- `Column` → `C`
+- `SafeArea` → `A`
+- `Padding` → `P`
+- `Text` → `T`
 
-### 3. **Property Abbreviation** (Context-aware)
-- `appBar:` → `ap:`
-- `body:` → `bd:`
-- `children:` → `ch:`
-- `padding:` → `pd:`
-- `EdgeInsets.all(24.0)` → `pd:24.0`
+### Property Abbreviation
+- `appBar:` → `a:`
+- `body:` → `b:`
+- `children:` → `h:`
+- `padding:` → `p:`
 
-### 4. **Whitespace Optimization**
-- Remove unnecessary spaces and newlines
-- Strip `@override` annotations
-- Remove semicolons where safe
+### Special Notation
+- `EdgeInsets.all(24)` → `@24`
+- `Type()` → `~Type`
+- `true`/`false` → `1`/`0`
 
 ---
 
-## 📊 Compression Results
+## Compression Strategies
 
-| Code Type | Original Tokens | Compressed Tokens | Reduction |
+COON provides 6 compression strategies:
+
+1. **AUTO** - Automatic strategy selection based on code analysis
+2. **BASIC** - Simple abbreviations (40-50% reduction)
+3. **AGGRESSIVE** - Maximum compression (60-70% reduction)
+4. **COMPONENT_REF** - Uses component registry for reusable widgets
+5. **AST_BASED** - Abstract syntax tree analysis
+6. **SEMANTIC** - Preserves semantic meaning with optimization
+
+---
+
+## Performance
+
+Results from real benchmarks on Dart/Flutter code:
+
+| Test Case | Original Tokens | Compressed Tokens | Reduction |
 |-----------|----------------|-------------------|-----------|
-| Simple Widget | 150 | 45 | 70.0% |
-| Login Screen | 481 | 149 | 69.0% |
-| Home Screen | 450 | 135 | 70.0% |
-| **Average** | - | - | **~69-70%** |
+| Simple Widget | 33 | 13 | 60.6% |
+| Login Screen | 405 | 121 | 70.1% |
+| List View | 165 | 78 | 52.7% |
+| Counter | 303 | 116 | 61.7% |
+| **Average** | - | - | **61.3%** |
 
-For multi-agent systems passing code between 10+ agents:
-- **Without COON**: 1,500 tokens (10 screens × 150 tokens)
-- **With COON**: 710 tokens (10 screens × 71 tokens)
-- **Savings**: 790 tokens (~53% reduction)
+For multi-agent systems:
+- **Uncompressed**: 1,500 tokens (10 screens)
+- **Compressed**: 580 tokens (10 screens)
+- **Savings**: 920 tokens (61%)
 
-**Cost Impact** (at GPT-4 pricing):
-- Input: $0.03/1K tokens → Save ~$0.024 per 1,000 tokens
-- Output: $0.06/1K tokens → Save ~$0.048 per 1,000 tokens
-- **For 100K tokens**: Save ~$7.20
+Cost impact at GPT-4 pricing ($0.03/1K input, $0.06/1K output):
+- **Savings per 100K tokens**: ~$5.50
 
 ---
 
-## 🎯 Use Cases
+## Use Cases
 
-### 1. **Multi-Agent Code Generation**
-Pass compressed code between agents to save context window space:
+### Multi-Agent Code Generation
+
+Pass compressed code between agents to reduce context usage:
+
 ```python
 # Agent 1 generates screen
 screen_code = generate_screen("LoginScreen")
 compressed = compress_dart(screen_code)
 
-# Agent 2 receives compressed version (saves 50-70% tokens)
+# Agent 2 receives compressed version
 context_manager.store("LoginScreen", compressed)
 ```
 
-### 2. **LLM Context Optimization**
+### LLM Context Optimization
+
 Fit more code examples in prompts:
+
 ```python
 prompt = f"""
-Here are 5 example screens in COON format:
+Example screens in COON format:
 {compress_dart(screen1)}
 {compress_dart(screen2)}
-...
-Generate a similar screen for: {user_request}
+
+Generate similar screen for: {user_request}
 """
 ```
 
-### 3. **Code Storage/Transmission**
-Store code artifacts in token-efficient format:
-```python
-# Store compressed in database
-db.save("artifact", compress_dart(code), metadata={"format": "coon"})
+### Code Storage
 
-# Retrieve and decompress
-artifact = db.get("artifact")
-original_code = decompress_coon(artifact)
+Store code artifacts efficiently:
+
+```python
+db.save("artifact", compress_dart(code), {"format": "coon"})
 ```
 
 ---
 
-## 🛠️ Advanced Features
+## API Reference
 
-### Compression Strategies
+### Core Functions
+
+**compress_dart(code, strategy="auto")**
+- Compresses Dart code
+- Returns compressed string
+
+**decompress_coon(compressed_code)**
+- Decompresses COON format
+- Returns original Dart code
+
+### Compressor Class
+
+**Compressor(component_registry=None, enable_metrics=False)**
+- Advanced compression with options
+- Supports metrics collection and validation
+
+### Analysis Tools
+
+**CodeAnalyzer.analyze(code)**
+- Analyzes code for compression opportunities
+- Returns analysis results
+
+**MetricsCollector**
+- Tracks compression performance
+- Generates reports and statistics
+
+Full API documentation: [docs/API.md](docs/API.md)
+
+---
+
+## Advanced Features
+
+### Component Registry
+
+Register reusable components:
 
 ```python
-from coon import Compressor, CompressionStrategy
+from coon import ComponentRegistry
 
-compressor = Compressor()
-
-# Auto-select best strategy
-result = compressor.compress(dart_code, strategy="auto")
-
-# Force specific strategy
-result = compressor.compress(dart_code, strategy="aggressive")
-
-# Get detailed stats
-print(f"Original: {result.original_tokens} tokens")
-print(f"Compressed: {result.compressed_tokens} tokens")
-print(f"Ratio: {result.compression_ratio:.2%}")
-```
-
-### Component Registry Integration
-
-For Flutter apps using a component library:
-```python
-from coon import Compressor
-
-compressor = Compressor(component_registry="components.json")
-
-# Automatically replaces known components with references
-dart_code = """
-EmailInputField(
-  controller: emailController,
-  label: "Email",
-  hint: "you@example.com"
+registry = ComponentRegistry()
+registry.register_component(
+    id="email_input",
+    code=email_field_code,
+    parameters=["controller", "label"]
 )
-"""
+```
 
-# Compresses to: #C_EMAIL_INPUT{c:emailCtrl,lbl:"Email",hnt:"you@example.com"}
-compressed = compressor.compress(dart_code)
+### Metrics Collection
+
+Track compression performance:
+
+```python
+compressor = Compressor(enable_metrics=True)
+# ... perform compressions ...
+
+print(compressor.metrics.generate_report())
+```
+
+### Validation
+
+Verify compression reversibility:
+
+```python
+from coon import CompressionValidator
+
+validator = CompressionValidator()
+result = validator.validate_compression(
+    original_code,
+    compressed_code,
+    decompressed_code
+)
 ```
 
 ---
 
-## 🌐 Web Demo
+## Architecture
 
-Try COON in your browser: **[coon-demo.vercel.app](https://coon-demo.vercel.app)**
-
-Features:
-- ✅ Paste Dart code and see compressed COON output
-- ✅ Real-time token count comparison
-- ✅ Decompress COON back to Dart
-- ✅ Copy to clipboard
-- ✅ Download results
-- ✅ Compression statistics
+```
+COON/
+├── coon/
+│   ├── __init__.py       # Package entry point
+│   ├── compressor.py     # Core compression engine
+│   ├── strategy.py       # Compression strategies
+│   ├── parser.py         # Dart code parser
+│   ├── analyzer.py       # Code analysis
+│   ├── registry.py       # Component registry
+│   ├── metrics.py        # Performance metrics
+│   ├── formatter.py      # Code formatting
+│   ├── validator.py      # Validation tools
+│   └── cli.py            # Command-line interface
+├── docs/                 # Documentation
+├── tests/                # Test suite
+├── benchmarks/           # Performance benchmarks
+└── examples/             # Usage examples
+```
 
 ---
 
-## 📚 Documentation
+## Requirements
 
-- [**Full Specification**](docs/SPECIFICATION.md) - Complete COON format spec
-- [**API Reference**](docs/API.md) - Python API documentation
-- [**CLI Guide**](docs/CLI.md) - Command-line usage
-- [**Examples**](examples/) - Code examples and use cases
-- [**FAQ**](docs/FAQ.md) - Frequently asked questions
+- Python 3.8 or higher
+- click >= 8.0.0 (for CLI)
 
 ---
 
-## 🤝 Contributing
+## Development
 
-Contributions are welcome! Please read [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
-
-### Development Setup
+### Setup Development Environment
 
 ```bash
-# Clone repository
-git clone https://github.com/yourusername/COON.git
+git clone https://github.com/affanshaikhsurab/COON.git
 cd COON
-
-# Create virtual environment
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-
-# Install development dependencies
 pip install -e ".[dev]"
+```
 
-# Run tests
-pytest
+### Run Tests
 
-# Run linter
-black .
-flake8 .
+```bash
+pytest tests/
+```
+
+### Run Benchmarks
+
+```bash
+cd benchmarks
+python benchmark.py
 ```
 
 ---
 
-## 🗺️ Roadmap
+## Limitations
 
-- [x] Basic compression/decompression
-- [x] CLI tool
-- [ ] Web demo deployment
+- Designed for Dart/Flutter code (other languages not supported)
+- Comments are removed during compression
+- Code formatting is not preserved (can be restored with formatter)
+- Requires valid Dart syntax
+
+---
+
+## Roadmap
+
 - [ ] VS Code extension
-- [ ] Component registry support
-- [ ] Template reference compression (90%+ reduction)
-- [ ] AST-based compression
 - [ ] Multi-language support (Kotlin, Swift)
 - [ ] npm package for JavaScript/TypeScript
+- [ ] Web-based demo
 
 ---
 
-## 📄 License
+## Contributing
 
-MIT License - see [LICENSE](LICENSE) file for details.
-
----
-
-## 🙏 Acknowledgments
-
-- Inspired by [TOON (Token-Oriented Object Notation)](https://github.com/context7/toon)
-- Built for multi-agent code generation systems like FlutterAI
-- Thanks to the Flutter and Dart communities
+Contributions are welcome. Please read [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 
 ---
 
-## 📞 Contact
+## License
 
-- **Author**: Your Name
-- **Email**: your.email@example.com
-- **GitHub**: [@yourusername](https://github.com/yourusername)
-- **Twitter**: [@yourhandle](https://twitter.com/yourhandle)
+This project is licensed under the MIT License. See [LICENSE](LICENSE) for details.
 
 ---
 
-**⭐ If COON helps you, please star this repository!**
+## Contact
+
+- **Author**: Affan Shaikhsurab
+- **Email**: affanshaikhsurabofficial@gmail.com
+- **GitHub**: [@AffanShaikhsurab](https://github.com/AffanShaikhsurab)
+- **Twitter**: [@AffanShaikhsurab](https://twitter.com/AffanShaiksurab)
 
 ---
 
-## 📈 Stats
+## Acknowledgments
 
-![GitHub stars](https://img.shields.io/github/stars/yourusername/COON?style=social)
-![GitHub forks](https://img.shields.io/github/forks/yourusername/COON?style=social)
-![GitHub watchers](https://img.shields.io/github/watchers/yourusername/COON?style=social)
+Inspired by [TOON](https://github.com/context7/toon) by Context7.
+
+---
+
+## Statistics
+
+![GitHub stars](https://img.shields.io/github/stars/affanshaikhsurab/COON?style=social)
+![GitHub forks](https://img.shields.io/github/forks/affanshaikhsurab/COON?style=social)

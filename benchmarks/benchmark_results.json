@@ -1,0 +1,58 @@
+{
+  "simple_widget": {
+    "basic": {
+      "original_tokens": 33,
+      "compressed_tokens": 24,
+      "reduction_percent": 27.27272727272727,
+      "compressed_length": 98
+    },
+    "aggressive": {
+      "original_tokens": 33,
+      "compressed_tokens": 13,
+      "reduction_percent": 60.60606060606061,
+      "compressed_length": 54
+    }
+  },
+  "login_screen": {
+    "basic": {
+      "original_tokens": 405,
+      "compressed_tokens": 169,
+      "reduction_percent": 58.2716049382716,
+      "compressed_length": 679
+    },
+    "aggressive": {
+      "original_tokens": 405,
+      "compressed_tokens": 121,
+      "reduction_percent": 70.12345679012346,
+      "compressed_length": 487
+    }
+  },
+  "list_view": {
+    "basic": {
+      "original_tokens": 165,
+      "compressed_tokens": 97,
+      "reduction_percent": 41.21212121212121,
+      "compressed_length": 391
+    },
+    "aggressive": {
+      "original_tokens": 165,
+      "compressed_tokens": 78,
+      "reduction_percent": 52.727272727272734,
+      "compressed_length": 313
+    }
+  },
+  "stateful_counter": {
+    "basic": {
+      "original_tokens": 303,
+      "compressed_tokens": 142,
+      "reduction_percent": 53.135313531353134,
+      "compressed_length": 571
+    },
+    "aggressive": {
+      "original_tokens": 303,
+      "compressed_tokens": 116,
+      "reduction_percent": 61.71617161716172,
+      "compressed_length": 465
+    }
+  }
+}

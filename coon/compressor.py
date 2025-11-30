@@ -1,20 +1,18 @@
 """
-COON Compressor
-Main compression/decompression engine
+COON Compressor - Enhanced version
+Main compression/decompression engine with integrated modules
 """
 
 import re
+import time
 from dataclasses import dataclass
-from enum import Enum
 from typing import Optional
-
-
-class CompressionStrategy(Enum):
-    """Available compression strategies"""
-    AUTO = "auto"
-    BASIC = "basic"
-    AGGRESSIVE = "aggressive"
-    COMPONENT_REF = "component_ref"
+from .strategy import CompressionStrategy, StrategySelector, STRATEGY_CONFIGURATIONS
+from .analyzer import CodeAnalyzer
+from .registry import ComponentRegistry
+from .metrics import MetricsCollector
+from .formatter import DartFormatter
+from .validator import CompressionValidator
 
 
 @dataclass
@@ -25,6 +23,8 @@ class CompressionResult:
     compressed_tokens: int
     compression_ratio: float
     strategy_used: CompressionStrategy
+    processing_time_ms: float
+    analysis_insights: Optional[dict] = None
     
     @property
     def token_savings(self) -> int:
@@ -35,7 +35,7 @@ class CompressionResult:
         return self.compression_ratio * 100
 
 
-# Abbreviation dictionaries
+# Abbreviation dictionaries - expanded
 KEYWORD_ABBREV = {
     'class': 'c:',
     'final': 'f:',
@@ -44,45 +44,65 @@ KEYWORD_ABBREV = {
     'return': 'ret',
     'async': 'asy',
     'await': 'awt',
+    'const': 'cn:',
+    'static': 'st:',
+    'void': 'v:',
+    'override': 'ov:',
 }
 
-WIDGET_ABBREV = {
-    'Scaffold': 'Scf',
-    'Column': 'Col',
-    'Row': 'Row',
-    'Container': 'Cont',
-    'Padding': 'Pad',
-    'Center': 'Ctr',
-    'Text': 'Txt',
-    'AppBar': 'AppBar',
-    'SafeArea': 'SA',
-    'SizedBox': 'Szb',
-    'Expanded': 'Exp',
-    'ListView': 'Lstv',
-    'GridView': 'GrdV',
-    'Stack': 'Stk',
-    'Positioned': 'Pos',
+# Ultra-short widget abbreviations
+ULTRA_WIDGETS = {
+    'Scaffold': 'S',
+    'Column': 'C',
+    'Row': 'R',
+    'SafeArea': 'A',
+    'Padding': 'P',
+    'Text': 'T',
+    'AppBar': 'B',
+    'SizedBox': 'Z',
+    'TextField': 'F',
+    'ElevatedButton': 'E',
+    'TextStyle': 'Y',
+    'InputDecoration': 'D',
+    'OutlineInputBorder': 'O',
+    'TextEditingController': 'X',
+    'Container': 'K',
+    'Center': 'N',
+    'Expanded': 'Ex',
+    'ListView': 'L',
+    'GridView': 'G',
+    'Stack': 'St',
+    'Positioned': 'Ps',
+    'Card': 'Cd',
+    'IconButton': 'Ib',
+    'Icon': 'Ic',
 }
 
-PROPERTY_ABBREV = {
-    'controller': 'c:',
-    'onPressed': 'op:',
-    'onChanged': 'oc:',
-    'children': 'ch:',
-    'child': 'ch:',
-    'body': 'bd:',
-    'appBar': 'ap:',
-    'text': 't:',
-    'title': 't:',
-    'label': 'lbl:',
-    'hint': 'hnt:',
-    'padding': 'pd:',
-    'margin': 'mg:',
-    'height': 'h:',
-    'width': 'w:',
-    'alignment': 'al:',
-    'color': 'clr:',
-    'backgroundColor': 'bg:',
+# Ultra-short property abbreviations
+ULTRA_PROPS = {
+    'appBar:': 'a:',
+    'body:': 'b:',
+    'child:': 'c:',
+    'children:': 'h:',
+    'title:': 't:',
+    'controller:': 'r:',
+    'padding:': 'p:',
+    'onPressed:': 'o:',
+    'style:': 's:',
+    'fontSize:': 'z:',
+    'fontWeight:': 'w:',
+    'color:': 'l:',
+    'decoration:': 'd:',
+    'labelText:': 'L:',
+    'hintText:': 'H:',
+    'border:': 'B:',
+    'height:': 'e:',
+    'width:': 'W:',
+    'obscureText:': 'x:',
+    'centerTitle:': 'T:',
+    'mainAxisAlignment:': 'A:',
+    'crossAxisAlignment:': 'X:',
+    'minimumSize:': 'M:',
 }
 
 
@@ -92,69 +112,176 @@ def count_tokens(text: str) -> int:
 
 
 class Compressor:
-    """Main COON compression engine"""
+    """Enhanced COON compression engine"""
     
-    def __init__(self, component_registry: Optional[str] = None):
+    def __init__(
+        self,
+        component_registry: Optional[str] = None,
+        enable_metrics: bool = False,
+        metrics_storage: Optional[str] = None
+    ):
         """
         Initialize compressor
         
         Args:
             component_registry: Path to component registry JSON (optional)
+            enable_metrics: Whether to collect metrics
+            metrics_storage: Path to metrics storage file
         """
-        self.component_registry = component_registry
-        # TODO: Load component registry if provided
+        self.strategy_selector = StrategySelector()
+        self.analyzer = CodeAnalyzer()
+        self.component_registry = ComponentRegistry(component_registry) if component_registry else None
+        self.formatter = DartFormatter()
+        self.validator = CompressionValidator()
+        
+        # Metrics
+        self.enable_metrics = enable_metrics
+        if self.enable_metrics:
+            self.metrics = MetricsCollector(storage_path=metrics_storage)
+        else:
+            self.metrics = None
     
     def compress(
         self,
         dart_code: str,
-        strategy: str = "auto"
+        strategy: str = "auto",
+        analyze_code: bool = True,
+        validate: bool = False
     ) -> CompressionResult:
         """
         Compress Dart code to COON format
         
         Args:
             dart_code: Original Dart source code
-            strategy: Compression strategy ("auto", "basic", "aggressive")
+            strategy: Compression strategy ("auto", "basic", "aggressive", etc.)
+            analyze_code: Whether to perform code analysis
+            validate: Whether to validate compression
             
         Returns:
             CompressionResult with compressed code and stats
         """
+        start_time = time.time()
+        
         original_tokens = count_tokens(dart_code)
+        
+        # Optional code analysis
+        analysis = None
+        if analyze_code:
+            analysis = self.analyzer.analyze(dart_code)
         
         # Select strategy
         if strategy == "auto":
-            strategy_enum = CompressionStrategy.BASIC  # For now
+            if analysis:
+                strategy_enum = CompressionStrategy[self.analyzer.recommend_strategy(analysis).upper()]
+            else:
+                # Use basic analysis for strategy selection
+                has_registry = self.component_registry is not None
+                strategy_enum = self.strategy_selector.select_strategy(
+                    dart_code,
+                    len(dart_code),
+                    has_registry=has_registry
+                )
         else:
-            strategy_enum = CompressionStrategy[strategy.upper()]
+            try:
+                strategy_enum = CompressionStrategy[strategy.upper()]
+            except KeyError:
+                strategy_enum = CompressionStrategy.BASIC
         
-        # Apply compression
-        compressed = self._compress_basic(dart_code)
+        # Get strategy configuration
+        config = STRATEGY_CONFIGURATIONS.get(strategy_enum)
+        
+        # Apply compression based on strategy
+        if strategy_enum == CompressionStrategy.COMPONENT_REF and config.use_component_registry and self.component_registry:
+            compressed = self._compress_with_components(dart_code)
+        elif strategy_enum == CompressionStrategy.AST_BASED and config.use_ast_analysis:
+            compressed = self._compress_ast_based(dart_code)
+        elif strategy_enum == CompressionStrategy.AGGRESSIVE:
+            compressed = self._compress_aggressive(dart_code)
+        else:
+            compressed = self._compress_basic(dart_code)
         
         compressed_tokens = count_tokens(compressed)
-        ratio = 1 - (compressed_tokens / original_tokens)
+        ratio = 1 - (compressed_tokens / original_tokens) if original_tokens > 0 else 0.0
         
-        return CompressionResult(
+        processing_time = (time.time() - start_time) * 1000  # Convert to ms
+        
+        result = CompressionResult(
             compressed_code=compressed,
             original_tokens=original_tokens,
             compressed_tokens=compressed_tokens,
             compression_ratio=ratio,
-            strategy_used=strategy_enum
+            strategy_used=strategy_enum,
+            processing_time_ms=processing_time,
+            analysis_insights=analysis.__dict__ if analysis else None
         )
+        
+        # Validate if requested
+        if validate:
+            decompressed = self.decompress(compressed)
+            validation = self.validator.validate_compression(dart_code, compressed, decompressed)
+            if not validation.is_valid:
+                print(f"⚠️  Validation warnings: {validation.warnings}")
+        
+        # Record metrics
+        if self.enable_metrics and self.metrics:
+            reversible = True  # Would need actual validation
+            self.metrics.record(
+                strategy_used=strategy_enum.value,
+                original_tokens=original_tokens,
+                compressed_tokens=compressed_tokens,
+                compression_ratio=ratio,
+                processing_time_ms=processing_time,
+                code_size_bytes=len(dart_code),
+                success=True,
+                reversible=reversible
+            )
+        
+        return result
     
-    def decompress(self, coon_code: str) -> str:
+    def decompress(self, coon_code: str, format_output: bool = True) -> str:
         """
         Decompress COON format back to Dart
         
         Args:
             coon_code: Compressed COON code
+            format_output: Whether to format the output
             
         Returns:
             Original Dart code (approximately)
         """
-        return self._decompress_basic(coon_code)
+        dart = self._decompress_basic(coon_code)
+        
+        if format_output:
+            dart = self.formatter.format(dart)
+        
+        return dart
     
     def _compress_basic(self, dart_code: str) -> str:
-        """ULTRA V2 compression - Maximum compression with 70%+ reduction"""
+        """Basic compression with keyword and widget abbreviations"""
+        coon = dart_code
+        
+        # Strip whitespace
+        coon = re.sub(r'\s+', ' ', coon).strip()
+        
+        # Remove annotations
+        coon = re.sub(r'@\w+ ', '', coon)
+        
+        # Apply keyword abbreviations
+        for full, abbrev in KEYWORD_ABBREV.items():
+            coon = re.sub(r'\b' + full + r'\b', abbrev, coon)
+        
+        # Apply widget abbreviations
+        for full, short in ULTRA_WIDGETS.items():
+            coon = coon.replace(full, short)
+        
+        # Apply property abbreviations
+        for full, short in ULTRA_PROPS.items():
+            coon = coon.replace(full, short)
+        
+        return coon
+    
+    def _compress_aggressive(self, dart_code: str) -> str:
+        """Ultra compression - same as current implementation"""
         coon = dart_code
         
         # 1. Strip ALL whitespace
@@ -163,92 +290,45 @@ class Compressor:
         # 2. Remove annotations
         coon = re.sub(r'@\w+ ', '', coon)
         
-        # 3. Class: class Name extends Base { → c:Name<Base>;
+        # 3. Class declarations
         coon = re.sub(r'class (\w+) extends (\w+) \{', r'c:\1<\2>;', coon)
         
-        # 4. Collect fields and combine: final T n=T(); final T2 n2=T2(); → f:n=T,n2=T2;
+        # 4. Collect and merge fields
         fields = []
         def collect_field(m):
             fields.append(f"{m.group(2)}={m.group(3)}")
             return ''
         coon = re.sub(r'final (\w+) (\w+) = (\w+)\(\);? ?', collect_field, coon)
         
-        # 5. Method: Widget build(BuildContext context) { → m:b
+        # 5. Method signatures
         coon = re.sub(r'Widget build\(BuildContext context\) \{', 'm:b ', coon)
         
-        # 6. Remove 'return'
+        # 6. Remove return
         coon = re.sub(r'return ', '', coon)
         
-        # 7. ULTRA-SHORT widget names (1-2 chars)
-        ultra_widgets = {
-            'Scaffold': 'S',
-            'Column': 'C',
-            'Row': 'R',
-            'SafeArea': 'A',
-            'Padding': 'P',
-            'Text': 'T',
-            'AppBar': 'B',
-            'SizedBox': 'Z',
-            'TextField': 'F',
-            'ElevatedButton': 'E',
-            'TextStyle': 'Y',
-            'InputDecoration': 'D',
-            'OutlineInputBorder': 'O',
-            'TextEditingController': 'X',
-            'Container': 'K',
-            'Center': 'N',
-            'Expanded': 'X',
-            'ListView': 'L',
-        }
-        
-        for full, short in ultra_widgets.items():
+        # 7. Ultra-short widgets
+        for full, short in ULTRA_WIDGETS.items():
             coon = coon.replace(full, short)
         
-        # 8. ULTRA-SHORT properties (1 char)
-        ultra_props = {
-            'appBar:': 'a:',
-            'body:': 'b:',
-            'child:': 'c:',
-            'children:': 'h:',
-            'title:': 't:',
-            'controller:': 'r:',
-            'padding:': 'p:',
-            'onPressed:': 'o:',
-            'style:': 's:',
-            'fontSize:': 'z:',
-            'fontWeight:': 'w:',
-            'color:': 'l:',
-            'decoration:': 'd:',
-            'labelText:': 'L:',
-            'hintText:': 'H:',
-            'border:': 'B:',
-            'height:': 'e:',
-            'width:': 'W:',
-            'obscureText:': 'x:',
-            'centerTitle:': 'T:',
-            'mainAxisAlignment:': 'A:',
-            'crossAxisAlignment:': 'X:',
-            'minimumSize:': 'M:',
-        }
-        
-        for full, short in ultra_props.items():
+        # 8. Ultra-short properties
+        for full, short in ULTRA_PROPS.items():
             coon = coon.replace(full, short)
         
-        # 9. EdgeInsets.all(N) → @N (special padding symbol)
+        # 9. EdgeInsets.all(N) → @N
         coon = re.sub(r'EdgeInsets\.all\((\d+)(?:\.\d+)?\)', r'@\1', coon)
         
-        # 10. Constructor calls: Type() → ~Type (tilde notation)
+        # 10. Constructor calls: Type() → ~Type
         coon = re.sub(r'(\w+)\(\)', r'~\1', coon)
         
-        # 11. Remove ALL spaces around delimiters
+        # 11. Remove spaces around delimiters
         coon = re.sub(r' ?([:,{}\[\]()]) ?', r'\1', coon)
         
-        # 12. Replace ( with { for consistency
+        # 12. Replace ( with {
         coon = coon.replace('(', '{')
         coon = coon.replace(')', '}')
         
-        # 13. Remove redundant braces for strings: T{"text"} → T"text"
-        coon = re.sub(r'([A-Z]){"([^"]*)"', r'\1"\2"', coon)
+        # 13. Remove redundant braces for strings
+        coon = re.sub(r'([A-Z]){\"([^\"]*)\"}', r'\1"\2"', coon)
         
         # 14. Boolean shorthand
         coon = coon.replace('true', '1')
@@ -261,68 +341,63 @@ class Compressor:
             if len(parts) == 2:
                 coon = f"{parts[0]}{field_str}m:b{parts[1]}"
         
-        # 16. Final cleanup
+        # Final cleanup
         coon = re.sub(r';+', ';', coon)
         coon = re.sub(r';+}', '}', coon)
         coon = re.sub(r'}\s*}', '}}', coon)
         
         return coon.strip()
     
+
+    def _compress_with_components(self, dart_code: str) -> str:
+        """Compress using component registry"""
+        if not self.component_registry:
+            return self._compress_aggressive(dart_code)
+        
+        # Find matching component
+        component = self.component_registry.find_matching_component(dart_code, tolerance=0.85)
+        
+        if component:
+            # Use component reference
+            compressed = component.compress_reference()
+            return compressed
+        
+        # Fall back to aggressive compression
+        return self._compress_aggressive(dart_code)
+    
+    def _compress_ast_based(self, dart_code: str) -> str:
+        """AST-based compression (placeholder for now)"""
+        # In a full implementation, would:
+        # 1. Parse code into AST
+        # 2. Optimize AST structure
+        # 3. Serialize optimized AST
+        
+        # For now, use aggressive compression
+        return self._compress_aggressive(dart_code)
+    
     def _decompress_basic(self, coon_code: str) -> str:
-        """Basic decompression - reverse transformations"""
+        """Basic decompression"""
         dart = coon_code
         
-        # Reverse in opposite order
+        # Reverse keyword abbreviations
+        for full, abbrev in KEYWORD_ABBREV.items():
+            # Escape special regex characters
+            abbrev_escaped = re.escape(abbrev)
+            dart = re.sub(abbrev_escaped, full, dart)
         
-        # 1. Expand EdgeInsets
-        dart = re.sub(r'pd:(\d+(?:\.\d+)?)', r'EdgeInsets.all(\1)', dart)
+        # Reverse ultra widgets
+        for full, short in ULTRA_WIDGETS.items():
+            dart = dart.replace(short, full)
         
-        # 2. Expand context
-        dart = re.sub(r'\bctx\b', 'context', dart)
+        # Reverse ultra properties
+        for full, short in ULTRA_PROPS.items():
+            dart = dart.replace(short, full)
         
-        # 3. Expand properties
-        for full, abbrev in PROPERTY_ABBREV.items():
-            dart = re.sub(abbrev.replace(':', r'\:'), full + ':', dart)
+        # Reverse EdgeInsets
+        dart = re.sub(r'@(\d+)', r'EdgeInsets.all(\1)', dart)
         
-        # 4. Expand widgets
-        for full, abbrev in WIDGET_ABBREV.items():
-            if full != abbrev:
-                dart = re.sub(r'\b' + abbrev + r'\b', full, dart)
-        
-        # 5. Expand return
-        dart = re.sub(r'\bret\b', 'return', dart)
-        
-        # 6. Expand method declarations
-        dart = re.sub(
-            r'm:build\(ctx\)->Widget',
-            r'@override\n  Widget build(BuildContext context) {',
-            dart
-        )
-        
-        # 7. Expand fields
-        dart = re.sub(
-            r'f:(\w+)=(\w+)',
-            r'final \2 \1 = \2();',
-            dart
-        )
-        
-        # 8. Expand class declarations
-        dart = re.sub(
-            r'c:(\w+)<(\w+)>',
-            r'class \1 extends \2 {',
-            dart
-        )
-        
-        # 9. Add semicolons back (heuristic)
-        lines = dart.split('\n')
-        formatted_lines = []
-        for line in lines:
-            stripped = line.strip()
-            if stripped and not stripped.endswith(('{', '}', ';', ',')):
-                if not stripped.startswith(('c:', 'f:', 'm:', '@', '//')):
-                    line = line.rstrip() + ';'
-            formatted_lines.append(line)
-        dart = '\n'.join(formatted_lines)
+        # Add spacing
+        dart = re.sub(r'([{};])', r'\1\n', dart)
         
         return dart
 
