@@ -12,7 +12,7 @@ Full-featured Python implementation with analysis tools.
 |---|---|
 | **Package** | `coon` |
 | **Version** | 1.0.0 |
-| **Python** | 3.8+ |
+| **Python** | 3.9+ |
 | **Status** | Stable |
 | **Repository** | [packages/python](https://github.com/AffanShaikhsurab/COON/tree/master/packages/python) |
 
@@ -46,7 +46,7 @@ Native TypeScript implementation for Node.js and browser.
 
 | | |
 |---|---|
-| **Package** | `@coon-format` |
+| **Package** | `coon-format` |
 | **Version** | 1.0.0 |
 | **Node.js** | 16+ |
 | **Status** | Stable |
@@ -54,7 +54,7 @@ Native TypeScript implementation for Node.js and browser.
 
 **Installation:**
 ```bash
-npm install @coon-format
+npm install coon-format
 ```
 
 **Features:**
@@ -66,7 +66,7 @@ npm install @coon-format
 
 **Quick Start:**
 ```typescript
-import { compressDart, decompressCoon } from '@coon-format';
+import { compressDart, decompressCoon } from 'coon-format';
 
 const compressed = compressDart(dartCode);
 const restored = decompressCoon(compressed);

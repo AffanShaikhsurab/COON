@@ -392,7 +392,7 @@ COON/
 
 ## Requirements
 
-- Python 3.8 or higher
+- Python 3.9 or higher
 - click >= 8.0.0 (for CLI)
 
 ---
@@ -436,7 +436,7 @@ npx tsx --env-file=.env scripts/compression-efficiency-benchmark.ts
 
 - [ ] VS Code extension
 - [ ] Multi-language support (Kotlin, Swift)
-- [ ] npm package for JavaScript/TypeScript
+- [x] npm package for JavaScript/TypeScript ✓
 - [ ] Web-based demo
 
 ---

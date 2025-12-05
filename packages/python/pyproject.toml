@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "coon"
-version = "0.1.1"
+version = "1.0.0"
 description = "Code-Oriented Object Notation - Token-efficient compression for Dart/Flutter code"
 readme = "README.md"
 license = {text = "MIT"}

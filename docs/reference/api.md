@@ -285,7 +285,7 @@ function compressDart(
 
 **Example:**
 ```typescript
-import { compressDart } from '@coon-format';
+import { compressDart } from 'coon-format';
 
 const compressed = compressDart(dartCode);
 const aggressive = compressDart(dartCode, CompressionStrategyType.AGGRESSIVE);
@@ -304,7 +304,7 @@ function decompressCoon(
 
 **Example:**
 ```typescript
-import { decompressCoon } from '@coon-format';
+import { decompressCoon } from 'coon-format';
 
 const dartCode = decompressCoon(coonCode);
 const formatted = decompressCoon(coonCode, { formatOutput: true });
@@ -323,7 +323,7 @@ class Compressor {
 
 **Example:**
 ```typescript
-import { Compressor, CompressionStrategyType } from '@coon-format';
+import { Compressor, CompressionStrategyType } from 'coon-format';
 
 const compressor = new Compressor({
     strategy: CompressionStrategyType.AUTO,
@@ -404,7 +404,7 @@ except CoonError as e:
 ### TypeScript
 
 ```typescript
-import { compressDart, CoonError, SyntaxError } from '@coon-format';
+import { compressDart, CoonError, SyntaxError } from 'coon-format';
 
 try {
     const compressed = compressDart(code);

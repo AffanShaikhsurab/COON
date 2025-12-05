@@ -72,7 +72,7 @@ c:LoginScreen<StatelessWidget>;m:b S{a:B{t:T"Login"},b:N{c:T"Welcome"}}
 ::: code-group
 
 ```bash [npm]
-npm install @coon-format
+npm install coon-format
 ```
 
 ```bash [pip]

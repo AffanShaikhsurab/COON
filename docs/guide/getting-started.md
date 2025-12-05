@@ -33,15 +33,15 @@ pip install coon[dev]
 ::: code-group
 
 ```bash [npm]
-npm install @coon-format
+npm install coon-format
 ```
 
 ```bash [pnpm]
-pnpm add @coon-format
+pnpm add coon-format
 ```
 
 ```bash [yarn]
-yarn add @coon-format
+yarn add coon-format
 ```
 
 :::
@@ -84,7 +84,7 @@ original = decompress_coon(compressed)
 ### JavaScript/TypeScript
 
 ```typescript
-import { compressDart, decompressCoon } from '@coon-format';
+import { compressDart, decompressCoon } from 'coon-format';
 
 const dartCode = `
 class MyWidget extends StatelessWidget {
@@ -132,7 +132,7 @@ result = compressor.compress(code, strategy=CompressionStrategyType.AGGRESSIVE)
 ```
 
 ```typescript [TypeScript]
-import { Compressor, CompressionStrategyType } from '@coon-format';
+import { Compressor, CompressionStrategyType } from 'coon-format';
 
 const compressor = new Compressor();
 const result = compressor.compress(code, CompressionStrategyType.AGGRESSIVE);

@@ -4,65 +4,48 @@ Quick reference for COON format abbreviations and syntax patterns.
 
 ## Widget Abbreviations
 
-| Abbreviation | Widget | Example |
-|--------------|--------|---------|
-| `C` | Container | `C{w:100,h:50}` |
-| `T` | Text | `T"Hello"` |
-| `R` | Row | `R[...]` |
-| `Col` | Column | `Col[...]` |
-| `Stk` | Stack | `Stk[...]` |
-| `Ctr` | Center | `Ctr[...]` |
-| `P` | Padding | `P{p:8}[...]` |
-| `SB` | SizedBox | `SB{w:10,h:20}` |
-| `Ic` | Icon | `Ic.star` |
-| `Img` | Image | `Img.net"url"` |
-| `Btn` | ElevatedButton | `Btn{onP:_fn}[T"Click"]` |
-| `TBtn` | TextButton | `TBtn{onP:_fn}[...]` |
-| `IBtn` | IconButton | `IBtn{onP:_fn,ic:Ic.add}` |
-| `FAB` | FloatingActionButton | `FAB{onP:_fn}[Ic.add]` |
-| `Scf` | Scaffold | `Scf{aB:AppB{t:T"Title"}}` |
-| `AppB` | AppBar | `AppB{t:T"Title"}` |
-| `TF` | TextField | `TF{ctrl:_c,hint:"Enter"}` |
-| `LV` | ListView | `LV.b[...]` |
-| `GV` | GridView | `GV.c{cC:2}[...]` |
-| `Card` | Card | `Card[...]` |
-| `Exp` | Expanded | `Exp[...]` |
-| `Flx` | Flexible | `Flx{flex:2}[...]` |
-| `Opac` | Opacity | `Opac{o:0.5}[...]` |
-| `Ign` | IgnorePointer | `Ign[...]` |
-| `Abs` | AbsorbPointer | `Abs[...]` |
-| `GD` | GestureDetector | `GD{onTap:_fn}[...]` |
-| `InkW` | InkWell | `InkW{onTap:_fn}[...]` |
+| Abbreviation | Widget | Abbreviation | Widget |
+|--------------|--------|--------------|--------|
+| `S` | Scaffold | `B` | AppBar |
+| `C` | Column | `R` | Row |
+| `A` | SafeArea | `P` | Padding |
+| `T` | Text | `K` | Container |
+| `N` | Center | `Z` | SizedBox |
+| `F` | TextField | `E` | ElevatedButton |
+| `L` | ListView | `G` | GridView |
+| `St` | Stack | `Ps` | Positioned |
+| `Ex` | Expanded | `Fl` | Flexible |
+| `Cd` | Card | `Ic` | Icon |
+| `Ib` | IconButton | `Fb` | FloatingActionButton |
+| `Bt` | TextButton | `Tf` | TextFormField |
+| `Im` | Image | `Dv` | Divider |
+| `Dr` | Drawer | `Al` | Align |
+| `Bn` | BottomNavigationBar | `Tb` | TabBar |
+| `Tv` | TabBarView | `Sv` | SingleChildScrollView |
+| `Cv` | CustomScrollView | `Y` | TextStyle |
+| `D` | InputDecoration | `O` | OutlineInputBorder |
+| `X` | TextEditingController | `Cp` | CircularProgressIndicator |
+| `Lp` | LinearProgressIndicator | | |
 
 ## Property Abbreviations
 
-| Abbreviation | Property | Values |
-|--------------|----------|--------|
-| `w` | width | number |
-| `h` | height | number |
-| `c` | color | `Cl.red`, `#FF0000` |
-| `bg` | backgroundColor | color |
-| `p` | padding | number or EdgeInsets |
-| `m` | margin | number or EdgeInsets |
-| `br` | borderRadius | number |
-| `mA` | mainAxisAlignment | `start`, `end`, `center`, `spB`, `spA`, `spE` |
-| `cA` | crossAxisAlignment | `start`, `end`, `center`, `str` |
-| `t` | title | Widget |
-| `l` | leading | Widget |
-| `a` | actions | List of Widgets |
-| `onP` | onPressed | function |
-| `onTap` | onTap | function |
-| `ctrl` | controller | TextEditingController |
-| `hint` | hintText | string |
-| `flex` | flex | number |
-| `o` | opacity | 0.0-1.0 |
-| `cC` | crossAxisCount | number (GridView) |
-| `ch` | child | Widget |
-| `chn` | children | List of Widgets |
-| `aB` | appBar | AppBar |
-| `bod` | body | Widget |
-| `fab` | floatingActionButton | FAB |
-| `bnb` | bottomNavigationBar | Widget |
+| Abbreviation | Property | Abbreviation | Property |
+|--------------|----------|--------------|----------|
+| `a:` | appBar | `b:` | body |
+| `c:` | child | `h:` | children |
+| `t:` | title | `r:` | controller |
+| `p:` | padding | `o:` | onPressed |
+| `s:` | style | `z:` | fontSize |
+| `w:` | fontWeight | `l:` | color |
+| `d:` | decoration | `L:` | labelText |
+| `H:` | hintText | `B:` | border |
+| `e:` | height | `W:` | width |
+| `x:` | obscureText | `T:` | centerTitle |
+| `A:` | mainAxisAlignment | `X:` | crossAxisAlignment |
+| `M:` | minimumSize | `m:` | margin |
+| `n:` | alignment | `bg:` | backgroundColor |
+| `oc:` | onChanged | `bl:` | builder |
+| `ms:` | mainAxisSize | `xs:` | crossAxisSize |
 
 ## MainAxisAlignment Values
 
@@ -107,21 +90,17 @@ Quick reference for COON format abbreviations and syntax patterns.
 
 ## Keyword Abbreviations
 
-| Abbreviation | Keyword |
-|--------------|---------|
-| `c:` | class |
-| `fn:` | function |
-| `m:` | method |
-| `@o` | @override |
-| `ret` | return |
-| `$` | this |
-| `_` | private |
-| `<` | extends |
-| `>` | implements |
-| `~` | mixin |
-| `?` | nullable |
-| `!` | required |
-| `=>` | arrow function |
+| Abbreviation | Keyword | Abbreviation | Keyword |
+|--------------|---------|--------------|---------|
+| `c:` | class | `f:` | final |
+| `<` | extends | `>` | implements |
+| `+` | with | `im:` | import |
+| `ret` | return | `asy` | async |
+| `awt` | await | `cn:` | const |
+| `st:` | static | `v:` | void |
+| `ov:` | @override | `W` | Widget |
+| `ctx` | BuildContext | `1` | true |
+| `0` | false | `_` | null |
 
 ## Class Definition Syntax
 

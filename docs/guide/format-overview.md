@@ -86,8 +86,8 @@ Common Flutter widgets are mapped to single/double-letter codes:
 | Widget | COON | Widget | COON |
 |--------|------|--------|------|
 | `TextField` | `F` | `ElevatedButton` | `E` |
-| `TextButton` | `Tb` | `IconButton` | `Ib` |
-| `GestureDetector` | `Gd` | `InkWell` | `Iw` |
+| `TextButton` | `Bt` | `IconButton` | `Ib` |
+| `FloatingActionButton` | `Fb` | `TextFormField` | `Tf` |
 
 ## Property Abbreviations
 
@@ -98,7 +98,7 @@ Common Flutter widgets are mapped to single/double-letter codes:
 | `title:` | `t:` | `padding:` | `p:` |
 | `style:` | `s:` | `color:` | `l:` |
 | `decoration:` | `d:` | `controller:` | `r:` |
-| `onPressed:` | `o:` | `onTap:` | `ot:` |
+| `onPressed:` | `o:` | `onChanged:` | `oc:` |
 | `height:` | `e:` | `width:` | `W:` |
 | `mainAxisAlignment:` | `A:` | `crossAxisAlignment:` | `X:` |
 
