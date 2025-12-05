@@ -179,7 +179,7 @@ The CLI supports multiple backends for flexibility.
 
 ### JavaScript Backend (Default)
 
-Uses the `@coon/sdk` npm package. Fast and runs natively in Node.js.
+Uses the `@coon-format` npm package. Fast and runs natively in Node.js.
 
 ```bash
 coon compress app.dart --backend js

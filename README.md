@@ -10,7 +10,7 @@
 
 ## Overview
 
-COON is a compression format designed to reduce token count in Dart/Flutter code by 60-70% while maintaining semantic meaning and reversibility. It addresses the token inefficiency problem in code transmission and storage for LLM-based applications.
+COON is a compression format designed to reduce token count in Dart/Flutter code by 30-70% while maintaining semantic meaning and reversibility. It addresses the token inefficiency problem in code transmission and storage for LLM-based applications.
 
 Inspired by [TOON (Token-Oriented Object Notation)](https://github.com/toon-format/toon), COON applies similar compression principles to source code.
 
@@ -186,25 +186,68 @@ COON provides 6 compression strategies:
 
 ---
 
-## Performance
+## Performance Benchmarks
 
-Results from real benchmarks on Dart/Flutter code:
+> 📊 **Benchmark Date**: December 5, 2025  
+> **Test Configuration**: 144 tests across 2 samples, 3 models, 3 scenarios
 
-| Test Case | Original Tokens | Compressed Tokens | Reduction |
-|-----------|----------------|-------------------|-----------|
-| Simple Widget | 33 | 13 | 60.6% |
-| Login Screen | 405 | 121 | 70.1% |
-| List View | 165 | 78 | 52.7% |
-| Counter | 303 | 116 | 61.7% |
-| **Average** | - | - | **61.3%** |
+### Token Reduction Results
 
-For multi-agent systems:
-- **Uncompressed**: 1,500 tokens (10 screens)
-- **Compressed**: 580 tokens (10 screens)
-- **Savings**: 920 tokens (61%)
+| Application Type | Original Tokens | Compressed Tokens | Reduction | Compression Ratio |
+|-----------------|----------------|-------------------|-----------|-------------------|
+| Simple Widget | 33 | 13 | 60.6% | 2.54x |
+| Login Screen | 405 | 121 | 70.1% | 3.35x |
+| E-Commerce App (900 lines) | 5,087 | 3,403 | **33.1%** | **1.49x** |
+| Social Media Feed (1,100 lines) | 4,294 | 3,075 | **28.4%** | **1.40x** |
+| List View | 165 | 78 | 52.7% | 2.12x |
+| Counter App | 303 | 116 | 61.7% | 2.61x |
 
-Cost impact at GPT-4 pricing ($0.03/1K input, $0.06/1K output):
-- **Savings per 100K tokens**: ~$5.50
+**Key Finding**: Token reduction scales with file size - larger applications (1000+ lines) see 28-33% reduction with excellent LLM comprehension!
+
+### LLM Comprehension Benchmark
+
+Tested across 3 models: **Gemini 2.5 Flash**, **GLM-4.6**, **MiniMax-M2**
+
+| Test Scenario | Token Count | Accuracy | Best Model |
+|--------------|-------------|----------|------------|
+| **Dart Baseline** | 100% | 54.2% | GLM-4.6 (62.5%) |
+| **COON + Context** | ~69% | **54.2%** | **GLM-4.6 (62.5%)** ⭐ |
+| **Raw COON** | ~69% | 52.1% | GLM-4.6 (56.25%) |
+
+**Key Insight**: GLM-4.6 achieves **same accuracy (62.5%) on COON+Context as Dart baseline** - no accuracy loss with 30% token savings!
+
+### Model Rankings
+
+| Rank | Model | Dart Accuracy | COON + Context | Recommendation |
+|------|-------|---------------|----------------|----------------|
+| 🥇 | **GLM-4.6** | 62.5% | **62.5%** | **Best COON parser** ⭐ |
+| 🥈 | **Gemini 2.5 Flash** | 50.0% | 50.0% | Consistent |
+| 🥉 | **MiniMax-M2** | 50.0% | 50.0% | Thorough reasoning |
+
+### Cost Impact
+
+Based on typical API pricing ($0.15/1M input tokens):
+
+| Scale | Dart Cost | COON Cost | Savings |
+|-------|-----------|-----------|--------|
+| 1M requests (E-Commerce) | $763 | $510 | **$253 (33%)** |
+| 1M requests (Social Media) | $644 | $461 | **$183 (28%)** |
+
+📊 **Full Benchmark Report**: [benchmarks/BENCHMARK.md](benchmarks/BENCHMARK.md)  
+📈 **Latest Results**: [benchmarks/results/](benchmarks/results/)
+
+### 🚀 Note on State-of-the-Art Models
+
+These benchmarks were conducted with models available in December 2025. **Newer SOTA (State-of-the-Art) models are expected to perform significantly better** with COON compression:
+
+- **GPT-5**, **Gemini 3**, **Claude 4** and future models will likely achieve higher accuracy
+- Improved reasoning capabilities should better understand compressed notation
+- We expect COON accuracy to approach Dart baseline levels with next-gen models
+
+**👋 Community Contribution**: We welcome benchmark results from newer models! If you test COON with a new model, please:
+1. Run the benchmark: `cd benchmarks && npx tsx --env-file=.env scripts/compression-efficiency-benchmark.ts`
+2. Share your results by opening a PR or issue
+3. Help us keep the benchmarks up-to-date!
 
 ---
 
@@ -374,7 +417,8 @@ pytest tests/
 
 ```bash
 cd benchmarks
-python benchmark.py
+npm install
+npx tsx --env-file=.env scripts/compression-efficiency-benchmark.ts
 ```
 
 ---

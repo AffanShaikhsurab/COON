@@ -1,0 +1,730 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Instagram Clone</title>
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Grand+Hotel&display=swap" rel="stylesheet"> 
+
+    <style>
+        /* GLOBAL RESET & FLUTTER-LIKE STYLES */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: #fafafa;
+            display: flex;
+            justify-content: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* APP CONTAINER (Mobile Viewport) */
+        #app-root {
+            width: 100%;
+            max-width: 450px;
+            background-color: #fff;
+            height: 100%;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+
+        /* NAVIGATION & ROUTING */
+        .screen {
+            display: none;
+            flex-direction: column;
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: #fff;
+            z-index: 10;
+        }
+
+        .screen.active {
+            display: flex;
+        }
+
+        /* HEADER (AppBar) */
+        .app-bar {
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 15px;
+            border-bottom: 1px solid #dbdbdb;
+            background-color: #fff; /* f8faf8 in code, using white for clarity */
+            flex-shrink: 0;
+            z-index: 20;
+        }
+
+        .app-bar-title {
+            font-family: 'Grand Hotel', cursive;
+            font-size: 28px;
+        }
+
+        .app-bar-text-title {
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        /* BODY CONTENT */
+        .body-content {
+            flex: 1;
+            overflow-y: auto;
+            background-color: #fff;
+        }
+
+        /* BOTTOM NAVIGATION */
+        .bottom-nav {
+            height: 50px;
+            border-top: 1px solid #dbdbdb;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            background: #fff;
+            flex-shrink: 0;
+            z-index: 20;
+        }
+
+        .nav-item {
+            font-size: 24px;
+            color: #dbdbdb; /* Grey */
+            cursor: pointer;
+        }
+
+        .nav-item.active-tab {
+            color: #000; /* Black */
+        }
+
+        /* LOGIN SCREEN */
+        .login-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            background-color: #f8faf8;
+        }
+
+        .login-btn {
+            width: 250px;
+            height: 50px;
+            background-color: #4285F4;
+            color: white;
+            display: flex;
+            align-items: center;
+            padding: 0 15px;
+            border: 1px solid black;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        /* FEED POSTS */
+        .post-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 15px;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+        }
+
+        .avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 10px;
+            border: 1px solid #dbdbdb;
+        }
+
+        .username {
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .post-image {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .post-actions {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 15px;
+            font-size: 24px;
+        }
+
+        .action-left i {
+            margin-right: 15px;
+            cursor: pointer;
+        }
+
+        .likes-section, .caption-section, .comments-link, .time-ago {
+            padding: 0 15px;
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+
+        .liked-heart {
+            color: red;
+        }
+
+        /* SEARCH GRID */
+        .grid-view {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+        }
+
+        .grid-item {
+            aspect-ratio: 1/1;
+            background-color: #eee;
+        }
+        .grid-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* PROFILE */
+        .profile-header {
+            padding: 20px 15px;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .profile-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin-right: 20px;
+            object-fit: cover;
+        }
+
+        .stats-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .stats-row {
+            display: flex;
+            justify-content: space-around;
+            text-align: center;
+            margin-bottom: 12px;
+        }
+
+        .stat-num { font-weight: bold; font-size: 18px; }
+        .stat-label { color: grey; font-size: 14px; }
+
+        .edit-profile-btn {
+            width: 100%;
+            padding: 5px;
+            border: 1px solid #dbdbdb;
+            border-radius: 4px;
+            background: #fff;
+            text-align: center;
+            font-weight: bold;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .bio-section {
+            padding: 0 15px 15px 15px;
+        }
+
+        .profile-tabs {
+            display: flex;
+            justify-content: space-around;
+            border-top: 1px solid #dbdbdb;
+            border-bottom: 1px solid #dbdbdb;
+            padding: 10px 0;
+        }
+
+        /* CHAT LIST */
+        .chat-item {
+            display: flex;
+            align-items: center;
+            padding: 10px 15px;
+            cursor: pointer;
+        }
+        .chat-item:hover { background-color: #fafafa; }
+
+        /* CHAT DETAIL */
+        .chat-messages {
+            flex: 1;
+            padding: 10px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .message-bubble {
+            max-width: 70%;
+            padding: 10px 15px;
+            margin-bottom: 8px;
+            font-size: 16px;
+            line-height: 1.4;
+        }
+
+        .msg-sender {
+            align-self: flex-end;
+            background-color: #efefef; /* Grey 300 equivalent */
+            border-radius: 15px 15px 0 15px;
+        }
+
+        .msg-receiver {
+            align-self: flex-start;
+            background-color: white;
+            border: 1px solid #dbdbdb;
+            border-radius: 15px 15px 15px 0;
+        }
+
+        .chat-input-area {
+            height: 60px;
+            padding: 0 10px;
+            display: flex;
+            align-items: center;
+            border-top: 1px solid #eee;
+        }
+
+        .chat-input {
+            flex: 1;
+            border: 1px solid #dbdbdb;
+            border-radius: 20px;
+            padding: 10px 15px;
+            margin: 0 10px;
+            outline: none;
+        }
+
+        /* FORM INPUTS */
+        .form-group {
+            padding: 10px 15px;
+        }
+        .input-label { color: grey; font-size: 12px; margin-bottom: 5px; display: block;}
+        .text-input {
+            width: 100%;
+            border: none;
+            border-bottom: 1px solid #0095f6;
+            padding: 5px 0;
+            font-size: 16px;
+            outline: none;
+        }
+
+    </style>
+</head>
+<body>
+
+<div id="app-root">
+
+    <!-- ================== LOGIN SCREEN ================== -->
+    <div id="login-screen" class="screen active">
+        <div class="app-bar" style="justify-content: center; height: 100px; border:none;">
+            <div class="app-bar-title" style="font-size: 45px;">Instagram</div>
+        </div>
+        <div class="login-container">
+            <div class="login-btn" onclick="navigateTo('home-screen')">
+                <i class="fab fa-google" style="margin-right: 15px;"></i>
+                <span>Sign in with Google</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================== HOME FEED SCREEN ================== -->
+    <div id="home-screen" class="screen">
+        <div class="app-bar">
+            <i class="fas fa-camera"></i>
+            <div class="app-bar-title">Instagram</div>
+            <i class="fas fa-paper-plane" onclick="navigateTo('chat-list-screen')"></i>
+        </div>
+        
+        <div class="body-content" id="feed-container">
+            <!-- Posts will be injected here via JS -->
+        </div>
+
+        <!-- Bottom Navigation -->
+        <div class="bottom-nav">
+            <i class="fas fa-home nav-item active-tab" onclick="switchTab(0)"></i>
+            <i class="fas fa-search nav-item" onclick="switchTab(1)"></i>
+            <i class="fas fa-plus-circle nav-item" onclick="switchTab(2)"></i>
+            <i class="far fa-heart nav-item" onclick="switchTab(3)"></i> <!-- Activity -->
+            <i class="far fa-user nav-item" onclick="switchTab(4)"></i>
+        </div>
+    </div>
+
+    <!-- ================== SEARCH SCREEN ================== -->
+    <div id="search-screen" class="screen">
+        <div class="app-bar">
+            <div class="app-bar-text-title">Search</div>
+            <i class="fas fa-search"></i>
+        </div>
+        <div class="body-content">
+             <div class="grid-view" id="search-grid">
+                 <!-- Grid items injected via JS -->
+             </div>
+        </div>
+        <div class="bottom-nav">
+            <i class="fas fa-home nav-item" onclick="switchTab(0)"></i>
+            <i class="fas fa-search nav-item active-tab" onclick="switchTab(1)"></i>
+            <i class="fas fa-plus-circle nav-item" onclick="switchTab(2)"></i>
+            <i class="far fa-heart nav-item" onclick="switchTab(3)"></i>
+            <i class="far fa-user nav-item" onclick="switchTab(4)"></i>
+        </div>
+    </div>
+
+    <!-- ================== ADD PHOTO SCREEN ================== -->
+    <div id="add-screen" class="screen">
+         <div class="app-bar">
+            <div class="app-bar-text-title">Add Photo</div>
+        </div>
+        <div class="body-content" style="display:flex; justify-content:center; align-items:center;">
+            <button class="login-btn" style="background: black; border-radius: 50px; width: auto; padding: 0 20px;">
+                <i class="fas fa-cloud-upload-alt" style="margin-right: 10px;"></i> Upload Image
+            </button>
+        </div>
+        <div class="bottom-nav">
+            <i class="fas fa-home nav-item" onclick="switchTab(0)"></i>
+            <i class="fas fa-search nav-item" onclick="switchTab(1)"></i>
+            <i class="fas fa-plus-circle nav-item active-tab" onclick="switchTab(2)"></i>
+            <i class="far fa-heart nav-item" onclick="switchTab(3)"></i>
+            <i class="far fa-user nav-item" onclick="switchTab(4)"></i>
+        </div>
+    </div>
+
+    <!-- ================== ACTIVITY SCREEN ================== -->
+    <div id="activity-screen" class="screen">
+        <div class="app-bar">
+            <div class="app-bar-text-title">Activity</div>
+        </div>
+        <div class="body-content" style="display:flex; justify-content:center; align-items:center; color:grey;">
+            NOT IMPLEMENTED YET
+        </div>
+        <div class="bottom-nav">
+            <i class="fas fa-home nav-item" onclick="switchTab(0)"></i>
+            <i class="fas fa-search nav-item" onclick="switchTab(1)"></i>
+            <i class="fas fa-plus-circle nav-item" onclick="switchTab(2)"></i>
+            <i class="fas fa-heart nav-item active-tab" onclick="switchTab(3)"></i>
+            <i class="far fa-user nav-item" onclick="switchTab(4)"></i>
+        </div>
+    </div>
+
+    <!-- ================== PROFILE SCREEN ================== -->
+    <div id="profile-screen" class="screen">
+        <div class="app-bar">
+            <div class="app-bar-text-title">Profile</div>
+            <i class="fas fa-power-off" onclick="navigateTo('login-screen')"></i>
+        </div>
+        <div class="body-content">
+            <div class="profile-header">
+                <img src="https://i.pravatar.cc/150?img=12" class="profile-avatar">
+                <div class="stats-container">
+                    <div class="stats-row">
+                        <div><div class="stat-num">120</div><div class="stat-label">posts</div></div>
+                        <div><div class="stat-num">350</div><div class="stat-label">followers</div></div>
+                        <div><div class="stat-num">200</div><div class="stat-label">following</div></div>
+                    </div>
+                    <div class="edit-profile-btn" onclick="navigateTo('edit-profile-screen')">Edit Profile</div>
+                </div>
+            </div>
+            <div class="bio-section">
+                <div style="font-weight: bold; font-size: 16px;">User Name</div>
+                <div style="margin-top: 5px;">Flutter Developer | Coffee Lover ☕</div>
+            </div>
+            <div class="profile-tabs">
+                <i class="fas fa-th" style="color: #0095f6;"></i>
+                <i class="fas fa-portrait" style="color: grey;"></i>
+            </div>
+            <div class="grid-view" id="profile-grid">
+                <!-- User posts injected via JS -->
+            </div>
+        </div>
+        <div class="bottom-nav">
+            <i class="fas fa-home nav-item" onclick="switchTab(0)"></i>
+            <i class="fas fa-search nav-item" onclick="switchTab(1)"></i>
+            <i class="fas fa-plus-circle nav-item" onclick="switchTab(2)"></i>
+            <i class="far fa-heart nav-item" onclick="switchTab(3)"></i>
+            <i class="fas fa-user nav-item active-tab" onclick="switchTab(4)"></i>
+        </div>
+    </div>
+
+    <!-- ================== EDIT PROFILE SCREEN ================== -->
+    <div id="edit-profile-screen" class="screen" style="z-index: 50;">
+        <div class="app-bar">
+            <i class="fas fa-times" onclick="window.history.back()"></i>
+            <div class="app-bar-text-title">Edit Profile</div>
+            <i class="fas fa-check" style="color: #0095f6;" onclick="window.history.back()"></i>
+        </div>
+        <div class="body-content">
+            <div style="display:flex; flex-direction:column; align-items:center; margin-top: 20px;">
+                <img src="https://i.pravatar.cc/150?img=12" style="width:110px; height:110px; border-radius:50%;">
+                <div style="color: #0095f6; font-weight: bold; font-size: 18px; margin-top: 10px;">Change Photo</div>
+            </div>
+            <div style="padding: 20px;">
+                <div class="form-group">
+                    <label class="input-label">Name</label>
+                    <input type="text" class="text-input" value="User Name">
+                </div>
+                <div class="form-group">
+                    <label class="input-label">Bio</label>
+                    <input type="text" class="text-input" value="Flutter Developer | Coffee Lover ☕">
+                </div>
+                <div style="height: 20px; border-bottom: 1px solid #eee; margin-bottom: 20px;"></div>
+                <div style="font-weight: bold; font-size: 16px; margin-left: 15px;">Private Information</div>
+                <div class="form-group">
+                    <label class="input-label">Email</label>
+                    <input type="email" class="text-input" value="user@example.com">
+                </div>
+                <div class="form-group">
+                    <label class="input-label">Phone</label>
+                    <input type="tel" class="text-input" value="+123456789">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================== CHAT LIST SCREEN ================== -->
+    <div id="chat-list-screen" class="screen" style="z-index: 50;">
+        <div class="app-bar">
+            <i class="fas fa-arrow-left" onclick="window.history.back()"></i>
+            <div class="app-bar-text-title">Direct</div>
+            <i class="fas fa-plus"></i>
+        </div>
+        <div class="body-content" id="chat-list-container">
+            <!-- Chat Items injected via JS -->
+        </div>
+    </div>
+
+    <!-- ================== CHAT DETAIL SCREEN ================== -->
+    <div id="chat-detail-screen" class="screen" style="z-index: 60;">
+        <div class="app-bar">
+            <div style="display:flex; align-items:center;">
+                <i class="fas fa-arrow-left" onclick="window.history.back()" style="margin-right: 15px;"></i>
+                <img src="" id="chat-detail-avatar" style="width:30px; height:30px; border-radius:50%; margin-right:8px;">
+                <div class="app-bar-text-title" id="chat-detail-name">User</div>
+            </div>
+        </div>
+        <div class="chat-messages" id="chat-messages-container">
+            <!-- Messages -->
+        </div>
+        <div class="chat-input-area">
+            <div style="background: #eee; padding: 8px; border-radius: 50%;"><i class="fas fa-camera"></i></div>
+            <input type="text" class="chat-input" placeholder="Message..." id="msg-input">
+            <div onclick="sendMessage()" style="color: #0095f6; font-weight: bold; cursor: pointer;">Send</div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    // --- MOCK DATA ---
+    const users = [
+        { uid: '1', name: 'John Doe', photo: 'https://i.pravatar.cc/150?img=68' },
+        { uid: '2', name: 'Jane Smith', photo: 'https://i.pravatar.cc/150?img=47' },
+        { uid: '3', name: 'Mike Ross', photo: 'https://i.pravatar.cc/150?img=11' },
+        { uid: '4', name: 'Rachel Zane', photo: 'https://i.pravatar.cc/150?img=5' },
+    ];
+
+    const posts = [
+        { id: 1, user: users[0], img: 'https://picsum.photos/400/400?random=1', likes: 24, caption: 'Beautiful day!', location: 'New York' },
+        { id: 2, user: users[1], img: 'https://picsum.photos/400/500?random=2', likes: 105, caption: 'Coding flutter...', location: 'San Francisco' },
+        { id: 3, user: users[2], img: 'https://picsum.photos/400/300?random=3', likes: 8, caption: 'Coffee time', location: '' },
+    ];
+
+    // --- NAVIGATION LOGIC ---
+    const screens = {
+        'login': document.getElementById('login-screen'),
+        'home': document.getElementById('home-screen'),
+        'search': document.getElementById('search-screen'),
+        'add': document.getElementById('add-screen'),
+        'activity': document.getElementById('activity-screen'),
+        'profile': document.getElementById('profile-screen'),
+        'edit-profile': document.getElementById('edit-profile-screen'),
+        'chat-list': document.getElementById('chat-list-screen'),
+        'chat-detail': document.getElementById('chat-detail-screen'),
+    };
+
+    const tabIndices = ['home', 'search', 'add', 'activity', 'profile'];
+    let navigationHistory = ['login-screen'];
+
+    function navigateTo(screenId) {
+        // Hide all screens
+        Object.values(screens).forEach(s => s.classList.remove('active'));
+        
+        // Show target
+        const target = document.getElementById(screenId);
+        if(target) {
+            target.classList.add('active');
+            if (screenId !== navigationHistory[navigationHistory.length - 1]) {
+                navigationHistory.push(screenId);
+                history.pushState({screen: screenId}, null, "");
+            }
+        }
+    }
+
+    // Handle browser back button
+    window.onpopstate = function(event) {
+        if(navigationHistory.length > 1) {
+            navigationHistory.pop();
+            const prevScreen = navigationHistory[navigationHistory.length - 1];
+            Object.values(screens).forEach(s => s.classList.remove('active'));
+            document.getElementById(prevScreen).classList.add('active');
+        }
+    };
+
+    function switchTab(index) {
+        const screenName = tabIndices[index] + '-screen';
+        navigateTo(screenName);
+        
+        // Update styling for all bottom bars
+        document.querySelectorAll('.bottom-nav').forEach(nav => {
+            const items = nav.querySelectorAll('.nav-item');
+            items.forEach(i => {
+                i.classList.remove('active-tab');
+                i.classList.remove('fas');
+                i.classList.add('far'); // Default outline
+                if(i.classList.contains('fa-home') || i.classList.contains('fa-search') || i.classList.contains('fa-plus-circle')) {
+                    i.classList.remove('far');
+                    i.classList.add('fas'); // Solid icons for these always
+                }
+            });
+            
+            // Set active
+            const activeItem = items[index];
+            activeItem.classList.add('active-tab');
+            activeItem.classList.remove('far');
+            activeItem.classList.add('fas');
+        });
+    }
+
+    // --- RENDER FUNCTIONS ---
+
+    function renderFeed() {
+        const container = document.getElementById('feed-container');
+        container.innerHTML = '';
+        posts.forEach(post => {
+            const postHTML = `
+                <div class="post">
+                    <div class="post-header">
+                        <div class="user-info">
+                            <img src="${post.user.photo}" class="avatar">
+                            <div>
+                                <div class="username">${post.user.name}</div>
+                                ${post.location ? `<div style="font-size:12px; color:grey;">${post.location}</div>` : ''}
+                            </div>
+                        </div>
+                        <i class="fas fa-ellipsis-v" style="color:grey;"></i>
+                    </div>
+                    <img src="${post.img}" class="post-image" ondblclick="toggleLike(this)">
+                    <div class="post-actions">
+                        <div class="action-left">
+                            <i class="far fa-heart" onclick="toggleLikeIcon(this)"></i>
+                            <i class="far fa-comment"></i>
+                            <i class="far fa-paper-plane"></i>
+                        </div>
+                        <i class="far fa-bookmark"></i>
+                    </div>
+                    <div class="likes-section">Liked by <b>${post.likes} others</b></div>
+                    <div class="caption-section">
+                        <span class="username">${post.user.name}</span> ${post.caption}
+                    </div>
+                    <div class="time-ago" style="color:grey; font-size:10px; margin-top:5px;">1 DAY AGO</div>
+                </div>
+            `;
+            container.innerHTML += postHTML;
+        });
+    }
+
+    function renderGrid(containerId, count) {
+        const container = document.getElementById(containerId);
+        container.innerHTML = '';
+        for(let i=0; i<count; i++) {
+            container.innerHTML += `
+                <div class="grid-item">
+                    <img src="https://picsum.photos/200/200?random=${i+10}">
+                </div>
+            `;
+        }
+    }
+
+    function renderChatList() {
+        const container = document.getElementById('chat-list-container');
+        container.innerHTML = '';
+        users.forEach(user => {
+            container.innerHTML += `
+                <div class="chat-item" onclick="openChat('${user.uid}', '${user.name}', '${user.photo}')">
+                    <img src="${user.photo}" class="avatar" style="width:50px; height:50px;">
+                    <div>
+                        <div class="username" style="font-size:16px;">${user.name}</div>
+                        <div style="color:grey;">Active now</div>
+                    </div>
+                </div>
+            `;
+        });
+    }
+
+    // --- INTERACTIONS ---
+
+    function toggleLikeIcon(icon) {
+        if(icon.classList.contains('far')) {
+            icon.classList.remove('far');
+            icon.classList.add('fas');
+            icon.classList.add('liked-heart');
+        } else {
+            icon.classList.add('far');
+            icon.classList.remove('fas');
+            icon.classList.remove('liked-heart');
+        }
+    }
+
+    function openChat(uid, name, photo) {
+        document.getElementById('chat-detail-name').innerText = name;
+        document.getElementById('chat-detail-avatar').src = photo;
+        
+        // Mock messages
+        const msgContainer = document.getElementById('chat-messages-container');
+        msgContainer.innerHTML = `
+            <div class="message-bubble msg-receiver">Hey ${name}! How are you?</div>
+            <div class="message-bubble msg-sender">I'm doing good, thanks for asking!</div>
+        `;
+        navigateTo('chat-detail-screen');
+    }
+
+    function sendMessage() {
+        const input = document.getElementById('msg-input');
+        const text = input.value;
+        if(!text) return;
+        
+        const msgContainer = document.getElementById('chat-messages-container');
+        msgContainer.innerHTML += `<div class="message-bubble msg-receiver">${text}</div>`;
+        input.value = '';
+        msgContainer.scrollTop = msgContainer.scrollHeight;
+    }
+
+    // --- INITIALIZATION ---
+    renderFeed();
+    renderGrid('search-grid', 15);
+    renderGrid('profile-grid', 9);
+    renderChatList();
+
+</script>
+</body>
+</html>
