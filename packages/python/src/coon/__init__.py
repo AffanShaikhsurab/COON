@@ -7,7 +7,7 @@ while maintaining semantic equivalence.
 
 Quick Start:
     >>> from coon import compress_dart, decompress_coon
-    >>> 
+    >>>
     >>> dart_code = '''
     ... class MyWidget extends StatelessWidget {
     ...     @override
@@ -19,16 +19,16 @@ Quick Start:
     ...     }
     ... }
     ... '''
-    >>> 
+    >>>
     >>> compressed = compress_dart(dart_code)
     >>> print(compressed)  # Significantly shorter
-    >>> 
+    >>>
     >>> restored = decompress_coon(compressed)
     >>> # restored is semantically equivalent to dart_code
 
 Advanced Usage:
     >>> from coon import Compressor, CompressionConfig
-    >>> 
+    >>>
     >>> config = CompressionConfig(
     ...     strategy="aggressive",
     ...     enable_metrics=True,
@@ -50,68 +50,65 @@ __version__ = "1.0.0"
 __author__ = "COON Contributors"
 
 # Core classes
-from .core import (
-    Compressor,
-    Decompressor,
-    CompressionConfig,
-    DecompressionConfig,
-    CompressionResult,
-    DecompressionResult,
-    compress_dart,
-    decompress_coon,
-    count_tokens,
+# Analysis
+from .analysis import (
+    AnalysisResult,
+    CodeAnalyzer,
+    CompressionMetric,
+    MetricsCollector,
 )
-
-# Strategies
-from .strategies import (
-    CompressionStrategy,
-    BasicStrategy,
-    AggressiveStrategy,
-    ASTBasedStrategy,
-    ComponentRefStrategy,
-    StrategySelector,
-    StrategyName,
-    get_strategy,
+from .core import (
+    CompressionConfig,
+    CompressionResult,
+    Compressor,
+    DecompressionConfig,
+    DecompressionResult,
+    Decompressor,
+    compress_dart,
+    count_tokens,
+    decompress_coon,
 )
 
 # Data
 from .data import (
-    get_widgets,
-    get_properties,
     get_keywords,
-)
-
-# Analysis
-from .analysis import (
-    CodeAnalyzer,
-    AnalysisResult,
-    MetricsCollector,
-    CompressionMetric,
+    get_properties,
+    get_widgets,
 )
 
 # Parser
 from .parser import (
-    DartParser,
+    ASTNode,
     DartLexer,
+    DartParser,
     Token,
     TokenType,
-    ASTNode,
+)
+
+# Strategies
+from .strategies import (
+    AggressiveStrategy,
+    ASTBasedStrategy,
+    BasicStrategy,
+    ComponentRefStrategy,
+    CompressionStrategy,
+    StrategyName,
+    StrategySelector,
+    get_strategy,
 )
 
 # Utilities
 from .utils import (
-    CompressionValidator,
-    ValidationResult,
-    ComponentRegistry,
     Component,
+    ComponentRegistry,
+    CompressionValidator,
     DartFormatter,
+    ValidationResult,
 )
-
 
 __all__ = [
     # Version
     "__version__",
-    
     # Core
     "Compressor",
     "Decompressor",
@@ -122,7 +119,6 @@ __all__ = [
     "compress_dart",
     "decompress_coon",
     "count_tokens",
-    
     # Strategies
     "CompressionStrategy",
     "BasicStrategy",
@@ -132,25 +128,21 @@ __all__ = [
     "StrategySelector",
     "StrategyName",
     "get_strategy",
-    
     # Data
     "get_widgets",
     "get_properties",
     "get_keywords",
-    
     # Analysis
     "CodeAnalyzer",
     "AnalysisResult",
     "MetricsCollector",
     "CompressionMetric",
-    
     # Parser
     "DartParser",
     "DartLexer",
     "Token",
     "TokenType",
     "ASTNode",
-    
     # Utilities
     "CompressionValidator",
     "ValidationResult",

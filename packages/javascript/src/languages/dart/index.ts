@@ -2,4 +2,4 @@
  * Dart Language Handler Module
  */
 
-export { DartLanguageHandler } from './handler';
+export { DartLanguageHandler } from "./handler";

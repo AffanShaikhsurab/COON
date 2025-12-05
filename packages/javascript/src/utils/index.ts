@@ -3,10 +3,18 @@
  */
 
 // Validator
-export { CompressionValidator, ValidationResult } from './validator';
+export { CompressionValidator, ValidationResult } from "./validator";
 
 // Registry
-export { ComponentRegistry, Component, createDefaultRegistry } from './registry';
+export {
+  ComponentRegistry,
+  Component,
+  createDefaultRegistry,
+} from "./registry";
 
 // Formatter
-export { DartFormatter, FormatterOptions, DEFAULT_FORMATTER_OPTIONS } from './formatter';
+export {
+  DartFormatter,
+  FormatterOptions,
+  DEFAULT_FORMATTER_OPTIONS,
+} from "./formatter";
