@@ -1,0 +1,33 @@
+{
+  "timestamp": "2025-12-05T13:24:11.057Z",
+  "sourceFile": "C:\\Users\\affan\\Affan Projects\\FlutterAi\\COON\\benchmarks\\observation-testing\\instagram-clone\\input\\flutter-context.txt",
+  "fileSize": 146550,
+  "analysis": {
+    "filename": "flutter-context.txt",
+    "dartCharacters": 146550,
+    "dartTokens": 24962,
+    "coonCharacters": 61923,
+    "coonTokens": 16458,
+    "characterReduction": 84627,
+    "characterReductionPercent": 57.74616171954964,
+    "tokenReduction": 8504,
+    "tokenReductionPercent": 34.06778303020591,
+    "characterCompressionRatio": 2.366648902669444,
+    "tokenCompressionRatio": 1.516709199173654,
+    "dartPreview": "================================================\r\\nFILE: lib/ui/chat_detail_screen.dart\r\\n================================================\r\\nimport 'dart:async';\r\\nimport 'dart:io';\r\\nimport 'dart:math';\r\\nimport 'package:image/image.dart' as Im;\r\\nimport 'package:cloud_firestore/cloud_firestore.dart';\r\\nim...",
+    "coonPreview": "================================================ FILE:lib/ui/chat_detail_screen.dart ================================================ im:'dart:asy'; im:'dart:io'; im:'dart:math'; im:'package:image/image.dart' as Im; im:'package:cloud_firestore/cloud_firestore.dart'; im:'package:flutter/material.dart...",
+    "dartLines": 4057,
+    "coonLines": 1
+  },
+  "costPerRequest": {
+    "dartCost": 0.0037443,
+    "coonCost": 0.0024687,
+    "savingsPerRequest": 0.0012756,
+    "savingsPercent": 34.06778303020591
+  },
+  "costAtScale": {
+    "dartCost1M": 3744.2999999999997,
+    "coonCost1M": 2468.7,
+    "savings1M": 1275.6
+  }
+}

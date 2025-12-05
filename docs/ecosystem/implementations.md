@@ -46,7 +46,7 @@ Native TypeScript implementation for Node.js and browser.
 
 | | |
 |---|---|
-| **Package** | `@coon/sdk` |
+| **Package** | `@coon-format` |
 | **Version** | 1.0.0 |
 | **Node.js** | 16+ |
 | **Status** | Stable |
@@ -54,7 +54,7 @@ Native TypeScript implementation for Node.js and browser.
 
 **Installation:**
 ```bash
-npm install @coon/sdk
+npm install @coon-format
 ```
 
 **Features:**
@@ -66,7 +66,7 @@ npm install @coon/sdk
 
 **Quick Start:**
 ```typescript
-import { compressDart, decompressCoon } from '@coon/sdk';
+import { compressDart, decompressCoon } from '@coon-format';
 
 const compressed = compressDart(dartCode);
 const restored = decompressCoon(compressed);

@@ -1,0 +1,38 @@
+{
+  "name": "@coon/benchmarks",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "benchmark": "tsx --env-file=.env scripts/comprehension-benchmark.ts",
+    "benchmark:comprehension": "tsx --env-file=.env scripts/comprehension-benchmark.ts",
+    "benchmark:compression": "tsx --env-file=.env scripts/compression-efficiency-benchmark.ts",
+    "benchmark:all-models": "tsx --env-file=.env scripts/comprehension-benchmark.ts --all",
+    "benchmark:ui": "TEST_TYPE=ui tsx --env-file=.env scripts/comprehension-benchmark.ts",
+    "benchmark:logic": "TEST_TYPE=logic tsx --env-file=.env scripts/comprehension-benchmark.ts",
+    "benchmark:generation": "tsx --env-file=.env scripts/generation-benchmark.ts",
+    "benchmark:full": "tsx --env-file=.env scripts/run-all.ts",
+    "benchmark:dry": "DRY_RUN=true tsx --env-file=.env scripts/comprehension-benchmark.ts",
+    "validate": "tsx scripts/validate-questions.ts",
+    "validate:models": "tsx --env-file=.env scripts/validate-models.ts"
+  },
+  "dependencies": {
+    "coon-format": "file:../packages/javascript",
+    "@google/genai": "^1.3.0",
+    "@openrouter/sdk": "^0.1.1",
+    "groq-sdk": "^0.15.0",
+    "openai": "^4.77.0"
+  },
+  "devDependencies": {
+    "@ai-sdk/google": "^2.0.42",
+    "@ai-sdk/provider": "^2.0.0",
+    "@clack/prompts": "^0.11.0",
+    "@faker-js/faker": "^10.1.0",
+    "@types/node": "^22.0.0",
+    "ai": "^5.0.101",
+    "gpt-tokenizer": "^3.4.0",
+    "p-queue": "^9.0.1",
+    "tsx": "^4.19.2",
+    "typescript": "^5.6.3",
+    "unstorage": "^1.17.3"
+  }
+}

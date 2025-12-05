@@ -1,7 +1,7 @@
 /**
  * JavaScript SDK Backend Adapter
  * 
- * Uses the @coon/sdk JavaScript package for compression operations.
+ * Uses the @coon-format JavaScript package for compression operations.
  */
 
 import type {
@@ -11,7 +11,7 @@ import type {
     ValidationResult
 } from './types.js';
 
-// Dynamic import since @coon/sdk might not be installed
+// Dynamic import since @coon-format might not be installed
 let sdk: any = null;
 
 async function getSDK() {
@@ -19,7 +19,7 @@ async function getSDK() {
         try {
             // Try npm package first
             // @ts-ignore - dynamic import
-            sdk = await import('@coon/sdk');
+            sdk = await import('@coon-format');
         } catch {
             try {
                 // Try to import from relative path (development/monorepo)
@@ -27,7 +27,7 @@ async function getSDK() {
                 sdk = await import('../../javascript/src/index.js');
             } catch {
                 throw new Error(
-                    'JavaScript SDK not found. Install it with: npm install @coon/sdk\n' +
+                    'JavaScript SDK not found. Install it with: npm install @coon-format\n' +
                     'Or link the local package: npm link ../javascript'
                 );
             }

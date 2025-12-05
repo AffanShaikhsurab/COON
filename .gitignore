@@ -68,6 +68,9 @@ ENV/
 env.bak/
 venv.bak/
 
+.history/
+
+
 # IDE
 .vscode/
 .idea/
@@ -90,3 +93,8 @@ ultra_*.txt
 # Internal docs (not for GitHub)
 SETUP_COMPLETE.md
 PROJECT_STRUCTURE.md
+# Temporary/Debug files
+log.txt
+*.log
+debug.txt
+temp.txt

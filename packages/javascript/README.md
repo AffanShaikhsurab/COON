@@ -1,6 +1,6 @@
 # COON JavaScript/TypeScript SDK
 
-[![npm version](https://img.shields.io/npm/v/@coon/sdk.svg?labelColor=1b1b1f&color=60a5fa)](https://www.npmjs.com/package/@coon/sdk)
+[![npm version](https://img.shields.io/npm/v/@coon-format.svg?labelColor=1b1b1f&color=60a5fa)](https://www.npmjs.com/package/@coon-format)
 [![Node Version](https://img.shields.io/badge/node-18%2B-60a5fa?labelColor=1b1b1f)](https://nodejs.org/)
 [![License: MIT](https://img.shields.io/badge/license-MIT-60a5fa?labelColor=1b1b1f)](../../LICENSE)
 
@@ -21,19 +21,19 @@ Token-efficient code compression for Dart/Flutter, optimized for LLM contexts.
 
 ```bash
 # npm
-npm install @coon/sdk
+npm install @coon-format
 
 # pnpm
-pnpm add @coon/sdk
+pnpm add @coon-format
 
 # yarn
-yarn add @coon/sdk
+yarn add @coon-format
 ```
 
 ## Quick Start
 
 ```typescript
-import { compressDart, decompressCoon } from '@coon/sdk';
+import { compressDart, decompressCoon } from '@coon-format';
 
 // Compress Dart code
 const dartCode = `
@@ -61,7 +61,7 @@ const original = decompressCoon(compressed);
 ### Using the Compressor Class
 
 ```typescript
-import { Compressor, CompressionStrategyType } from '@coon/sdk';
+import { Compressor, CompressionStrategyType } from '@coon-format';
 
 const compressor = new Compressor({
     strategy: CompressionStrategyType.AUTO,
@@ -80,7 +80,7 @@ console.log(`Strategy used: ${result.strategyUsed}`);
 ### Using Specific Strategies
 
 ```typescript
-import { Compressor, CompressionStrategyType } from '@coon/sdk';
+import { Compressor, CompressionStrategyType } from '@coon-format';
 
 const compressor = new Compressor();
 
@@ -94,7 +94,7 @@ const safeResult = compressor.compress(dartCode, CompressionStrategyType.BASIC);
 ### Decompression with Formatting
 
 ```typescript
-import { Decompressor } from '@coon/sdk';
+import { Decompressor } from '@coon-format';
 
 const decompressor = new Decompressor({
     formatOutput: true,
@@ -118,7 +118,7 @@ console.log(result.code);
 ### Strategy Selection
 
 ```typescript
-import { CompressionStrategyType } from '@coon/sdk';
+import { CompressionStrategyType } from '@coon-format';
 
 // Available strategies
 CompressionStrategyType.AUTO          // Default - automatic selection
@@ -204,7 +204,7 @@ import {
     CompressionStrategyType,
     CompressorConfig,
     DecompressorConfig
-} from '@coon/sdk';
+} from '@coon-format';
 ```
 
 ## Architecture

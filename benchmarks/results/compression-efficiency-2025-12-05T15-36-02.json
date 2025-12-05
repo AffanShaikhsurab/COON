@@ -1,0 +1,1712 @@
+[
+  {
+    "sampleId": "large-ecommerce-app",
+    "sampleName": "E-Commerce Product Listing App",
+    "model": "gemini-2.5-flash",
+    "scenario": "dart-baseline",
+    "tokenCount": 5087,
+    "questionsAsked": 8,
+    "correctAnswers": 4,
+    "accuracy": 50,
+    "avgLatencyMs": 5253.875,
+    "totalInputTokens": 49941,
+    "totalOutputTokens": 13,
+    "questionResults": [
+      {
+        "questionId": "large-ecommerce-app-q1",
+        "question": "How many different widget types are used in this code?",
+        "expected": "24",
+        "actual": "30",
+        "correct": false,
+        "latencyMs": 9217,
+        "inputTokens": 6239,
+        "outputTokens": 2
+      },
+      {
+        "questionId": "large-ecommerce-app-q2",
+        "question": "What is the main root widget class name used in this application?",
+        "expected": "MaterialApp",
+        "actual": "ECommerceApp",
+        "correct": false,
+        "latencyMs": 2698,
+        "inputTokens": 6241,
+        "outputTokens": 3
+      },
+      {
+        "questionId": "large-ecommerce-app-q3",
+        "question": "Does this code contain a Scaffold widget? Answer YES or NO.",
+        "expected": "YES",
+        "actual": "YES",
+        "correct": true,
+        "latencyMs": 1620,
+        "inputTokens": 6241,
+        "outputTokens": 1
+      },
+      {
+        "questionId": "large-ecommerce-app-q4",
+        "question": "Does this code use ListView or GridView for displaying lists? Answer with the widget name or NEITHER.",
+        "expected": "BOTH",
+        "actual": "GridView",
+        "correct": false,
+        "latencyMs": 13373,
+        "inputTokens": 6249,
+        "outputTokens": 1
+      },
+      {
+        "questionId": "large-ecommerce-app-q5",
+        "question": "Count how many Text widgets appear in this code.",
+        "expected": "31",
+        "actual": "36",
+        "correct": false,
+        "latencyMs": 7925,
+        "inputTokens": 6238,
+        "outputTokens": 2
+      },
+      {
+        "questionId": "large-ecommerce-app-q6",
+        "question": "Is there any state management (StatefulWidget) in this code? Answer YES or NO.",
+        "expected": "YES",
+        "actual": "YES",
+        "correct": true,
+        "latencyMs": 2260,
+        "inputTokens": 6247,
+        "outputTokens": 1
+      },
+      {
+        "questionId": "large-ecommerce-app-q7",
+        "question": "Does the code contain navigation (Navigator.push)? Answer YES or NO.",
+        "expected": "YES",
+        "actual": "YES",
+        "correct": true,
+        "latencyMs": 1995,
+        "inputTokens": 6243,
+        "outputTokens": 1
+      },
+      {
+        "questionId": "large-ecommerce-app-q8",
+        "question": "What AppBar title is used in the main page? Give the exact text.",
+        "expected": "Product Catalog",
+        "actual": "Product Catalog",
+        "correct": true,
+        "latencyMs": 2943,
+        "inputTokens": 6243,
+        "outputTokens": 2
+      }
+    ]
+  },
+  {
+    "sampleId": "large-ecommerce-app",
+    "sampleName": "E-Commerce Product Listing App",
+    "model": "gemini-2.5-flash",
+    "scenario": "raw-coon",
+    "tokenCount": 3403,
+    "questionsAsked": 8,
+    "correctAnswers": 4,
+    "accuracy": 50,
+    "avgLatencyMs": 7799.75,
+    "totalInputTokens": 32941,
+    "totalOutputTokens": 13,
+    "questionResults": [
+      {
+        "questionId": "large-ecommerce-app-q1",
+        "question": "How many different widget types are used in this code?",
+        "expected": "24",
+        "actual": "31",
+        "correct": false,
+        "latencyMs": 34216,
+        "inputTokens": 4114,
+        "outputTokens": 2
+      },
+      {
+        "questionId": "large-ecommerce-app-q2",
+        "question": "What is the main root widget class name used in this application?",
+        "expected": "MaterialApp",
+        "actual": "ECommerceApp",
+        "correct": false,
+        "latencyMs": 2259,
+        "inputTokens": 4116,
+        "outputTokens": 3
+      },
+      {
+        "questionId": "large-ecommerce-app-q3",
+        "question": "Does this code contain a Scaffold widget? Answer YES or NO.",
+        "expected": "YES",
+        "actual": "YES",
+        "correct": true,
+        "latencyMs": 1956,
+        "inputTokens": 4116,
+        "outputTokens": 1
+      },
+      {
+        "questionId": "large-ecommerce-app-q4",
+        "question": "Does this code use ListView or GridView for displaying lists? Answer with the widget name or NEITHER.",
+        "expected": "BOTH",
+        "actual": "GridView",
+        "correct": false,
+        "latencyMs": 9314,
+        "inputTokens": 4124,
+        "outputTokens": 1
+      },
+      {
+        "questionId": "large-ecommerce-app-q5",
+        "question": "Count how many Text widgets appear in this code.",
+        "expected": "31",
+        "actual": "32",
+        "correct": false,
+        "latencyMs": 7253,
+        "inputTokens": 4113,
+        "outputTokens": 2
+      },
+      {
+        "questionId": "large-ecommerce-app-q6",
+        "question": "Is there any state management (StatefulWidget) in this code? Answer YES or NO.",
+        "expected": "YES",
+        "actual": "YES",
+        "correct": true,
+        "latencyMs": 2569,
+        "inputTokens": 4122,
+        "outputTokens": 1
+      },
+      {
+        "questionId": "large-ecommerce-app-q7",
+        "question": "Does the code contain navigation (Navigator.push)? Answer YES or NO.",
+        "expected": "YES",
+        "actual": "YES",
+        "correct": true,
+        "latencyMs": 1948,
+        "inputTokens": 4118,
+        "outputTokens": 1
+      },
+      {
+        "questionId": "large-ecommerce-app-q8",
+        "question": "What AppBar title is used in the main page? Give the exact text.",
+        "expected": "Product Catalog",
+        "actual": "Product Catalog",
+        "correct": true,
+        "latencyMs": 2883,
+        "inputTokens": 4118,
+        "outputTokens": 2
+      }
+    ]
+  },
+  {
+    "sampleId": "large-ecommerce-app",
+    "sampleName": "E-Commerce Product Listing App",
+    "model": "gemini-2.5-flash",
+    "scenario": "coon-with-context",
+    "tokenCount": 3515,
+    "questionsAsked": 8,
+    "correctAnswers": 4,
+    "accuracy": 50,
+    "avgLatencyMs": 5512.125,
+    "totalInputTokens": 33893,
+    "totalOutputTokens": 13,
+    "questionResults": [
+      {
+        "questionId": "large-ecommerce-app-q1",
+        "question": "How many different widget types are used in this code?",
+        "expected": "24",
+        "actual": "31",
+        "correct": false,
+        "latencyMs": 8876,
+        "inputTokens": 4233,
+        "outputTokens": 2
+      },
+      {
+        "questionId": "large-ecommerce-app-q2",
+        "question": "What is the main root widget class name used in this application?",
+        "expected": "MaterialApp",
+        "actual": "ECommerceApp",
+        "correct": false,
+        "latencyMs": 2491,
+        "inputTokens": 4235,
+        "outputTokens": 3
+      },
+      {
+        "questionId": "large-ecommerce-app-q3",
+        "question": "Does this code contain a Scaffold widget? Answer YES or NO.",
+        "expected": "YES",
+        "actual": "YES",
+        "correct": true,
+        "latencyMs": 8909,
+        "inputTokens": 4235,
+        "outputTokens": 1
+      },
+      {
+        "questionId": "large-ecommerce-app-q4",
+        "question": "Does this code use ListView or GridView for displaying lists? Answer with the widget name or NEITHER.",
+        "expected": "BOTH",
+        "actual": "GridView",
+        "correct": false,
+        "latencyMs": 12000,
+        "inputTokens": 4243,
+        "outputTokens": 1
+      },
+      {
+        "questionId": "large-ecommerce-app-q5",
+        "question": "Count how many Text widgets appear in this code.",
+        "expected": "31",
+        "actual": "60",
+        "correct": false,
+        "latencyMs": 2570,
+        "inputTokens": 4232,
+        "outputTokens": 2
+      },
+      {
+        "questionId": "large-ecommerce-app-q6",
+        "question": "Is there any state management (StatefulWidget) in this code? Answer YES or NO.",
+        "expected": "YES",
+        "actual": "YES",
+        "correct": true,
+        "latencyMs": 3192,
+        "inputTokens": 4241,
+        "outputTokens": 1
+      },
+      {
+        "questionId": "large-ecommerce-app-q7",
+        "question": "Does the code contain navigation (Navigator.push)? Answer YES or NO.",
+        "expected": "YES",
+        "actual": "YES",
+        "correct": true,
+        "latencyMs": 1905,
+        "inputTokens": 4237,
+        "outputTokens": 1
+      },
+      {
+        "questionId": "large-ecommerce-app-q8",
+        "question": "What AppBar title is used in the main page? Give the exact text.",
+        "expected": "Product Catalog",
+        "actual": "Product Catalog",
+        "correct": true,
+        "latencyMs": 4154,
+        "inputTokens": 4237,
+        "outputTokens": 2
+      }
+    ]
+  },
+  {
+    "sampleId": "large-ecommerce-app",
+    "sampleName": "E-Commerce Product Listing App",
+    "model": "glm-4.6",
+    "scenario": "dart-baseline",
+    "tokenCount": 5087,
+    "questionsAsked": 8,
+    "correctAnswers": 5,
+    "accuracy": 62.5,
+    "avgLatencyMs": 5413.25,
+    "totalInputTokens": 39130,
+    "totalOutputTokens": 52,
+    "questionResults": [
+      {
+        "questionId": "large-ecommerce-app-q1",
+        "question": "How many different widget types are used in this code?",
+        "expected": "24",
+        "actual": "23",
+        "correct": false,
+        "latencyMs": 2431,
+        "inputTokens": 4888,
+        "outputTokens": 6
+      },
+      {
+        "questionId": "large-ecommerce-app-q2",
+        "question": "What is the main root widget class name used in this application?",
+        "expected": "MaterialApp",
+        "actual": "ECommerceApp",
+        "correct": false,
+        "latencyMs": 25292,
+        "inputTokens": 4890,
+        "outputTokens": 8
+      },
+      {
+        "questionId": "large-ecommerce-app-q3",
+        "question": "Does this code contain a Scaffold widget? Answer YES or NO.",
+        "expected": "YES",
+        "actual": "YES",
+        "correct": true,
+        "latencyMs": 2388,
+        "inputTokens": 4890,
+        "outputTokens": 6
+      },
+      {
+        "questionId": "large-ecommerce-app-q4",
+        "question": "Does this code use ListView or GridView for displaying lists? Answer with the widget name or NEITHER.",
+        "expected": "BOTH",
+        "actual": "BOTH",
+        "correct": true,
+        "latencyMs": 3456,
+        "inputTokens": 4897,
+        "outputTokens": 7
+      },
+      {
+        "questionId": "large-ecommerce-app-q5",
+        "question": "Count how many Text widgets appear in this code.",
+        "expected": "31",
+        "actual": "44",
+        "correct": false,
+        "latencyMs": 2286,
+        "inputTokens": 4887,
+        "outputTokens": 6
+      },
+      {
+        "questionId": "large-ecommerce-app-q6",
+        "question": "Is there any state management (StatefulWidget) in this code? Answer YES or NO.",
+        "expected": "YES",
+        "actual": "YES",
+        "correct": true,
+        "latencyMs": 2650,
+        "inputTokens": 4895,
+        "outputTokens": 6
+      },
+      {
+        "questionId": "large-ecommerce-app-q7",
+        "question": "Does the code contain navigation (Navigator.push)? Answer YES or NO.",
+        "expected": "YES",
+        "actual": "YES",
+        "correct": true,
+        "latencyMs": 2777,
+        "inputTokens": 4891,
+        "outputTokens": 6
+      },
+      {
+        "questionId": "large-ecommerce-app-q8",
+        "question": "What AppBar title is used in the main page? Give the exact text.",
+        "expected": "Product Catalog",
+        "actual": "Product Catalog",
+        "correct": true,
+        "latencyMs": 2026,
+        "inputTokens": 4892,
+        "outputTokens": 7
+      }
+    ]
+  },
+  {
+    "sampleId": "large-ecommerce-app",
+    "sampleName": "E-Commerce Product Listing App",
+    "model": "glm-4.6",
+    "scenario": "raw-coon",
+    "tokenCount": 3403,
+    "questionsAsked": 8,
+    "correctAnswers": 4,
+    "accuracy": 50,
+    "avgLatencyMs": 2957.75,
+    "totalInputTokens": 27754,
+    "totalOutputTokens": 51,
+    "questionResults": [
+      {
+        "questionId": "large-ecommerce-app-q1",
+        "question": "How many different widget types are used in this code?",
+        "expected": "24",
+        "actual": "15",
+        "correct": false,
+        "latencyMs": 3813,
+        "inputTokens": 3466,
+        "outputTokens": 6
+      },
+      {
+        "questionId": "large-ecommerce-app-q2",
+        "question": "What is the main root widget class name used in this application?",
+        "expected": "MaterialApp",
+        "actual": "ECommerceApp",
+        "correct": false,
+        "latencyMs": 2764,
+        "inputTokens": 3468,
+        "outputTokens": 8
+      },
+      {
+        "questionId": "large-ecommerce-app-q3",
+        "question": "Does this code contain a Scaffold widget? Answer YES or NO.",
+        "expected": "YES",
+        "actual": "YES",
+        "correct": true,
+        "latencyMs": 2690,
+        "inputTokens": 3468,
+        "outputTokens": 6
+      },
+      {
+        "questionId": "large-ecommerce-app-q4",
+        "question": "Does this code use ListView or GridView for displaying lists? Answer with the widget name or NEITHER.",
+        "expected": "BOTH",
+        "actual": "GridView",
+        "correct": false,
+        "latencyMs": 1924,
+        "inputTokens": 3475,
+        "outputTokens": 6
+      },
+      {
+        "questionId": "large-ecommerce-app-q5",
+        "question": "Count how many Text widgets appear in this code.",
+        "expected": "31",
+        "actual": "42",
+        "correct": false,
+        "latencyMs": 1983,
+        "inputTokens": 3465,
+        "outputTokens": 6
+      },
+      {
+        "questionId": "large-ecommerce-app-q6",
+        "question": "Is there any state management (StatefulWidget) in this code? Answer YES or NO.",
+        "expected": "YES",
+        "actual": "YES",
+        "correct": true,
+        "latencyMs": 6923,
+        "inputTokens": 3473,
+        "outputTokens": 6
+      },
+      {
+        "questionId": "large-ecommerce-app-q7",
+        "question": "Does the code contain navigation (Navigator.push)? Answer YES or NO.",
+        "expected": "YES",
+        "actual": "YES",
+        "correct": true,
+        "latencyMs": 1558,
+        "inputTokens": 3469,
+        "outputTokens": 6
+      },
+      {
+        "questionId": "large-ecommerce-app-q8",
+        "question": "What AppBar title is used in the main page? Give the exact text.",
+        "expected": "Product Catalog",
+        "actual": "Product Catalog",
+        "correct": true,
+        "latencyMs": 2007,
+        "inputTokens": 3470,
+        "outputTokens": 7
+      }
+    ]
+  },
+  {
+    "sampleId": "large-ecommerce-app",
+    "sampleName": "E-Commerce Product Listing App",
+    "model": "glm-4.6",
+    "scenario": "coon-with-context",
+    "tokenCount": 3515,
+    "questionsAsked": 8,
+    "correctAnswers": 5,
+    "accuracy": 62.5,
+    "avgLatencyMs": 2294.125,
+    "totalInputTokens": 28658,
+    "totalOutputTokens": 51,
+    "questionResults": [
+      {
+        "questionId": "large-ecommerce-app-q1",
+        "question": "How many different widget types are used in this code?",
+        "expected": "24",
+        "actual": "24",
+        "correct": true,
+        "latencyMs": 5864,
+        "inputTokens": 3579,
+        "outputTokens": 6
+      },
+      {
+        "questionId": "large-ecommerce-app-q2",
+        "question": "What is the main root widget class name used in this application?",
+        "expected": "MaterialApp",
+        "actual": "ECommerceApp",
+        "correct": false,
+        "latencyMs": 1865,
+        "inputTokens": 3581,
+        "outputTokens": 8
+      },
+      {
+        "questionId": "large-ecommerce-app-q3",
+        "question": "Does this code contain a Scaffold widget? Answer YES or NO.",
+        "expected": "YES",
+        "actual": "YES",
+        "correct": true,
+        "latencyMs": 1815,
+        "inputTokens": 3581,
+        "outputTokens": 6
+      },
+      {
+        "questionId": "large-ecommerce-app-q4",
+        "question": "Does this code use ListView or GridView for displaying lists? Answer with the widget name or NEITHER.",
+        "expected": "BOTH",
+        "actual": "GridView",
+        "correct": false,
+        "latencyMs": 1699,
+        "inputTokens": 3588,
+        "outputTokens": 6
+      },
+      {
+        "questionId": "large-ecommerce-app-q5",
+        "question": "Count how many Text widgets appear in this code.",
+        "expected": "31",
+        "actual": "42",
+        "correct": false,
+        "latencyMs": 1788,
+        "inputTokens": 3578,
+        "outputTokens": 6
+      },
+      {
+        "questionId": "large-ecommerce-app-q6",
+        "question": "Is there any state management (StatefulWidget) in this code? Answer YES or NO.",
+        "expected": "YES",
+        "actual": "YES",
+        "correct": true,
+        "latencyMs": 1610,
+        "inputTokens": 3586,
+        "outputTokens": 6
+      },
+      {
+        "questionId": "large-ecommerce-app-q7",
+        "question": "Does the code contain navigation (Navigator.push)? Answer YES or NO.",
+        "expected": "YES",
+        "actual": "YES",
+        "correct": true,
+        "latencyMs": 1948,
+        "inputTokens": 3582,
+        "outputTokens": 6
+      },
+      {
+        "questionId": "large-ecommerce-app-q8",
+        "question": "What AppBar title is used in the main page? Give the exact text.",
+        "expected": "Product Catalog",
+        "actual": "Product Catalog",
+        "correct": true,
+        "latencyMs": 1764,
+        "inputTokens": 3583,
+        "outputTokens": 7
+      }
+    ]
+  },
+  {
+    "sampleId": "large-ecommerce-app",
+    "sampleName": "E-Commerce Product Listing App",
+    "model": "MiniMax-M2",
+    "scenario": "dart-baseline",
+    "tokenCount": 5087,
+    "questionsAsked": 8,
+    "correctAnswers": 4,
+    "accuracy": 50,
+    "avgLatencyMs": 11377.375,
+    "totalInputTokens": 41927,
+    "totalOutputTokens": 5812,
+    "questionResults": [
+      {
+        "questionId": "large-ecommerce-app-q1",
+        "question": "How many different widget types are used in this code?",
+        "expected": "24",
+        "actual": "22",
+        "correct": false,
+        "latencyMs": 26704,
+        "inputTokens": 5237,
+        "outputTokens": 1963
+      },
+      {
+        "questionId": "large-ecommerce-app-q2",
+        "question": "What is the main root widget class name used in this application?",
+        "expected": "MaterialApp",
+        "actual": "ECommerceApp",
+        "correct": false,
+        "latencyMs": 6211,
+        "inputTokens": 5239,
+        "outputTokens": 314
+      },
+      {
+        "questionId": "large-ecommerce-app-q3",
+        "question": "Does this code contain a Scaffold widget? Answer YES or NO.",
+        "expected": "YES",
+        "actual": "YES",
+        "correct": true,
+        "latencyMs": 8211,
+        "inputTokens": 5239,
+        "outputTokens": 531
+      },
+      {
+        "questionId": "large-ecommerce-app-q4",
+        "question": "Does this code use ListView or GridView for displaying lists? Answer with the widget name or NEITHER.",
+        "expected": "BOTH",
+        "actual": "GridView",
+        "correct": false,
+        "latencyMs": 27709,
+        "inputTokens": 5249,
+        "outputTokens": 2000
+      },
+      {
+        "questionId": "large-ecommerce-app-q5",
+        "question": "Count how many Text widgets appear in this code.",
+        "expected": "31",
+        "actual": "27",
+        "correct": false,
+        "latencyMs": 6671,
+        "inputTokens": 5236,
+        "outputTokens": 388
+      },
+      {
+        "questionId": "large-ecommerce-app-q6",
+        "question": "Is there any state management (StatefulWidget) in this code? Answer YES or NO.",
+        "expected": "YES",
+        "actual": "YES",
+        "correct": true,
+        "latencyMs": 4023,
+        "inputTokens": 5245,
+        "outputTokens": 147
+      },
+      {
+        "questionId": "large-ecommerce-app-q7",
+        "question": "Does the code contain navigation (Navigator.push)? Answer YES or NO.",
+        "expected": "YES",
+        "actual": "YES",
+        "correct": true,
+        "latencyMs": 7023,
+        "inputTokens": 5240,
+        "outputTokens": 359
+      },
+      {
+        "questionId": "large-ecommerce-app-q8",
+        "question": "What AppBar title is used in the main page? Give the exact text.",
+        "expected": "Product Catalog",
+        "actual": "Product Catalog",
+        "correct": true,
+        "latencyMs": 4467,
+        "inputTokens": 5242,
+        "outputTokens": 110
+      }
+    ]
+  },
+  {
+    "sampleId": "large-ecommerce-app",
+    "sampleName": "E-Commerce Product Listing App",
+    "model": "MiniMax-M2",
+    "scenario": "raw-coon",
+    "tokenCount": 3403,
+    "questionsAsked": 8,
+    "correctAnswers": 4,
+    "accuracy": 50,
+    "avgLatencyMs": 26463.75,
+    "totalInputTokens": 30695,
+    "totalOutputTokens": 16085,
+    "questionResults": [
+      {
+        "questionId": "large-ecommerce-app-q1",
+        "question": "How many different widget types are used in this code?",
+        "expected": "24",
+        "actual": "31",
+        "correct": false,
+        "latencyMs": 66482,
+        "inputTokens": 3593,
+        "outputTokens": 5197
+      },
+      {
+        "questionId": "large-ecommerce-app-q2",
+        "question": "What is the main root widget class name used in this application?",
+        "expected": "MaterialApp",
+        "actual": "ECommerceApp",
+        "correct": false,
+        "latencyMs": 6476,
+        "inputTokens": 4554,
+        "outputTokens": 126
+      },
+      {
+        "questionId": "large-ecommerce-app-q3",
+        "question": "Does this code contain a Scaffold widget? Answer YES or NO.",
+        "expected": "YES",
+        "actual": "YES",
+        "correct": true,
+        "latencyMs": 3724,
+        "inputTokens": 3595,
+        "outputTokens": 106
+      },
+      {
+        "questionId": "large-ecommerce-app-q4",
+        "question": "Does this code use ListView or GridView for displaying lists? Answer with the widget name or NEITHER.",
+        "expected": "BOTH",
+        "actual": "GridView",
+        "correct": false,
+        "latencyMs": 19951,
+        "inputTokens": 3605,
+        "outputTokens": 1290
+      },
+      {
+        "questionId": "large-ecommerce-app-q5",
+        "question": "Count how many Text widgets appear in this code.",
+        "expected": "31",
+        "actual": "36",
+        "correct": false,
+        "latencyMs": 88624,
+        "inputTokens": 3592,
+        "outputTokens": 8057
+      },
+      {
+        "questionId": "large-ecommerce-app-q6",
+        "question": "Is there any state management (StatefulWidget) in this code? Answer YES or NO.",
+        "expected": "YES",
+        "actual": "YES",
+        "correct": true,
+        "latencyMs": 11963,
+        "inputTokens": 3601,
+        "outputTokens": 756
+      },
+      {
+        "questionId": "large-ecommerce-app-q7",
+        "question": "Does the code contain navigation (Navigator.push)? Answer YES or NO.",
+        "expected": "YES",
+        "actual": "YES",
+        "correct": true,
+        "latencyMs": 5667,
+        "inputTokens": 4557,
+        "outputTokens": 66
+      },
+      {
+        "questionId": "large-ecommerce-app-q8",
+        "question": "What AppBar title is used in the main page? Give the exact text.",
+        "expected": "Product Catalog",
+        "actual": "Product Catalog",
+        "correct": true,
+        "latencyMs": 8823,
+        "inputTokens": 3598,
+        "outputTokens": 487
+      }
+    ]
+  },
+  {
+    "sampleId": "large-ecommerce-app",
+    "sampleName": "E-Commerce Product Listing App",
+    "model": "MiniMax-M2",
+    "scenario": "coon-with-context",
+    "tokenCount": 3515,
+    "questionsAsked": 8,
+    "correctAnswers": 4,
+    "accuracy": 50,
+    "avgLatencyMs": 17996.75,
+    "totalInputTokens": 29671,
+    "totalOutputTokens": 10013,
+    "questionResults": [
+      {
+        "questionId": "large-ecommerce-app-q1",
+        "question": "How many different widget types are used in this code?",
+        "expected": "24",
+        "actual": "29",
+        "correct": false,
+        "latencyMs": 88159,
+        "inputTokens": 3705,
+        "outputTokens": 7038
+      },
+      {
+        "questionId": "large-ecommerce-app-q2",
+        "question": "What is the main root widget class name used in this application?",
+        "expected": "MaterialApp",
+        "actual": "ECommerceApp",
+        "correct": false,
+        "latencyMs": 4915,
+        "inputTokens": 3707,
+        "outputTokens": 194
+      },
+      {
+        "questionId": "large-ecommerce-app-q3",
+        "question": "Does this code contain a Scaffold widget? Answer YES or NO.",
+        "expected": "YES",
+        "actual": "YES",
+        "correct": true,
+        "latencyMs": 4063,
+        "inputTokens": 3707,
+        "outputTokens": 130
+      },
+      {
+        "questionId": "large-ecommerce-app-q4",
+        "question": "Does this code use ListView or GridView for displaying lists? Answer with the widget name or NEITHER.",
+        "expected": "BOTH",
+        "actual": "GridView",
+        "correct": false,
+        "latencyMs": 16698,
+        "inputTokens": 3717,
+        "outputTokens": 1128
+      },
+      {
+        "questionId": "large-ecommerce-app-q5",
+        "question": "Count how many Text widgets appear in this code.",
+        "expected": "31",
+        "actual": "36",
+        "correct": false,
+        "latencyMs": 14690,
+        "inputTokens": 3704,
+        "outputTokens": 846
+      },
+      {
+        "questionId": "large-ecommerce-app-q6",
+        "question": "Is there any state management (StatefulWidget) in this code? Answer YES or NO.",
+        "expected": "YES",
+        "actual": "YES",
+        "correct": true,
+        "latencyMs": 4432,
+        "inputTokens": 3713,
+        "outputTokens": 139
+      },
+      {
+        "questionId": "large-ecommerce-app-q7",
+        "question": "Does the code contain navigation (Navigator.push)? Answer YES or NO.",
+        "expected": "YES",
+        "actual": "YES",
+        "correct": true,
+        "latencyMs": 5257,
+        "inputTokens": 3708,
+        "outputTokens": 244
+      },
+      {
+        "questionId": "large-ecommerce-app-q8",
+        "question": "What AppBar title is used in the main page? Give the exact text.",
+        "expected": "Product Catalog",
+        "actual": "Product Catalog",
+        "correct": true,
+        "latencyMs": 5760,
+        "inputTokens": 3710,
+        "outputTokens": 294
+      }
+    ]
+  },
+  {
+    "sampleId": "large-social-media-feed",
+    "sampleName": "Social Media Feed Application",
+    "model": "gemini-2.5-flash",
+    "scenario": "dart-baseline",
+    "tokenCount": 4294,
+    "questionsAsked": 8,
+    "correctAnswers": 4,
+    "accuracy": 50,
+    "avgLatencyMs": 4112.125,
+    "totalInputTokens": 42421,
+    "totalOutputTokens": 13,
+    "questionResults": [
+      {
+        "questionId": "large-social-media-feed-q1",
+        "question": "How many different widget types are used in this code?",
+        "expected": "31",
+        "actual": "38",
+        "correct": false,
+        "latencyMs": 8377,
+        "inputTokens": 5299,
+        "outputTokens": 2
+      },
+      {
+        "questionId": "large-social-media-feed-q2",
+        "question": "What is the main root widget class name used in this application?",
+        "expected": "MaterialApp",
+        "actual": "SocialMediaApp",
+        "correct": false,
+        "latencyMs": 2486,
+        "inputTokens": 5301,
+        "outputTokens": 3
+      },
+      {
+        "questionId": "large-social-media-feed-q3",
+        "question": "Does this code contain a Scaffold widget? Answer YES or NO.",
+        "expected": "YES",
+        "actual": "YES",
+        "correct": true,
+        "latencyMs": 2476,
+        "inputTokens": 5301,
+        "outputTokens": 1
+      },
+      {
+        "questionId": "large-social-media-feed-q4",
+        "question": "Does this code use ListView or GridView for displaying lists? Answer with the widget name or NEITHER.",
+        "expected": "BOTH",
+        "actual": "ListView",
+        "correct": false,
+        "latencyMs": 9746,
+        "inputTokens": 5309,
+        "outputTokens": 1
+      },
+      {
+        "questionId": "large-social-media-feed-q5",
+        "question": "Count how many Text widgets appear in this code.",
+        "expected": "27",
+        "actual": "67",
+        "correct": false,
+        "latencyMs": 2352,
+        "inputTokens": 5298,
+        "outputTokens": 2
+      },
+      {
+        "questionId": "large-social-media-feed-q6",
+        "question": "Is there any state management (StatefulWidget) in this code? Answer YES or NO.",
+        "expected": "YES",
+        "actual": "YES",
+        "correct": true,
+        "latencyMs": 2039,
+        "inputTokens": 5307,
+        "outputTokens": 1
+      },
+      {
+        "questionId": "large-social-media-feed-q7",
+        "question": "Does the code contain navigation (Navigator.push)? Answer YES or NO.",
+        "expected": "NO",
+        "actual": "NO",
+        "correct": true,
+        "latencyMs": 2429,
+        "inputTokens": 5303,
+        "outputTokens": 1
+      },
+      {
+        "questionId": "large-social-media-feed-q8",
+        "question": "What AppBar title is used in the main page? Give the exact text.",
+        "expected": "Social Feed",
+        "actual": "Social Feed",
+        "correct": true,
+        "latencyMs": 2992,
+        "inputTokens": 5303,
+        "outputTokens": 2
+      }
+    ]
+  },
+  {
+    "sampleId": "large-social-media-feed",
+    "sampleName": "Social Media Feed Application",
+    "model": "gemini-2.5-flash",
+    "scenario": "raw-coon",
+    "tokenCount": 3075,
+    "questionsAsked": 8,
+    "correctAnswers": 4,
+    "accuracy": 50,
+    "avgLatencyMs": 6625.25,
+    "totalInputTokens": 29437,
+    "totalOutputTokens": 16,
+    "questionResults": [
+      {
+        "questionId": "large-social-media-feed-q1",
+        "question": "How many different widget types are used in this code?",
+        "expected": "31",
+        "actual": "38",
+        "correct": false,
+        "latencyMs": 26735,
+        "inputTokens": 3676,
+        "outputTokens": 2
+      },
+      {
+        "questionId": "large-social-media-feed-q2",
+        "question": "What is the main root widget class name used in this application?",
+        "expected": "MaterialApp",
+        "actual": "SocialMediaApp",
+        "correct": false,
+        "latencyMs": 2897,
+        "inputTokens": 3678,
+        "outputTokens": 3
+      },
+      {
+        "questionId": "large-social-media-feed-q3",
+        "question": "Does this code contain a Scaffold widget? Answer YES or NO.",
+        "expected": "YES",
+        "actual": "YES",
+        "correct": true,
+        "latencyMs": 2122,
+        "inputTokens": 3678,
+        "outputTokens": 1
+      },
+      {
+        "questionId": "large-social-media-feed-q4",
+        "question": "Does this code use ListView or GridView for displaying lists? Answer with the widget name or NEITHER.",
+        "expected": "BOTH",
+        "actual": "ListView, GridView",
+        "correct": false,
+        "latencyMs": 2809,
+        "inputTokens": 3686,
+        "outputTokens": 4
+      },
+      {
+        "questionId": "large-social-media-feed-q5",
+        "question": "Count how many Text widgets appear in this code.",
+        "expected": "27",
+        "actual": "28",
+        "correct": false,
+        "latencyMs": 8728,
+        "inputTokens": 3675,
+        "outputTokens": 2
+      },
+      {
+        "questionId": "large-social-media-feed-q6",
+        "question": "Is there any state management (StatefulWidget) in this code? Answer YES or NO.",
+        "expected": "YES",
+        "actual": "YES",
+        "correct": true,
+        "latencyMs": 2751,
+        "inputTokens": 3684,
+        "outputTokens": 1
+      },
+      {
+        "questionId": "large-social-media-feed-q7",
+        "question": "Does the code contain navigation (Navigator.push)? Answer YES or NO.",
+        "expected": "NO",
+        "actual": "NO",
+        "correct": true,
+        "latencyMs": 2335,
+        "inputTokens": 3680,
+        "outputTokens": 1
+      },
+      {
+        "questionId": "large-social-media-feed-q8",
+        "question": "What AppBar title is used in the main page? Give the exact text.",
+        "expected": "Social Feed",
+        "actual": "Social Feed",
+        "correct": true,
+        "latencyMs": 4625,
+        "inputTokens": 3680,
+        "outputTokens": 2
+      }
+    ]
+  },
+  {
+    "sampleId": "large-social-media-feed",
+    "sampleName": "Social Media Feed Application",
+    "model": "gemini-2.5-flash",
+    "scenario": "coon-with-context",
+    "tokenCount": 3187,
+    "questionsAsked": 8,
+    "correctAnswers": 4,
+    "accuracy": 50,
+    "avgLatencyMs": 5377.5,
+    "totalInputTokens": 30389,
+    "totalOutputTokens": 16,
+    "questionResults": [
+      {
+        "questionId": "large-social-media-feed-q1",
+        "question": "How many different widget types are used in this code?",
+        "expected": "31",
+        "actual": "36",
+        "correct": false,
+        "latencyMs": 21690,
+        "inputTokens": 3795,
+        "outputTokens": 2
+      },
+      {
+        "questionId": "large-social-media-feed-q2",
+        "question": "What is the main root widget class name used in this application?",
+        "expected": "MaterialApp",
+        "actual": "SocialMediaApp",
+        "correct": false,
+        "latencyMs": 2346,
+        "inputTokens": 3797,
+        "outputTokens": 3
+      },
+      {
+        "questionId": "large-social-media-feed-q3",
+        "question": "Does this code contain a Scaffold widget? Answer YES or NO.",
+        "expected": "YES",
+        "actual": "YES",
+        "correct": true,
+        "latencyMs": 5672,
+        "inputTokens": 3797,
+        "outputTokens": 1
+      },
+      {
+        "questionId": "large-social-media-feed-q4",
+        "question": "Does this code use ListView or GridView for displaying lists? Answer with the widget name or NEITHER.",
+        "expected": "BOTH",
+        "actual": "ListView, GridView",
+        "correct": false,
+        "latencyMs": 2353,
+        "inputTokens": 3805,
+        "outputTokens": 4
+      },
+      {
+        "questionId": "large-social-media-feed-q5",
+        "question": "Count how many Text widgets appear in this code.",
+        "expected": "27",
+        "actual": "67",
+        "correct": false,
+        "latencyMs": 1913,
+        "inputTokens": 3794,
+        "outputTokens": 2
+      },
+      {
+        "questionId": "large-social-media-feed-q6",
+        "question": "Is there any state management (StatefulWidget) in this code? Answer YES or NO.",
+        "expected": "YES",
+        "actual": "YES",
+        "correct": true,
+        "latencyMs": 3461,
+        "inputTokens": 3803,
+        "outputTokens": 1
+      },
+      {
+        "questionId": "large-social-media-feed-q7",
+        "question": "Does the code contain navigation (Navigator.push)? Answer YES or NO.",
+        "expected": "NO",
+        "actual": "NO",
+        "correct": true,
+        "latencyMs": 2102,
+        "inputTokens": 3799,
+        "outputTokens": 1
+      },
+      {
+        "questionId": "large-social-media-feed-q8",
+        "question": "What AppBar title is used in the main page? Give the exact text.",
+        "expected": "Social Feed",
+        "actual": "Social Feed",
+        "correct": true,
+        "latencyMs": 3483,
+        "inputTokens": 3799,
+        "outputTokens": 2
+      }
+    ]
+  },
+  {
+    "sampleId": "large-social-media-feed",
+    "sampleName": "Social Media Feed Application",
+    "model": "glm-4.6",
+    "scenario": "dart-baseline",
+    "tokenCount": 4294,
+    "questionsAsked": 8,
+    "correctAnswers": 5,
+    "accuracy": 62.5,
+    "avgLatencyMs": 3933.625,
+    "totalInputTokens": 33482,
+    "totalOutputTokens": 52,
+    "questionResults": [
+      {
+        "questionId": "large-social-media-feed-q1",
+        "question": "How many different widget types are used in this code?",
+        "expected": "31",
+        "actual": "42",
+        "correct": false,
+        "latencyMs": 2970,
+        "inputTokens": 4182,
+        "outputTokens": 6
+      },
+      {
+        "questionId": "large-social-media-feed-q2",
+        "question": "What is the main root widget class name used in this application?",
+        "expected": "MaterialApp",
+        "actual": "SocialMediaApp",
+        "correct": false,
+        "latencyMs": 4904,
+        "inputTokens": 4184,
+        "outputTokens": 8
+      },
+      {
+        "questionId": "large-social-media-feed-q3",
+        "question": "Does this code contain a Scaffold widget? Answer YES or NO.",
+        "expected": "YES",
+        "actual": "YES",
+        "correct": true,
+        "latencyMs": 2746,
+        "inputTokens": 4184,
+        "outputTokens": 6
+      },
+      {
+        "questionId": "large-social-media-feed-q4",
+        "question": "Does this code use ListView or GridView for displaying lists? Answer with the widget name or NEITHER.",
+        "expected": "BOTH",
+        "actual": "BOTH",
+        "correct": true,
+        "latencyMs": 8021,
+        "inputTokens": 4191,
+        "outputTokens": 7
+      },
+      {
+        "questionId": "large-social-media-feed-q5",
+        "question": "Count how many Text widgets appear in this code.",
+        "expected": "27",
+        "actual": "31",
+        "correct": false,
+        "latencyMs": 2175,
+        "inputTokens": 4181,
+        "outputTokens": 6
+      },
+      {
+        "questionId": "large-social-media-feed-q6",
+        "question": "Is there any state management (StatefulWidget) in this code? Answer YES or NO.",
+        "expected": "YES",
+        "actual": "YES",
+        "correct": true,
+        "latencyMs": 5844,
+        "inputTokens": 4189,
+        "outputTokens": 6
+      },
+      {
+        "questionId": "large-social-media-feed-q7",
+        "question": "Does the code contain navigation (Navigator.push)? Answer YES or NO.",
+        "expected": "NO",
+        "actual": "NO",
+        "correct": true,
+        "latencyMs": 2644,
+        "inputTokens": 4185,
+        "outputTokens": 6
+      },
+      {
+        "questionId": "large-social-media-feed-q8",
+        "question": "What AppBar title is used in the main page? Give the exact text.",
+        "expected": "Social Feed",
+        "actual": "Social Feed",
+        "correct": true,
+        "latencyMs": 2165,
+        "inputTokens": 4186,
+        "outputTokens": 7
+      }
+    ]
+  },
+  {
+    "sampleId": "large-social-media-feed",
+    "sampleName": "Social Media Feed Application",
+    "model": "glm-4.6",
+    "scenario": "raw-coon",
+    "tokenCount": 3075,
+    "questionsAsked": 8,
+    "correctAnswers": 5,
+    "accuracy": 62.5,
+    "avgLatencyMs": 2345.125,
+    "totalInputTokens": 25042,
+    "totalOutputTokens": 52,
+    "questionResults": [
+      {
+        "questionId": "large-social-media-feed-q1",
+        "question": "How many different widget types are used in this code?",
+        "expected": "31",
+        "actual": "25",
+        "correct": false,
+        "latencyMs": 1218,
+        "inputTokens": 3127,
+        "outputTokens": 6
+      },
+      {
+        "questionId": "large-social-media-feed-q2",
+        "question": "What is the main root widget class name used in this application?",
+        "expected": "MaterialApp",
+        "actual": "SocialMediaApp",
+        "correct": false,
+        "latencyMs": 1833,
+        "inputTokens": 3129,
+        "outputTokens": 8
+      },
+      {
+        "questionId": "large-social-media-feed-q3",
+        "question": "Does this code contain a Scaffold widget? Answer YES or NO.",
+        "expected": "YES",
+        "actual": "YES",
+        "correct": true,
+        "latencyMs": 3057,
+        "inputTokens": 3129,
+        "outputTokens": 6
+      },
+      {
+        "questionId": "large-social-media-feed-q4",
+        "question": "Does this code use ListView or GridView for displaying lists? Answer with the widget name or NEITHER.",
+        "expected": "BOTH",
+        "actual": "BOTH",
+        "correct": true,
+        "latencyMs": 4875,
+        "inputTokens": 3136,
+        "outputTokens": 7
+      },
+      {
+        "questionId": "large-social-media-feed-q5",
+        "question": "Count how many Text widgets appear in this code.",
+        "expected": "27",
+        "actual": "42",
+        "correct": false,
+        "latencyMs": 1504,
+        "inputTokens": 3126,
+        "outputTokens": 6
+      },
+      {
+        "questionId": "large-social-media-feed-q6",
+        "question": "Is there any state management (StatefulWidget) in this code? Answer YES or NO.",
+        "expected": "YES",
+        "actual": "YES",
+        "correct": true,
+        "latencyMs": 2032,
+        "inputTokens": 3134,
+        "outputTokens": 6
+      },
+      {
+        "questionId": "large-social-media-feed-q7",
+        "question": "Does the code contain navigation (Navigator.push)? Answer YES or NO.",
+        "expected": "NO",
+        "actual": "NO",
+        "correct": true,
+        "latencyMs": 2209,
+        "inputTokens": 3130,
+        "outputTokens": 6
+      },
+      {
+        "questionId": "large-social-media-feed-q8",
+        "question": "What AppBar title is used in the main page? Give the exact text.",
+        "expected": "Social Feed",
+        "actual": "Social Feed",
+        "correct": true,
+        "latencyMs": 2033,
+        "inputTokens": 3131,
+        "outputTokens": 7
+      }
+    ]
+  },
+  {
+    "sampleId": "large-social-media-feed",
+    "sampleName": "Social Media Feed Application",
+    "model": "glm-4.6",
+    "scenario": "coon-with-context",
+    "tokenCount": 3187,
+    "questionsAsked": 8,
+    "correctAnswers": 5,
+    "accuracy": 62.5,
+    "avgLatencyMs": 1888.75,
+    "totalInputTokens": 25946,
+    "totalOutputTokens": 52,
+    "questionResults": [
+      {
+        "questionId": "large-social-media-feed-q1",
+        "question": "How many different widget types are used in this code?",
+        "expected": "31",
+        "actual": "42",
+        "correct": false,
+        "latencyMs": 1455,
+        "inputTokens": 3240,
+        "outputTokens": 6
+      },
+      {
+        "questionId": "large-social-media-feed-q2",
+        "question": "What is the main root widget class name used in this application?",
+        "expected": "MaterialApp",
+        "actual": "SocialMediaApp",
+        "correct": false,
+        "latencyMs": 1723,
+        "inputTokens": 3242,
+        "outputTokens": 8
+      },
+      {
+        "questionId": "large-social-media-feed-q3",
+        "question": "Does this code contain a Scaffold widget? Answer YES or NO.",
+        "expected": "YES",
+        "actual": "YES",
+        "correct": true,
+        "latencyMs": 2029,
+        "inputTokens": 3242,
+        "outputTokens": 6
+      },
+      {
+        "questionId": "large-social-media-feed-q4",
+        "question": "Does this code use ListView or GridView for displaying lists? Answer with the widget name or NEITHER.",
+        "expected": "BOTH",
+        "actual": "BOTH",
+        "correct": true,
+        "latencyMs": 1825,
+        "inputTokens": 3249,
+        "outputTokens": 7
+      },
+      {
+        "questionId": "large-social-media-feed-q5",
+        "question": "Count how many Text widgets appear in this code.",
+        "expected": "27",
+        "actual": "42",
+        "correct": false,
+        "latencyMs": 1812,
+        "inputTokens": 3239,
+        "outputTokens": 6
+      },
+      {
+        "questionId": "large-social-media-feed-q6",
+        "question": "Is there any state management (StatefulWidget) in this code? Answer YES or NO.",
+        "expected": "YES",
+        "actual": "YES",
+        "correct": true,
+        "latencyMs": 2281,
+        "inputTokens": 3247,
+        "outputTokens": 6
+      },
+      {
+        "questionId": "large-social-media-feed-q7",
+        "question": "Does the code contain navigation (Navigator.push)? Answer YES or NO.",
+        "expected": "NO",
+        "actual": "NO",
+        "correct": true,
+        "latencyMs": 1700,
+        "inputTokens": 3243,
+        "outputTokens": 6
+      },
+      {
+        "questionId": "large-social-media-feed-q8",
+        "question": "What AppBar title is used in the main page? Give the exact text.",
+        "expected": "Social Feed",
+        "actual": "Social Feed",
+        "correct": true,
+        "latencyMs": 2285,
+        "inputTokens": 3244,
+        "outputTokens": 7
+      }
+    ]
+  },
+  {
+    "sampleId": "large-social-media-feed",
+    "sampleName": "Social Media Feed Application",
+    "model": "MiniMax-M2",
+    "scenario": "dart-baseline",
+    "tokenCount": 4294,
+    "questionsAsked": 8,
+    "correctAnswers": 4,
+    "accuracy": 50,
+    "avgLatencyMs": 8415.75,
+    "totalInputTokens": 35703,
+    "totalOutputTokens": 3998,
+    "questionResults": [
+      {
+        "questionId": "large-social-media-feed-q1",
+        "question": "How many different widget types are used in this code?",
+        "expected": "31",
+        "actual": "47",
+        "correct": false,
+        "latencyMs": 11204,
+        "inputTokens": 4459,
+        "outputTokens": 673
+      },
+      {
+        "questionId": "large-social-media-feed-q2",
+        "question": "What is the main root widget class name used in this application?",
+        "expected": "MaterialApp",
+        "actual": "SocialMediaApp",
+        "correct": false,
+        "latencyMs": 5985,
+        "inputTokens": 4461,
+        "outputTokens": 283
+      },
+      {
+        "questionId": "large-social-media-feed-q3",
+        "question": "Does this code contain a Scaffold widget? Answer YES or NO.",
+        "expected": "YES",
+        "actual": "YES",
+        "correct": true,
+        "latencyMs": 3310,
+        "inputTokens": 4461,
+        "outputTokens": 80
+      },
+      {
+        "questionId": "large-social-media-feed-q4",
+        "question": "Does this code use ListView or GridView for displaying lists? Answer with the widget name or NEITHER.",
+        "expected": "BOTH",
+        "actual": "ListView",
+        "correct": false,
+        "latencyMs": 20954,
+        "inputTokens": 4471,
+        "outputTokens": 1600
+      },
+      {
+        "questionId": "large-social-media-feed-q5",
+        "question": "Count how many Text widgets appear in this code.",
+        "expected": "27",
+        "actual": "53",
+        "correct": false,
+        "latencyMs": 12929,
+        "inputTokens": 4458,
+        "outputTokens": 837
+      },
+      {
+        "questionId": "large-social-media-feed-q6",
+        "question": "Is there any state management (StatefulWidget) in this code? Answer YES or NO.",
+        "expected": "YES",
+        "actual": "YES",
+        "correct": true,
+        "latencyMs": 3918,
+        "inputTokens": 4467,
+        "outputTokens": 153
+      },
+      {
+        "questionId": "large-social-media-feed-q7",
+        "question": "Does the code contain navigation (Navigator.push)? Answer YES or NO.",
+        "expected": "NO",
+        "actual": "NO",
+        "correct": true,
+        "latencyMs": 4702,
+        "inputTokens": 4462,
+        "outputTokens": 191
+      },
+      {
+        "questionId": "large-social-media-feed-q8",
+        "question": "What AppBar title is used in the main page? Give the exact text.",
+        "expected": "Social Feed",
+        "actual": "Social Feed",
+        "correct": true,
+        "latencyMs": 4324,
+        "inputTokens": 4464,
+        "outputTokens": 181
+      }
+    ]
+  },
+  {
+    "sampleId": "large-social-media-feed",
+    "sampleName": "Social Media Feed Application",
+    "model": "MiniMax-M2",
+    "scenario": "raw-coon",
+    "tokenCount": 3075,
+    "questionsAsked": 8,
+    "correctAnswers": 4,
+    "accuracy": 50,
+    "avgLatencyMs": 19968,
+    "totalInputTokens": 27381,
+    "totalOutputTokens": 11243,
+    "questionResults": [
+      {
+        "questionId": "large-social-media-feed-q1",
+        "question": "How many different widget types are used in this code?",
+        "expected": "31",
+        "actual": "39",
+        "correct": false,
+        "latencyMs": 61694,
+        "inputTokens": 4222,
+        "outputTokens": 4349
+      },
+      {
+        "questionId": "large-social-media-feed-q2",
+        "question": "What is the main root widget class name used in this application?",
+        "expected": "MaterialApp",
+        "actual": "SocialMediaApp",
+        "correct": false,
+        "latencyMs": 6537,
+        "inputTokens": 3306,
+        "outputTokens": 348
+      },
+      {
+        "questionId": "large-social-media-feed-q3",
+        "question": "Does this code contain a Scaffold widget? Answer YES or NO.",
+        "expected": "YES",
+        "actual": "YES",
+        "correct": true,
+        "latencyMs": 4309,
+        "inputTokens": 3306,
+        "outputTokens": 136
+      },
+      {
+        "questionId": "large-social-media-feed-q4",
+        "question": "Does this code use ListView or GridView for displaying lists? Answer with the widget name or NEITHER.",
+        "expected": "BOTH",
+        "actual": "ListView",
+        "correct": false,
+        "latencyMs": 53625,
+        "inputTokens": 3316,
+        "outputTokens": 4246
+      },
+      {
+        "questionId": "large-social-media-feed-q5",
+        "question": "Count how many Text widgets appear in this code.",
+        "expected": "27",
+        "actual": "29",
+        "correct": false,
+        "latencyMs": 8706,
+        "inputTokens": 3303,
+        "outputTokens": 591
+      },
+      {
+        "questionId": "large-social-media-feed-q6",
+        "question": "Is there any state management (StatefulWidget) in this code? Answer YES or NO.",
+        "expected": "YES",
+        "actual": "YES",
+        "correct": true,
+        "latencyMs": 9433,
+        "inputTokens": 3312,
+        "outputTokens": 618
+      },
+      {
+        "questionId": "large-social-media-feed-q7",
+        "question": "Does the code contain navigation (Navigator.push)? Answer YES or NO.",
+        "expected": "NO",
+        "actual": "NO",
+        "correct": true,
+        "latencyMs": 8012,
+        "inputTokens": 3307,
+        "outputTokens": 512
+      },
+      {
+        "questionId": "large-social-media-feed-q8",
+        "question": "What AppBar title is used in the main page? Give the exact text.",
+        "expected": "Social Feed",
+        "actual": "Social Feed",
+        "correct": true,
+        "latencyMs": 7428,
+        "inputTokens": 3309,
+        "outputTokens": 443
+      }
+    ]
+  },
+  {
+    "sampleId": "large-social-media-feed",
+    "sampleName": "Social Media Feed Application",
+    "model": "MiniMax-M2",
+    "scenario": "coon-with-context",
+    "tokenCount": 3187,
+    "questionsAsked": 8,
+    "correctAnswers": 4,
+    "accuracy": 50,
+    "avgLatencyMs": 34499,
+    "totalInputTokens": 27679,
+    "totalOutputTokens": 16914,
+    "questionResults": [
+      {
+        "questionId": "large-social-media-feed-q1",
+        "question": "How many different widget types are used in this code?",
+        "expected": "31",
+        "actual": "39",
+        "correct": false,
+        "latencyMs": 207198,
+        "inputTokens": 3736,
+        "outputTokens": 12891
+      },
+      {
+        "questionId": "large-social-media-feed-q2",
+        "question": "What is the main root widget class name used in this application?",
+        "expected": "MaterialApp",
+        "actual": "SocialMediaApp",
+        "correct": false,
+        "latencyMs": 7576,
+        "inputTokens": 3418,
+        "outputTokens": 437
+      },
+      {
+        "questionId": "large-social-media-feed-q3",
+        "question": "Does this code contain a Scaffold widget? Answer YES or NO.",
+        "expected": "YES",
+        "actual": "YES",
+        "correct": true,
+        "latencyMs": 9582,
+        "inputTokens": 3418,
+        "outputTokens": 571
+      },
+      {
+        "questionId": "large-social-media-feed-q4",
+        "question": "Does this code use ListView or GridView for displaying lists? Answer with the widget name or NEITHER.",
+        "expected": "BOTH",
+        "actual": "ListView",
+        "correct": false,
+        "latencyMs": 15751,
+        "inputTokens": 3428,
+        "outputTokens": 1137
+      },
+      {
+        "questionId": "large-social-media-feed-q5",
+        "question": "Count how many Text widgets appear in this code.",
+        "expected": "27",
+        "actual": "53",
+        "correct": false,
+        "latencyMs": 16822,
+        "inputTokens": 3415,
+        "outputTokens": 993
+      },
+      {
+        "questionId": "large-social-media-feed-q6",
+        "question": "Is there any state management (StatefulWidget) in this code? Answer YES or NO.",
+        "expected": "YES",
+        "actual": "YES",
+        "correct": true,
+        "latencyMs": 4407,
+        "inputTokens": 3424,
+        "outputTokens": 169
+      },
+      {
+        "questionId": "large-social-media-feed-q7",
+        "question": "Does the code contain navigation (Navigator.push)? Answer YES or NO.",
+        "expected": "NO",
+        "actual": "NO",
+        "correct": true,
+        "latencyMs": 7888,
+        "inputTokens": 3419,
+        "outputTokens": 388
+      },
+      {
+        "questionId": "large-social-media-feed-q8",
+        "question": "What AppBar title is used in the main page? Give the exact text.",
+        "expected": "Social Feed",
+        "actual": "Social Feed",
+        "correct": true,
+        "latencyMs": 6768,
+        "inputTokens": 3421,
+        "outputTokens": 328
+      }
+    ]
+  }
+]

@@ -1,0 +1,790 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram Clone (Flutter Port)</title>
+    <!-- Import FontAwesome for Icons used in the Flutter code -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Import a cursive font for the Logo -->
+    <link href="https://fonts.googleapis.com/css2?family=Grand+Hotel&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* =========================================
+           CSS STYLES (Inline as requested)
+           ========================================= */
+        :root {
+            --primary-bg: #fafafa;
+            --white: #ffffff;
+            --border-color: #dbdbdb;
+            --text-main: #262626;
+            --text-secondary: #8e8e8e;
+            --link-blue: #0095f6;
+            --button-blue: #4285F4; /* From LoginScreen */
+            --app-max-width: 400px;
+            --app-height: 800px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: #ebedef;
+            font-family: 'Roboto', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* Phone Container */
+        .app-container {
+            width: 100%;
+            max-width: var(--app-max-width);
+            height: var(--app-height);
+            background-color: var(--white);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ================= HEADER ================= */
+        .app-bar {
+            height: 50px;
+            background-color: #f8faf8; /* From ChatDetailScreen */
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 15px;
+            z-index: 10;
+        }
+
+        .app-bar .leading, .app-bar .actions {
+            width: 30px;
+            display: flex;
+            justify-content: center;
+            font-size: 22px;
+            cursor: pointer;
+        }
+
+        .app-bar .title {
+            font-family: 'Grand Hotel', cursive;
+            font-size: 28px;
+            color: var(--text-main);
+        }
+
+        .app-bar .title-text {
+            font-family: 'Roboto', sans-serif;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        /* ================= BODY CONTENT ================= */
+        .page-view {
+            flex: 1;
+            overflow-y: auto;
+            background-color: var(--primary-bg);
+            position: relative;
+        }
+
+        .screen {
+            display: none;
+            height: 100%;
+            width: 100%;
+        }
+
+        .screen.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* ================= FEED SCREEN ================= */
+        .feed-post {
+            background: var(--white);
+            margin-bottom: 15px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .post-header {
+            padding: 10px 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .user-row {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .avatar-small {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background-color: #eee;
+            margin-right: 10px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .username {
+            font-weight: 700;
+            font-size: 14px;
+            color: var(--text-main);
+        }
+
+        .post-image {
+            width: 100%;
+            height: auto;
+            min-height: 300px;
+            background-color: #eee;
+            display: block;
+        }
+
+        .post-actions {
+            padding: 10px 15px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 24px;
+        }
+
+        .action-left i {
+            margin-right: 15px;
+            cursor: pointer;
+        }
+
+        .action-left i:hover {
+            color: var(--text-secondary);
+        }
+
+        .fa-heart.liked {
+            color: #ed4956;
+        }
+
+        .post-likes {
+            padding: 0 15px;
+            font-weight: 700;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        .post-caption {
+            padding: 0 15px;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        .view-comments {
+            padding: 0 15px;
+            color: var(--text-secondary);
+            font-size: 14px;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+
+        .timestamp {
+            padding: 0 15px 10px;
+            color: var(--text-secondary);
+            font-size: 10px;
+            text-transform: uppercase;
+        }
+
+        /* ================= SEARCH SCREEN ================= */
+        .search-bar-container {
+            padding: 10px;
+            background: var(--white);
+        }
+
+        .search-input {
+            width: 100%;
+            background: #efefef;
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            padding: 8px 15px;
+            outline: none;
+        }
+
+        .grid-view {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+        }
+
+        .grid-item {
+            aspect-ratio: 1 / 1;
+            background-color: #ccc;
+            background-size: cover;
+            background-position: center;
+            cursor: pointer;
+        }
+
+        /* ================= ADD SCREEN ================= */
+        .add-screen-center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+
+        .upload-btn {
+            background-color: black;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            border: none;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .upload-btn i {
+            margin-right: 8px;
+        }
+
+        /* ================= PROFILE SCREEN ================= */
+        .profile-header {
+            padding: 20px 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .profile-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin-right: 20px;
+            background-size: cover;
+            background-position: center;
+            border: 1px solid var(--border-color);
+        }
+
+        .profile-stats {
+            flex: 1;
+        }
+
+        .stats-row {
+            display: flex;
+            justify-content: space-around;
+            text-align: center;
+            margin-bottom: 12px;
+        }
+
+        .stat-count {
+            display: block;
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        .edit-profile-btn {
+            width: 100%;
+            background: var(--white);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            padding: 5px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .profile-bio {
+            padding: 0 15px 15px;
+        }
+
+        .profile-name {
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .profile-tabs {
+            display: flex;
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            height: 44px;
+        }
+
+        .tab-item {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            color: #ccc;
+            cursor: pointer;
+        }
+
+        .tab-item.active {
+            color: var(--link-blue);
+        }
+
+        /* ================= BOTTOM NAVIGATION ================= */
+        .bottom-nav {
+            height: 50px;
+            background-color: var(--white);
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .nav-item {
+            font-size: 24px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        .nav-item.active {
+            color: black;
+        }
+
+        /* ================= CHAT SCREEN (Overlay) ================= */
+        .chat-overlay {
+            position: absolute;
+            top: 0;
+            left: 100%;
+            width: 100%;
+            height: 100%;
+            background: white;
+            z-index: 20;
+            transition: left 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .chat-overlay.open {
+            left: 0;
+        }
+
+        .user-list {
+            flex: 1;
+            overflow-y: auto;
+        }
+
+        .user-tile {
+            padding: 10px 15px;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #f0f0f0;
+            cursor: pointer;
+        }
+
+        .user-tile:hover {
+            background-color: #fafafa;
+        }
+
+        /* ================= CHAT DETAIL (Overlay on top of Chat) ================= */
+        .chat-detail-overlay {
+            position: absolute;
+            top: 0;
+            left: 100%;
+            width: 100%;
+            height: 100%;
+            background: white;
+            z-index: 30;
+            transition: left 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .chat-detail-overlay.open {
+            left: 0;
+        }
+
+        .messages-list {
+            flex: 1;
+            overflow-y: auto;
+            padding: 10px;
+            background-color: white;
+        }
+
+        .message-bubble {
+            max-width: 70%;
+            padding: 10px 15px;
+            margin-bottom: 10px;
+            border-radius: 20px;
+            font-size: 16px;
+            line-height: 1.4;
+            clear: both;
+        }
+
+        .message-sender {
+            background-color: #efefef; /* Grey[300] */
+            color: black;
+            float: left;
+            border-bottom-left-radius: 5px;
+        }
+
+        .message-receiver {
+            background-color: var(--white); /* White30 in code, but typically standard bubble */
+            border: 1px solid var(--border-color);
+            float: right;
+            border-bottom-right-radius: 5px;
+        }
+
+        .chat-input-area {
+            height: 60px;
+            padding: 0 10px;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+        }
+
+        .chat-field {
+            flex: 1;
+            height: 40px;
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 0 15px;
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="app-container">
+        
+        <!-- ================= APP BAR ================= -->
+        <!-- Content changes dynamically via JS -->
+        <div class="app-bar" id="appBar">
+            <div class="leading"><i class="fas fa-camera"></i></div>
+            <div class="title">Instagram</div>
+            <div class="actions" onclick="openChat()"><i class="fas fa-paper-plane"></i></div>
+        </div>
+
+        <!-- ================= PAGE VIEW AREA ================= -->
+        <div class="page-view">
+            
+            <!-- 1. FEED SCREEN -->
+            <div class="screen active" id="screen-feed">
+                <!-- Post 1 -->
+                <div class="feed-post">
+                    <div class="post-header">
+                        <div class="user-row" onclick="openProfile('Jane Doe')">
+                            <div class="avatar-small" style="background-image: url('https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80')"></div>
+                            <span class="username">jane_doe</span>
+                        </div>
+                        <i class="fas fa-ellipsis-v"></i>
+                    </div>
+                    <img src="https://images.unsplash.com/photo-1516961642265-531546e84af2?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" class="post-image" ondblclick="toggleLike(this)">
+                    <div class="post-actions">
+                        <div class="action-left">
+                            <i class="far fa-heart" onclick="toggleLikeIcon(this)"></i>
+                            <i class="far fa-comment"></i>
+                            <i class="far fa-paper-plane"></i>
+                        </div>
+                        <i class="far fa-bookmark"></i>
+                    </div>
+                    <div class="post-likes">Liked by john_snow and 42 others</div>
+                    <div class="post-caption"><span class="username">jane_doe</span> Loving this view! 📸 #nature</div>
+                    <div class="view-comments">View all 5 comments</div>
+                    <div class="timestamp">1 Day Ago</div>
+                </div>
+
+                <!-- Post 2 -->
+                <div class="feed-post">
+                    <div class="post-header">
+                        <div class="user-row">
+                            <div class="avatar-small" style="background-image: url('https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80')"></div>
+                            <span class="username">john_snow</span>
+                        </div>
+                        <i class="fas fa-ellipsis-v"></i>
+                    </div>
+                    <img src="https://images.unsplash.com/photo-1472214103451-9374bd1c798e?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" class="post-image" ondblclick="toggleLike(this)">
+                    <div class="post-actions">
+                        <div class="action-left">
+                            <i class="far fa-heart" onclick="toggleLikeIcon(this)"></i>
+                            <i class="far fa-comment"></i>
+                            <i class="far fa-paper-plane"></i>
+                        </div>
+                        <i class="far fa-bookmark"></i>
+                    </div>
+                    <div class="post-likes">Liked by jane_doe and 120 others</div>
+                    <div class="post-caption"><span class="username">john_snow</span> Hiking adventures 🏔️</div>
+                    <div class="view-comments">View all 12 comments</div>
+                    <div class="timestamp">2 Days Ago</div>
+                </div>
+            </div>
+
+            <!-- 2. SEARCH SCREEN -->
+            <div class="screen" id="screen-search">
+                <div class="search-bar-container">
+                    <input type="text" class="search-input" placeholder="Search">
+                </div>
+                <div class="grid-view">
+                    <!-- Generating mock grid items -->
+                    <div class="grid-item" style="background-image: url('https://images.unsplash.com/photo-1517816168141-54e94db52ea8?w=300')"></div>
+                    <div class="grid-item" style="background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=300')"></div>
+                    <div class="grid-item" style="background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=300')"></div>
+                    <div class="grid-item" style="background-image: url('https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=300')"></div>
+                    <div class="grid-item" style="background-image: url('https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?w=300')"></div>
+                    <div class="grid-item" style="background-image: url('https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=300')"></div>
+                    <div class="grid-item" style="background-image: url('https://images.unsplash.com/photo-1426604966848-d3ad533fc71b?w=300')"></div>
+                    <div class="grid-item" style="background-image: url('https://images.unsplash.com/photo-1493246507139-91e8fad9978e?w=300')"></div>
+                    <div class="grid-item" style="background-image: url('https://images.unsplash.com/photo-1511300636408-a63a6ad120de?w=300')"></div>
+                </div>
+            </div>
+
+            <!-- 3. ADD SCREEN -->
+            <div class="screen" id="screen-add">
+                <div class="add-screen-center">
+                    <button class="upload-btn">
+                        <i class="fas fa-cloud-upload-alt"></i> Upload Image
+                    </button>
+                </div>
+            </div>
+
+            <!-- 4. ACTIVITY SCREEN -->
+            <div class="screen" id="screen-activity">
+                <div class="add-screen-center">
+                    <p style="color: #999;">NOT IMPLEMENTED YET</p>
+                </div>
+            </div>
+
+            <!-- 5. PROFILE SCREEN -->
+            <div class="screen" id="screen-profile">
+                <div class="profile-header">
+                    <div class="profile-avatar" style="background-image: url('https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80')"></div>
+                    <div class="profile-stats">
+                        <div class="stats-row">
+                            <div><span class="stat-count">102</span><span class="stat-label">Posts</span></div>
+                            <div><span class="stat-count">854</span><span class="stat-label">Followers</span></div>
+                            <div><span class="stat-count">230</span><span class="stat-label">Following</span></div>
+                        </div>
+                        <div class="edit-profile-btn">Edit Profile</div>
+                    </div>
+                </div>
+                <div class="profile-bio">
+                    <div class="profile-name">My Name</div>
+                    <div class="profile-desc">Digital Creator 📷<br>Welcome to my flutter clone profile.</div>
+                </div>
+                <div class="profile-tabs">
+                    <div class="tab-item active" onclick="switchProfileTab('grid')"><i class="fas fa-th"></i></div>
+                    <div class="tab-item" onclick="switchProfileTab('list')"><i class="fas fa-portrait"></i></div>
+                </div>
+                
+                <!-- Profile Grid -->
+                <div class="grid-view" id="profile-grid">
+                     <div class="grid-item" style="background-image: url('https://images.unsplash.com/photo-1549880338-65ddcdfd017b?w=300')"></div>
+                     <div class="grid-item" style="background-image: url('https://images.unsplash.com/photo-1551963831-b3b1ca40c98e?w=300')"></div>
+                     <div class="grid-item" style="background-image: url('https://images.unsplash.com/photo-1518791841217-8f162f1e1131?w=300')"></div>
+                     <div class="grid-item" style="background-image: url('https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=300')"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= BOTTOM NAVIGATION ================= -->
+        <div class="bottom-nav">
+            <div class="nav-item active" onclick="navTo(0)"><i class="fas fa-home"></i></div>
+            <div class="nav-item" onclick="navTo(1)"><i class="fas fa-search"></i></div>
+            <div class="nav-item" onclick="navTo(2)"><i class="far fa-plus-square"></i></div>
+            <div class="nav-item" onclick="navTo(3)"><i class="far fa-heart"></i></div> <!-- Activity uses heart icon in code -->
+            <div class="nav-item" onclick="navTo(4)"><i class="far fa-user"></i></div>
+        </div>
+
+        <!-- ================= CHAT OVERLAY (ChatScreen) ================= -->
+        <div class="chat-overlay" id="chatOverlay">
+            <div class="app-bar">
+                <div class="leading" onclick="closeChat()"><i class="fas fa-arrow-left"></i></div>
+                <div class="title-text">Direct</div>
+                <div class="actions"><i class="fas fa-plus"></i></div>
+            </div>
+            <div class="search-bar-container">
+                <input type="text" class="search-input" placeholder="Search">
+            </div>
+            <div class="user-list">
+                <div class="user-tile" onclick="openChatDetail('jane_doe', 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100')">
+                    <div class="avatar-small" style="background-image: url('https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100')"></div>
+                    <div>
+                        <div class="username">jane_doe</div>
+                        <div style="color:#8e8e8e; font-size:14px;">Active now</div>
+                    </div>
+                </div>
+                <div class="user-tile" onclick="openChatDetail('john_snow', 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100')">
+                    <div class="avatar-small" style="background-image: url('https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100')"></div>
+                    <div>
+                        <div class="username">john_snow</div>
+                        <div style="color:#8e8e8e; font-size:14px;">Sent 1h ago</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= CHAT DETAIL OVERLAY (ChatDetailScreen) ================= -->
+        <div class="chat-detail-overlay" id="chatDetailOverlay">
+            <div class="app-bar">
+                <div class="leading" onclick="closeChatDetail()">
+                    <i class="fas fa-arrow-left"></i>
+                    <div class="avatar-small" id="chatDetailAvatar" style="margin-left: 10px; width:28px; height:28px; display:inline-block; vertical-align:middle;"></div>
+                </div>
+                <div class="title-text" id="chatDetailName" style="flex:1; margin-left:10px;">User</div>
+            </div>
+            
+            <div class="messages-list">
+                <!-- Mock Messages -->
+                <div class="message-bubble message-sender">
+                    Hey! How are you?
+                </div>
+                <div class="message-bubble message-receiver">
+                    I'm doing great, thanks for asking!
+                </div>
+                <div class="message-bubble message-sender">
+                    Did you see the new Flutter update?
+                </div>
+            </div>
+
+            <div class="chat-input-area">
+                <div style="font-size: 24px; padding-right:10px;"><i class="fas fa-camera"></i></div>
+                <input type="text" class="chat-field" placeholder="Message...">
+                <div style="font-size: 16px; padding-left:15px; color: var(--link-blue); font-weight:bold;">Send</div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // ================= JAVASCRIPT LOGIC =================
+
+        // 1. Navigation Controller (PageView)
+        const screens = [
+            document.getElementById('screen-feed'),
+            document.getElementById('screen-search'),
+            document.getElementById('screen-add'),
+            document.getElementById('screen-activity'),
+            document.getElementById('screen-profile')
+        ];
+        
+        const navItems = document.querySelectorAll('.bottom-nav .nav-item');
+        const appBar = document.getElementById('appBar');
+
+        function navTo(index) {
+            // Update Screens
+            screens.forEach((screen, i) => {
+                if(i === index) screen.classList.add('active');
+                else screen.classList.remove('active');
+            });
+
+            // Update Bottom Nav Icons
+            navItems.forEach((item, i) => {
+                const icon = item.querySelector('i');
+                if(i === index) {
+                    item.classList.add('active');
+                    // Solid icon for active state (simulation)
+                    if(icon.classList.contains('far')) {
+                         icon.classList.remove('far');
+                         icon.classList.add('fas');
+                    }
+                } else {
+                    item.classList.remove('active');
+                    // Outline icon for inactive state
+                    if(icon.classList.contains('fas') && i > 1) { // indices 2,3,4 use fontawesome outline logic roughly
+                         icon.classList.remove('fas');
+                         icon.classList.add('far');
+                    }
+                }
+            });
+
+            // Update App Bar Logic
+            if(index === 0) {
+                appBar.innerHTML = `
+                    <div class="leading"><i class="fas fa-camera"></i></div>
+                    <div class="title">Instagram</div>
+                    <div class="actions" onclick="openChat()"><i class="fas fa-paper-plane"></i></div>
+                `;
+            } else if (index === 1) {
+                appBar.innerHTML = `<div class="title-text" style="width:100%">Search</div>`;
+            } else if (index === 2) {
+                appBar.innerHTML = `<div class="title-text">Add Photo</div>`;
+            } else if (index === 3) {
+                appBar.innerHTML = `<div class="title-text">Activity</div>`;
+            } else if (index === 4) {
+                appBar.innerHTML = `
+                    <div class="title-text">Profile</div>
+                    <div class="actions"><i class="fas fa-bars"></i></div>
+                `;
+            }
+        }
+
+        // 2. Like Interaction
+        function toggleLikeIcon(element) {
+            if(element.classList.contains('far')) {
+                element.classList.remove('far');
+                element.classList.add('fas');
+                element.classList.add('liked');
+                // Could add heart animation here
+            } else {
+                element.classList.remove('fas');
+                element.classList.add('far');
+                element.classList.remove('liked');
+            }
+        }
+
+        // 3. Chat Overlay Logic
+        const chatOverlay = document.getElementById('chatOverlay');
+        const chatDetailOverlay = document.getElementById('chatDetailOverlay');
+
+        function openChat() {
+            chatOverlay.classList.add('open');
+        }
+
+        function closeChat() {
+            chatOverlay.classList.remove('open');
+        }
+
+        function openChatDetail(name, imgUrl) {
+            document.getElementById('chatDetailName').innerText = name;
+            document.getElementById('chatDetailAvatar').style.backgroundImage = `url('${imgUrl}')`;
+            chatDetailOverlay.classList.add('open');
+        }
+
+        function closeChatDetail() {
+            chatDetailOverlay.classList.remove('open');
+        }
+
+        // 4. Profile Grid/List Switch
+        function switchProfileTab(type) {
+            const tabs = document.querySelectorAll('.tab-item');
+            const grid = document.getElementById('profile-grid');
+            
+            tabs.forEach(t => t.classList.remove('active'));
+
+            if(type === 'grid') {
+                tabs[0].classList.add('active');
+                grid.style.display = 'grid';
+                grid.innerHTML = `
+                     <div class="grid-item" style="background-image: url('https://images.unsplash.com/photo-1549880338-65ddcdfd017b?w=300')"></div>
+                     <div class="grid-item" style="background-image: url('https://images.unsplash.com/photo-1551963831-b3b1ca40c98e?w=300')"></div>
+                     <div class="grid-item" style="background-image: url('https://images.unsplash.com/photo-1518791841217-8f162f1e1131?w=300')"></div>
+                     <div class="grid-item" style="background-image: url('https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=300')"></div>
+                `;
+            } else {
+                tabs[1].classList.add('active');
+                grid.style.display = 'block';
+                // Mocking list view items reuse
+                grid.innerHTML = `
+                    <div style="padding: 20px; text-align:center; color:#999;">List View Logic (Similar to Feed)</div>
+                `;
+            }
+        }
+    </script>
+</body>
+</html>
