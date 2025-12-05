@@ -35,8 +35,10 @@ coon compress <input> [options]
 |--------|-------|-------------|---------|
 | `--output` | `-o` | Output file path | stdout |
 | `--strategy` | `-s` | Compression strategy | `auto` |
-| `--validate` | `-v` | Validate round-trip | `false` |
-| `--metrics` | `-m` | Show compression metrics | `false` |
+| `--language` | `-l` | Source language (auto-detected) | auto |
+| `--validate` | | Validate compression result | `false` |
+| `--analyze` | | Include code analysis | `false` |
+| `--backend` | | Backend to use: js, python | `js` |
 
 **Strategies:**
 - `auto` - Automatically select best strategy
@@ -99,8 +101,9 @@ coon decompress <input> [options]
 | Option | Alias | Description | Default |
 |--------|-------|-------------|---------|
 | `--output` | `-o` | Output file path | stdout |
-| `--format` | `-f` | Format output code | `true` |
-| `--indent` | `-i` | Indentation size | `2` |
+| `--language` | `-l` | Target language | `dart` |
+| `--format` | | Format output code | `true` |
+| `--backend` | | Backend to use: js, python | `js` |
 
 **Examples:**
 
@@ -139,8 +142,9 @@ coon validate <input> [options]
 **Options:**
 | Option | Alias | Description | Default |
 |--------|-------|-------------|---------|
-| `--type` | `-t` | Input type: `coon` or `dart` | auto-detect |
-| `--verbose` | `-v` | Show detailed output | `false` |
+| `--strict` | | Use strict validation mode | `false` |
+| `--language` | `-l` | Source language (auto-detected) | auto |
+| `--backend` | | Backend to use: js, python | `js` |
 
 **Examples:**
 
