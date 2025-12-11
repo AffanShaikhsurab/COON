@@ -1,0 +1,15 @@
+{
+  "language": "javascript",
+  "version": "1.0.0",
+  "description": "COON compression specification for JavaScript and React",
+  "compressionMappings": {
+    "keywords": "keywords.json",
+    "components": "components.json",
+    "properties": "properties.json"
+  },
+  "features": {
+    "jsx": true,
+    "hooks": true,
+    "es6": true
+  }
+}

@@ -1,0 +1,1127 @@
+[
+  {
+    "sampleId": "js-simple-function",
+    "sampleName": "Simple Function",
+    "model": "moonshotai/kimi-k2-instruct",
+    "scenario": "js-baseline",
+    "tokenCount": 13,
+    "questionsAsked": 6,
+    "correctAnswers": 6,
+    "accuracy": 100,
+    "avgLatencyMs": 380.1666666666667,
+    "totalInputTokens": 589,
+    "totalOutputTokens": 12,
+    "questionResults": [
+      {
+        "questionId": "js-simple-function-q1",
+        "question": "What is the main function or component name in this code?",
+        "expected": "add",
+        "actual": "add",
+        "correct": true,
+        "latencyMs": 456,
+        "inputTokens": 97,
+        "outputTokens": 2
+      },
+      {
+        "questionId": "js-simple-function-q2",
+        "question": "How many unique React hooks are used in this code? Answer with just a number.",
+        "expected": "0",
+        "actual": "0",
+        "correct": true,
+        "latencyMs": 352,
+        "inputTokens": 102,
+        "outputTokens": 2
+      },
+      {
+        "questionId": "js-simple-function-q3",
+        "question": "Does this code contain JSX elements? Answer YES or NO.",
+        "expected": "NO",
+        "actual": "NO",
+        "correct": true,
+        "latencyMs": 349,
+        "inputTokens": 97,
+        "outputTokens": 2
+      },
+      {
+        "questionId": "js-simple-function-q4",
+        "question": "Does this code use arrow function syntax (=>)? Answer YES or NO.",
+        "expected": "NO",
+        "actual": "NO",
+        "correct": true,
+        "latencyMs": 352,
+        "inputTokens": 100,
+        "outputTokens": 2
+      },
+      {
+        "questionId": "js-simple-function-q5",
+        "question": "Does this code have import statements? Answer YES or NO.",
+        "expected": "NO",
+        "actual": "NO",
+        "correct": true,
+        "latencyMs": 353,
+        "inputTokens": 97,
+        "outputTokens": 2
+      },
+      {
+        "questionId": "js-simple-function-q6",
+        "question": "Does this code export anything? Answer YES or NO.",
+        "expected": "NO",
+        "actual": "NO",
+        "correct": true,
+        "latencyMs": 419,
+        "inputTokens": 96,
+        "outputTokens": 2
+      }
+    ]
+  },
+  {
+    "sampleId": "js-simple-function",
+    "sampleName": "Simple Function",
+    "model": "moonshotai/kimi-k2-instruct",
+    "scenario": "raw-coon",
+    "tokenCount": 10,
+    "questionsAsked": 6,
+    "correctAnswers": 6,
+    "accuracy": 100,
+    "avgLatencyMs": 360.1666666666667,
+    "totalInputTokens": 565,
+    "totalOutputTokens": 12,
+    "questionResults": [
+      {
+        "questionId": "js-simple-function-q1",
+        "question": "What is the main function or component name in this code?",
+        "expected": "add",
+        "actual": "add",
+        "correct": true,
+        "latencyMs": 359,
+        "inputTokens": 93,
+        "outputTokens": 2
+      },
+      {
+        "questionId": "js-simple-function-q2",
+        "question": "How many unique React hooks are used in this code? Answer with just a number.",
+        "expected": "0",
+        "actual": "0",
+        "correct": true,
+        "latencyMs": 349,
+        "inputTokens": 98,
+        "outputTokens": 2
+      },
+      {
+        "questionId": "js-simple-function-q3",
+        "question": "Does this code contain JSX elements? Answer YES or NO.",
+        "expected": "NO",
+        "actual": "NO",
+        "correct": true,
+        "latencyMs": 347,
+        "inputTokens": 93,
+        "outputTokens": 2
+      },
+      {
+        "questionId": "js-simple-function-q4",
+        "question": "Does this code use arrow function syntax (=>)? Answer YES or NO.",
+        "expected": "NO",
+        "actual": "NO",
+        "correct": true,
+        "latencyMs": 345,
+        "inputTokens": 96,
+        "outputTokens": 2
+      },
+      {
+        "questionId": "js-simple-function-q5",
+        "question": "Does this code have import statements? Answer YES or NO.",
+        "expected": "NO",
+        "actual": "NO",
+        "correct": true,
+        "latencyMs": 381,
+        "inputTokens": 93,
+        "outputTokens": 2
+      },
+      {
+        "questionId": "js-simple-function-q6",
+        "question": "Does this code export anything? Answer YES or NO.",
+        "expected": "NO",
+        "actual": "NO",
+        "correct": true,
+        "latencyMs": 380,
+        "inputTokens": 92,
+        "outputTokens": 2
+      }
+    ]
+  },
+  {
+    "sampleId": "js-simple-function",
+    "sampleName": "Simple Function",
+    "model": "moonshotai/kimi-k2-instruct",
+    "scenario": "coon-with-context",
+    "tokenCount": 130,
+    "questionsAsked": 6,
+    "correctAnswers": 6,
+    "accuracy": 100,
+    "avgLatencyMs": 380.5,
+    "totalInputTokens": 1291,
+    "totalOutputTokens": 12,
+    "questionResults": [
+      {
+        "questionId": "js-simple-function-q1",
+        "question": "What is the main function or component name in this code?",
+        "expected": "add",
+        "actual": "add",
+        "correct": true,
+        "latencyMs": 359,
+        "inputTokens": 214,
+        "outputTokens": 2
+      },
+      {
+        "questionId": "js-simple-function-q2",
+        "question": "How many unique React hooks are used in this code? Answer with just a number.",
+        "expected": "0",
+        "actual": "0",
+        "correct": true,
+        "latencyMs": 389,
+        "inputTokens": 219,
+        "outputTokens": 2
+      },
+      {
+        "questionId": "js-simple-function-q3",
+        "question": "Does this code contain JSX elements? Answer YES or NO.",
+        "expected": "NO",
+        "actual": "NO",
+        "correct": true,
+        "latencyMs": 375,
+        "inputTokens": 214,
+        "outputTokens": 2
+      },
+      {
+        "questionId": "js-simple-function-q4",
+        "question": "Does this code use arrow function syntax (=>)? Answer YES or NO.",
+        "expected": "NO",
+        "actual": "NO",
+        "correct": true,
+        "latencyMs": 441,
+        "inputTokens": 217,
+        "outputTokens": 2
+      },
+      {
+        "questionId": "js-simple-function-q5",
+        "question": "Does this code have import statements? Answer YES or NO.",
+        "expected": "NO",
+        "actual": "NO",
+        "correct": true,
+        "latencyMs": 357,
+        "inputTokens": 214,
+        "outputTokens": 2
+      },
+      {
+        "questionId": "js-simple-function-q6",
+        "question": "Does this code export anything? Answer YES or NO.",
+        "expected": "NO",
+        "actual": "NO",
+        "correct": true,
+        "latencyMs": 362,
+        "inputTokens": 213,
+        "outputTokens": 2
+      }
+    ]
+  },
+  {
+    "sampleId": "react-simple-component",
+    "sampleName": "Simple React Component",
+    "model": "moonshotai/kimi-k2-instruct",
+    "scenario": "js-baseline",
+    "tokenCount": 28,
+    "questionsAsked": 6,
+    "correctAnswers": 6,
+    "accuracy": 100,
+    "avgLatencyMs": 359.1666666666667,
+    "totalInputTokens": 679,
+    "totalOutputTokens": 12,
+    "questionResults": [
+      {
+        "questionId": "react-simple-component-q1",
+        "question": "What is the main function or component name in this code?",
+        "expected": "Button",
+        "actual": "Button",
+        "correct": true,
+        "latencyMs": 366,
+        "inputTokens": 112,
+        "outputTokens": 2
+      },
+      {
+        "questionId": "react-simple-component-q2",
+        "question": "How many unique React hooks are used in this code? Answer with just a number.",
+        "expected": "0",
+        "actual": "0",
+        "correct": true,
+        "latencyMs": 353,
+        "inputTokens": 117,
+        "outputTokens": 2
+      },
+      {
+        "questionId": "react-simple-component-q3",
+        "question": "Does this code contain JSX elements? Answer YES or NO.",
+        "expected": "YES",
+        "actual": "YES",
+        "correct": true,
+        "latencyMs": 353,
+        "inputTokens": 112,
+        "outputTokens": 2
+      },
+      {
+        "questionId": "react-simple-component-q4",
+        "question": "Does this code use arrow function syntax (=>)? Answer YES or NO.",
+        "expected": "NO",
+        "actual": "NO",
+        "correct": true,
+        "latencyMs": 370,
+        "inputTokens": 115,
+        "outputTokens": 2
+      },
+      {
+        "questionId": "react-simple-component-q5",
+        "question": "Does this code have import statements? Answer YES or NO.",
+        "expected": "YES",
+        "actual": "YES",
+        "correct": true,
+        "latencyMs": 355,
+        "inputTokens": 112,
+        "outputTokens": 2
+      },
+      {
+        "questionId": "react-simple-component-q6",
+        "question": "Does this code export anything? Answer YES or NO.",
+        "expected": "YES",
+        "actual": "YES",
+        "correct": true,
+        "latencyMs": 358,
+        "inputTokens": 111,
+        "outputTokens": 2
+      }
+    ]
+  },
+  {
+    "sampleId": "react-simple-component",
+    "sampleName": "Simple React Component",
+    "model": "moonshotai/kimi-k2-instruct",
+    "scenario": "raw-coon",
+    "tokenCount": 31,
+    "questionsAsked": 6,
+    "correctAnswers": 5,
+    "accuracy": 83.33333333333334,
+    "avgLatencyMs": 359.1666666666667,
+    "totalInputTokens": 691,
+    "totalOutputTokens": 12,
+    "questionResults": [
+      {
+        "questionId": "react-simple-component-q1",
+        "question": "What is the main function or component name in this code?",
+        "expected": "Button",
+        "actual": "Button",
+        "correct": true,
+        "latencyMs": 348,
+        "inputTokens": 114,
+        "outputTokens": 2
+      },
+      {
+        "questionId": "react-simple-component-q2",
+        "question": "How many unique React hooks are used in this code? Answer with just a number.",
+        "expected": "0",
+        "actual": "0",
+        "correct": true,
+        "latencyMs": 348,
+        "inputTokens": 119,
+        "outputTokens": 2
+      },
+      {
+        "questionId": "react-simple-component-q3",
+        "question": "Does this code contain JSX elements? Answer YES or NO.",
+        "expected": "YES",
+        "actual": "YES",
+        "correct": true,
+        "latencyMs": 360,
+        "inputTokens": 114,
+        "outputTokens": 2
+      },
+      {
+        "questionId": "react-simple-component-q4",
+        "question": "Does this code use arrow function syntax (=>)? Answer YES or NO.",
+        "expected": "NO",
+        "actual": "NO",
+        "correct": true,
+        "latencyMs": 348,
+        "inputTokens": 117,
+        "outputTokens": 2
+      },
+      {
+        "questionId": "react-simple-component-q5",
+        "question": "Does this code have import statements? Answer YES or NO.",
+        "expected": "YES",
+        "actual": "YES",
+        "correct": true,
+        "latencyMs": 402,
+        "inputTokens": 114,
+        "outputTokens": 2
+      },
+      {
+        "questionId": "react-simple-component-q6",
+        "question": "Does this code export anything? Answer YES or NO.",
+        "expected": "YES",
+        "actual": "NO",
+        "correct": false,
+        "latencyMs": 349,
+        "inputTokens": 113,
+        "outputTokens": 2
+      }
+    ]
+  },
+  {
+    "sampleId": "react-simple-component",
+    "sampleName": "Simple React Component",
+    "model": "moonshotai/kimi-k2-instruct",
+    "scenario": "coon-with-context",
+    "tokenCount": 151,
+    "questionsAsked": 6,
+    "correctAnswers": 6,
+    "accuracy": 100,
+    "avgLatencyMs": 376.3333333333333,
+    "totalInputTokens": 1417,
+    "totalOutputTokens": 12,
+    "questionResults": [
+      {
+        "questionId": "react-simple-component-q1",
+        "question": "What is the main function or component name in this code?",
+        "expected": "Button",
+        "actual": "Button",
+        "correct": true,
+        "latencyMs": 359,
+        "inputTokens": 235,
+        "outputTokens": 2
+      },
+      {
+        "questionId": "react-simple-component-q2",
+        "question": "How many unique React hooks are used in this code? Answer with just a number.",
+        "expected": "0",
+        "actual": "0",
+        "correct": true,
+        "latencyMs": 362,
+        "inputTokens": 240,
+        "outputTokens": 2
+      },
+      {
+        "questionId": "react-simple-component-q3",
+        "question": "Does this code contain JSX elements? Answer YES or NO.",
+        "expected": "YES",
+        "actual": "YES",
+        "correct": true,
+        "latencyMs": 363,
+        "inputTokens": 235,
+        "outputTokens": 2
+      },
+      {
+        "questionId": "react-simple-component-q4",
+        "question": "Does this code use arrow function syntax (=>)? Answer YES or NO.",
+        "expected": "NO",
+        "actual": "NO",
+        "correct": true,
+        "latencyMs": 358,
+        "inputTokens": 238,
+        "outputTokens": 2
+      },
+      {
+        "questionId": "react-simple-component-q5",
+        "question": "Does this code have import statements? Answer YES or NO.",
+        "expected": "YES",
+        "actual": "YES",
+        "correct": true,
+        "latencyMs": 418,
+        "inputTokens": 235,
+        "outputTokens": 2
+      },
+      {
+        "questionId": "react-simple-component-q6",
+        "question": "Does this code export anything? Answer YES or NO.",
+        "expected": "YES",
+        "actual": "YES",
+        "correct": true,
+        "latencyMs": 398,
+        "inputTokens": 234,
+        "outputTokens": 2
+      }
+    ]
+  },
+  {
+    "sampleId": "react-usestate",
+    "sampleName": "Counter with useState",
+    "model": "moonshotai/kimi-k2-instruct",
+    "scenario": "js-baseline",
+    "tokenCount": 79,
+    "questionsAsked": 6,
+    "correctAnswers": 6,
+    "accuracy": 100,
+    "avgLatencyMs": 407.5,
+    "totalInputTokens": 991,
+    "totalOutputTokens": 12,
+    "questionResults": [
+      {
+        "questionId": "react-usestate-q1",
+        "question": "What is the main function or component name in this code?",
+        "expected": "Counter",
+        "actual": "Counter",
+        "correct": true,
+        "latencyMs": 385,
+        "inputTokens": 164,
+        "outputTokens": 2
+      },
+      {
+        "questionId": "react-usestate-q2",
+        "question": "How many unique React hooks are used in this code? Answer with just a number.",
+        "expected": "1",
+        "actual": "1",
+        "correct": true,
+        "latencyMs": 352,
+        "inputTokens": 169,
+        "outputTokens": 2
+      },
+      {
+        "questionId": "react-usestate-q3",
+        "question": "Does this code contain JSX elements? Answer YES or NO.",
+        "expected": "YES",
+        "actual": "YES",
+        "correct": true,
+        "latencyMs": 353,
+        "inputTokens": 164,
+        "outputTokens": 2
+      },
+      {
+        "questionId": "react-usestate-q4",
+        "question": "Does this code use arrow function syntax (=>)? Answer YES or NO.",
+        "expected": "YES",
+        "actual": "YES",
+        "correct": true,
+        "latencyMs": 366,
+        "inputTokens": 167,
+        "outputTokens": 2
+      },
+      {
+        "questionId": "react-usestate-q5",
+        "question": "Does this code have import statements? Answer YES or NO.",
+        "expected": "YES",
+        "actual": "YES",
+        "correct": true,
+        "latencyMs": 364,
+        "inputTokens": 164,
+        "outputTokens": 2
+      },
+      {
+        "questionId": "react-usestate-q6",
+        "question": "Does this code export anything? Answer YES or NO.",
+        "expected": "YES",
+        "actual": "YES",
+        "correct": true,
+        "latencyMs": 625,
+        "inputTokens": 163,
+        "outputTokens": 2
+      }
+    ]
+  },
+  {
+    "sampleId": "react-usestate",
+    "sampleName": "Counter with useState",
+    "model": "moonshotai/kimi-k2-instruct",
+    "scenario": "raw-coon",
+    "tokenCount": 65,
+    "questionsAsked": 6,
+    "correctAnswers": 5,
+    "accuracy": 83.33333333333334,
+    "avgLatencyMs": 364.5,
+    "totalInputTokens": 907,
+    "totalOutputTokens": 12,
+    "questionResults": [
+      {
+        "questionId": "react-usestate-q1",
+        "question": "What is the main function or component name in this code?",
+        "expected": "Counter",
+        "actual": "Counter",
+        "correct": true,
+        "latencyMs": 371,
+        "inputTokens": 150,
+        "outputTokens": 2
+      },
+      {
+        "questionId": "react-usestate-q2",
+        "question": "How many unique React hooks are used in this code? Answer with just a number.",
+        "expected": "1",
+        "actual": "1",
+        "correct": true,
+        "latencyMs": 369,
+        "inputTokens": 155,
+        "outputTokens": 2
+      },
+      {
+        "questionId": "react-usestate-q3",
+        "question": "Does this code contain JSX elements? Answer YES or NO.",
+        "expected": "YES",
+        "actual": "YES",
+        "correct": true,
+        "latencyMs": 364,
+        "inputTokens": 150,
+        "outputTokens": 2
+      },
+      {
+        "questionId": "react-usestate-q4",
+        "question": "Does this code use arrow function syntax (=>)? Answer YES or NO.",
+        "expected": "YES",
+        "actual": "YES",
+        "correct": true,
+        "latencyMs": 359,
+        "inputTokens": 153,
+        "outputTokens": 2
+      },
+      {
+        "questionId": "react-usestate-q5",
+        "question": "Does this code have import statements? Answer YES or NO.",
+        "expected": "YES",
+        "actual": "YES",
+        "correct": true,
+        "latencyMs": 357,
+        "inputTokens": 150,
+        "outputTokens": 2
+      },
+      {
+        "questionId": "react-usestate-q6",
+        "question": "Does this code export anything? Answer YES or NO.",
+        "expected": "YES",
+        "actual": "NO",
+        "correct": false,
+        "latencyMs": 367,
+        "inputTokens": 149,
+        "outputTokens": 2
+      }
+    ]
+  },
+  {
+    "sampleId": "react-usestate",
+    "sampleName": "Counter with useState",
+    "model": "moonshotai/kimi-k2-instruct",
+    "scenario": "coon-with-context",
+    "tokenCount": 185,
+    "questionsAsked": 6,
+    "correctAnswers": 6,
+    "accuracy": 100,
+    "avgLatencyMs": 380,
+    "totalInputTokens": 1633,
+    "totalOutputTokens": 12,
+    "questionResults": [
+      {
+        "questionId": "react-usestate-q1",
+        "question": "What is the main function or component name in this code?",
+        "expected": "Counter",
+        "actual": "Counter",
+        "correct": true,
+        "latencyMs": 366,
+        "inputTokens": 271,
+        "outputTokens": 2
+      },
+      {
+        "questionId": "react-usestate-q2",
+        "question": "How many unique React hooks are used in this code? Answer with just a number.",
+        "expected": "1",
+        "actual": "1",
+        "correct": true,
+        "latencyMs": 402,
+        "inputTokens": 276,
+        "outputTokens": 2
+      },
+      {
+        "questionId": "react-usestate-q3",
+        "question": "Does this code contain JSX elements? Answer YES or NO.",
+        "expected": "YES",
+        "actual": "YES",
+        "correct": true,
+        "latencyMs": 364,
+        "inputTokens": 271,
+        "outputTokens": 2
+      },
+      {
+        "questionId": "react-usestate-q4",
+        "question": "Does this code use arrow function syntax (=>)? Answer YES or NO.",
+        "expected": "YES",
+        "actual": "YES",
+        "correct": true,
+        "latencyMs": 395,
+        "inputTokens": 274,
+        "outputTokens": 2
+      },
+      {
+        "questionId": "react-usestate-q5",
+        "question": "Does this code have import statements? Answer YES or NO.",
+        "expected": "YES",
+        "actual": "YES",
+        "correct": true,
+        "latencyMs": 369,
+        "inputTokens": 271,
+        "outputTokens": 2
+      },
+      {
+        "questionId": "react-usestate-q6",
+        "question": "Does this code export anything? Answer YES or NO.",
+        "expected": "YES",
+        "actual": "YES",
+        "correct": true,
+        "latencyMs": 384,
+        "inputTokens": 270,
+        "outputTokens": 2
+      }
+    ]
+  },
+  {
+    "sampleId": "react-useeffect",
+    "sampleName": "Effect Hook",
+    "model": "moonshotai/kimi-k2-instruct",
+    "scenario": "js-baseline",
+    "tokenCount": 89,
+    "questionsAsked": 6,
+    "correctAnswers": 6,
+    "accuracy": 100,
+    "avgLatencyMs": 379.6666666666667,
+    "totalInputTokens": 1045,
+    "totalOutputTokens": 12,
+    "questionResults": [
+      {
+        "questionId": "react-useeffect-q1",
+        "question": "What is the main function or component name in this code?",
+        "expected": "Timer",
+        "actual": "Timer",
+        "correct": true,
+        "latencyMs": 428,
+        "inputTokens": 173,
+        "outputTokens": 2
+      },
+      {
+        "questionId": "react-useeffect-q2",
+        "question": "How many unique React hooks are used in this code? Answer with just a number.",
+        "expected": "2",
+        "actual": "2",
+        "correct": true,
+        "latencyMs": 363,
+        "inputTokens": 178,
+        "outputTokens": 2
+      },
+      {
+        "questionId": "react-useeffect-q3",
+        "question": "Does this code contain JSX elements? Answer YES or NO.",
+        "expected": "YES",
+        "actual": "YES",
+        "correct": true,
+        "latencyMs": 415,
+        "inputTokens": 173,
+        "outputTokens": 2
+      },
+      {
+        "questionId": "react-useeffect-q4",
+        "question": "Does this code use arrow function syntax (=>)? Answer YES or NO.",
+        "expected": "YES",
+        "actual": "YES",
+        "correct": true,
+        "latencyMs": 356,
+        "inputTokens": 176,
+        "outputTokens": 2
+      },
+      {
+        "questionId": "react-useeffect-q5",
+        "question": "Does this code have import statements? Answer YES or NO.",
+        "expected": "YES",
+        "actual": "YES",
+        "correct": true,
+        "latencyMs": 357,
+        "inputTokens": 173,
+        "outputTokens": 2
+      },
+      {
+        "questionId": "react-useeffect-q6",
+        "question": "Does this code export anything? Answer YES or NO.",
+        "expected": "YES",
+        "actual": "YES",
+        "correct": true,
+        "latencyMs": 359,
+        "inputTokens": 172,
+        "outputTokens": 2
+      }
+    ]
+  },
+  {
+    "sampleId": "react-useeffect",
+    "sampleName": "Effect Hook",
+    "model": "moonshotai/kimi-k2-instruct",
+    "scenario": "raw-coon",
+    "tokenCount": 74,
+    "questionsAsked": 6,
+    "correctAnswers": 5,
+    "accuracy": 83.33333333333334,
+    "avgLatencyMs": 376.3333333333333,
+    "totalInputTokens": 967,
+    "totalOutputTokens": 12,
+    "questionResults": [
+      {
+        "questionId": "react-useeffect-q1",
+        "question": "What is the main function or component name in this code?",
+        "expected": "Timer",
+        "actual": "Timer",
+        "correct": true,
+        "latencyMs": 351,
+        "inputTokens": 160,
+        "outputTokens": 2
+      },
+      {
+        "questionId": "react-useeffect-q2",
+        "question": "How many unique React hooks are used in this code? Answer with just a number.",
+        "expected": "2",
+        "actual": "2",
+        "correct": true,
+        "latencyMs": 394,
+        "inputTokens": 165,
+        "outputTokens": 2
+      },
+      {
+        "questionId": "react-useeffect-q3",
+        "question": "Does this code contain JSX elements? Answer YES or NO.",
+        "expected": "YES",
+        "actual": "YES",
+        "correct": true,
+        "latencyMs": 394,
+        "inputTokens": 160,
+        "outputTokens": 2
+      },
+      {
+        "questionId": "react-useeffect-q4",
+        "question": "Does this code use arrow function syntax (=>)? Answer YES or NO.",
+        "expected": "YES",
+        "actual": "YES",
+        "correct": true,
+        "latencyMs": 393,
+        "inputTokens": 163,
+        "outputTokens": 2
+      },
+      {
+        "questionId": "react-useeffect-q5",
+        "question": "Does this code have import statements? Answer YES or NO.",
+        "expected": "YES",
+        "actual": "YES",
+        "correct": true,
+        "latencyMs": 367,
+        "inputTokens": 160,
+        "outputTokens": 2
+      },
+      {
+        "questionId": "react-useeffect-q6",
+        "question": "Does this code export anything? Answer YES or NO.",
+        "expected": "YES",
+        "actual": "NO",
+        "correct": false,
+        "latencyMs": 359,
+        "inputTokens": 159,
+        "outputTokens": 2
+      }
+    ]
+  },
+  {
+    "sampleId": "react-useeffect",
+    "sampleName": "Effect Hook",
+    "model": "moonshotai/kimi-k2-instruct",
+    "scenario": "coon-with-context",
+    "tokenCount": 194,
+    "questionsAsked": 6,
+    "correctAnswers": 6,
+    "accuracy": 100,
+    "avgLatencyMs": 381.6666666666667,
+    "totalInputTokens": 1693,
+    "totalOutputTokens": 12,
+    "questionResults": [
+      {
+        "questionId": "react-useeffect-q1",
+        "question": "What is the main function or component name in this code?",
+        "expected": "Timer",
+        "actual": "Timer",
+        "correct": true,
+        "latencyMs": 412,
+        "inputTokens": 281,
+        "outputTokens": 2
+      },
+      {
+        "questionId": "react-useeffect-q2",
+        "question": "How many unique React hooks are used in this code? Answer with just a number.",
+        "expected": "2",
+        "actual": "2",
+        "correct": true,
+        "latencyMs": 372,
+        "inputTokens": 286,
+        "outputTokens": 2
+      },
+      {
+        "questionId": "react-useeffect-q3",
+        "question": "Does this code contain JSX elements? Answer YES or NO.",
+        "expected": "YES",
+        "actual": "YES",
+        "correct": true,
+        "latencyMs": 371,
+        "inputTokens": 281,
+        "outputTokens": 2
+      },
+      {
+        "questionId": "react-useeffect-q4",
+        "question": "Does this code use arrow function syntax (=>)? Answer YES or NO.",
+        "expected": "YES",
+        "actual": "YES",
+        "correct": true,
+        "latencyMs": 392,
+        "inputTokens": 284,
+        "outputTokens": 2
+      },
+      {
+        "questionId": "react-useeffect-q5",
+        "question": "Does this code have import statements? Answer YES or NO.",
+        "expected": "YES",
+        "actual": "YES",
+        "correct": true,
+        "latencyMs": 370,
+        "inputTokens": 281,
+        "outputTokens": 2
+      },
+      {
+        "questionId": "react-useeffect-q6",
+        "question": "Does this code export anything? Answer YES or NO.",
+        "expected": "YES",
+        "actual": "YES",
+        "correct": true,
+        "latencyMs": 373,
+        "inputTokens": 280,
+        "outputTokens": 2
+      }
+    ]
+  },
+  {
+    "sampleId": "react-complex-list",
+    "sampleName": "User List",
+    "model": "moonshotai/kimi-k2-instruct",
+    "scenario": "js-baseline",
+    "tokenCount": 122,
+    "questionsAsked": 6,
+    "correctAnswers": 6,
+    "accuracy": 100,
+    "avgLatencyMs": 364.5,
+    "totalInputTokens": 1243,
+    "totalOutputTokens": 13,
+    "questionResults": [
+      {
+        "questionId": "react-complex-list-q1",
+        "question": "What is the main function or component name in this code?",
+        "expected": "UserList",
+        "actual": "UserList",
+        "correct": true,
+        "latencyMs": 353,
+        "inputTokens": 206,
+        "outputTokens": 3
+      },
+      {
+        "questionId": "react-complex-list-q2",
+        "question": "How many unique React hooks are used in this code? Answer with just a number.",
+        "expected": "0",
+        "actual": "0",
+        "correct": true,
+        "latencyMs": 356,
+        "inputTokens": 211,
+        "outputTokens": 2
+      },
+      {
+        "questionId": "react-complex-list-q3",
+        "question": "Does this code contain JSX elements? Answer YES or NO.",
+        "expected": "YES",
+        "actual": "YES",
+        "correct": true,
+        "latencyMs": 392,
+        "inputTokens": 206,
+        "outputTokens": 2
+      },
+      {
+        "questionId": "react-complex-list-q4",
+        "question": "Does this code use arrow function syntax (=>)? Answer YES or NO.",
+        "expected": "YES",
+        "actual": "YES",
+        "correct": true,
+        "latencyMs": 362,
+        "inputTokens": 209,
+        "outputTokens": 2
+      },
+      {
+        "questionId": "react-complex-list-q5",
+        "question": "Does this code have import statements? Answer YES or NO.",
+        "expected": "YES",
+        "actual": "YES",
+        "correct": true,
+        "latencyMs": 360,
+        "inputTokens": 206,
+        "outputTokens": 2
+      },
+      {
+        "questionId": "react-complex-list-q6",
+        "question": "Does this code export anything? Answer YES or NO.",
+        "expected": "YES",
+        "actual": "YES",
+        "correct": true,
+        "latencyMs": 364,
+        "inputTokens": 205,
+        "outputTokens": 2
+      }
+    ]
+  },
+  {
+    "sampleId": "react-complex-list",
+    "sampleName": "User List",
+    "model": "moonshotai/kimi-k2-instruct",
+    "scenario": "raw-coon",
+    "tokenCount": 107,
+    "questionsAsked": 6,
+    "correctAnswers": 5,
+    "accuracy": 83.33333333333334,
+    "avgLatencyMs": 389.3333333333333,
+    "totalInputTokens": 1159,
+    "totalOutputTokens": 13,
+    "questionResults": [
+      {
+        "questionId": "react-complex-list-q1",
+        "question": "What is the main function or component name in this code?",
+        "expected": "UserList",
+        "actual": "UserList",
+        "correct": true,
+        "latencyMs": 356,
+        "inputTokens": 192,
+        "outputTokens": 3
+      },
+      {
+        "questionId": "react-complex-list-q2",
+        "question": "How many unique React hooks are used in this code? Answer with just a number.",
+        "expected": "0",
+        "actual": "0",
+        "correct": true,
+        "latencyMs": 420,
+        "inputTokens": 197,
+        "outputTokens": 2
+      },
+      {
+        "questionId": "react-complex-list-q3",
+        "question": "Does this code contain JSX elements? Answer YES or NO.",
+        "expected": "YES",
+        "actual": "YES",
+        "correct": true,
+        "latencyMs": 405,
+        "inputTokens": 192,
+        "outputTokens": 2
+      },
+      {
+        "questionId": "react-complex-list-q4",
+        "question": "Does this code use arrow function syntax (=>)? Answer YES or NO.",
+        "expected": "YES",
+        "actual": "YES",
+        "correct": true,
+        "latencyMs": 380,
+        "inputTokens": 195,
+        "outputTokens": 2
+      },
+      {
+        "questionId": "react-complex-list-q5",
+        "question": "Does this code have import statements? Answer YES or NO.",
+        "expected": "YES",
+        "actual": "YES",
+        "correct": true,
+        "latencyMs": 406,
+        "inputTokens": 192,
+        "outputTokens": 2
+      },
+      {
+        "questionId": "react-complex-list-q6",
+        "question": "Does this code export anything? Answer YES or NO.",
+        "expected": "YES",
+        "actual": "NO",
+        "correct": false,
+        "latencyMs": 369,
+        "inputTokens": 191,
+        "outputTokens": 2
+      }
+    ]
+  },
+  {
+    "sampleId": "react-complex-list",
+    "sampleName": "User List",
+    "model": "moonshotai/kimi-k2-instruct",
+    "scenario": "coon-with-context",
+    "tokenCount": 227,
+    "questionsAsked": 6,
+    "correctAnswers": 6,
+    "accuracy": 100,
+    "avgLatencyMs": 354.5,
+    "totalInputTokens": 1885,
+    "totalOutputTokens": 13,
+    "questionResults": [
+      {
+        "questionId": "react-complex-list-q1",
+        "question": "What is the main function or component name in this code?",
+        "expected": "UserList",
+        "actual": "UserList",
+        "correct": true,
+        "latencyMs": 363,
+        "inputTokens": 313,
+        "outputTokens": 3
+      },
+      {
+        "questionId": "react-complex-list-q2",
+        "question": "How many unique React hooks are used in this code? Answer with just a number.",
+        "expected": "0",
+        "actual": "0",
+        "correct": true,
+        "latencyMs": 352,
+        "inputTokens": 318,
+        "outputTokens": 2
+      },
+      {
+        "questionId": "react-complex-list-q3",
+        "question": "Does this code contain JSX elements? Answer YES or NO.",
+        "expected": "YES",
+        "actual": "YES",
+        "correct": true,
+        "latencyMs": 348,
+        "inputTokens": 313,
+        "outputTokens": 2
+      },
+      {
+        "questionId": "react-complex-list-q4",
+        "question": "Does this code use arrow function syntax (=>)? Answer YES or NO.",
+        "expected": "YES",
+        "actual": "YES",
+        "correct": true,
+        "latencyMs": 353,
+        "inputTokens": 316,
+        "outputTokens": 2
+      },
+      {
+        "questionId": "react-complex-list-q5",
+        "question": "Does this code have import statements? Answer YES or NO.",
+        "expected": "YES",
+        "actual": "YES",
+        "correct": true,
+        "latencyMs": 358,
+        "inputTokens": 313,
+        "outputTokens": 2
+      },
+      {
+        "questionId": "react-complex-list-q6",
+        "question": "Does this code export anything? Answer YES or NO.",
+        "expected": "YES",
+        "actual": "YES",
+        "correct": true,
+        "latencyMs": 353,
+        "inputTokens": 312,
+        "outputTokens": 2
+      }
+    ]
+  }
+]

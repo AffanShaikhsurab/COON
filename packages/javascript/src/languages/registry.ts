@@ -121,6 +121,14 @@ function registerDefaultLanguages(): void {
     } catch (e) {
         // Dart handler not available
     }
+    
+    try {
+        // Import and register JavaScript handler
+        const { JavaScriptLanguageHandler } = require('./javascript');
+        LanguageRegistry.register('javascript', JavaScriptLanguageHandler);
+    } catch (e) {
+        // JavaScript handler not available
+    }
 }
 
 registerDefaultLanguages();

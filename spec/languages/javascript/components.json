@@ -1,0 +1,50 @@
+{
+  "react_hooks": {
+    "useState": "us",
+    "useEffect": "ue",
+    "useContext": "uc",
+    "useReducer": "ur",
+    "useCallback": "ucb",
+    "useMemo": "um",
+    "useRef": "urf",
+    "useImperativeHandle": "uih",
+    "useLayoutEffect": "ule",
+    "useDebugValue": "udv"
+  },
+  "jsx_elements": {
+    "div": "D",
+    "span": "S",
+    "button": "B",
+    "input": "I",
+    "form": "F",
+    "label": "L",
+    "textarea": "TA",
+    "select": "SL",
+    "option": "O",
+    "ul": "UL",
+    "ol": "OL",
+    "li": "LI",
+    "p": "P",
+    "h1": "H1",
+    "h2": "H2",
+    "h3": "H3",
+    "h4": "H4",
+    "h5": "H5",
+    "h6": "H6",
+    "a": "A",
+    "img": "IM",
+    "nav": "N",
+    "header": "HD",
+    "footer": "FT",
+    "section": "SC",
+    "article": "AR",
+    "aside": "AS",
+    "main": "M"
+  },
+  "react_components": {
+    "Fragment": "Fr",
+    "StrictMode": "SM",
+    "Suspense": "Su",
+    "lazy": "lz"
+  }
+}

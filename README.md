@@ -1,10 +1,12 @@
 # COON: Code-Oriented Object Notation
 
-**Token-efficient code compression format for Dart/Flutter and LLM contexts**
+**Token-efficient code compression format for Dart/Flutter and JavaScript/React**
 
 [![Python Version](https://img.shields.io/badge/python-3.8%2B-blue)](https://www.python.org/downloads/)
+[![Node Version](https://img.shields.io/badge/node-18%2B-green)](https://nodejs.org/)
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 [![PyPI version](https://badge.fury.io/py/coon-compress.svg)](https://pypi.org/project/coon-compress/)
+[![npm version](https://img.shields.io/npm/v/coon-compress.svg)](https://www.npmjs.com/package/coon-compress)
 
 ---
 
@@ -12,10 +14,14 @@
 
 COON delivers immediate value for LLM-based development workflows:
 
-*   **📉 ~30-34% Token Reduction**: Significantly reduces context window usage, allowing for larger codebases in prompts.
-*   **💰 Cost Efficiency**: Direct reduction in API costs. Benchmarks show **33% savings** on real-world applications.
-*   **⚡ Faster Inference**: Compressed prompts lead to faster generation. Tests show **~2x lower latency** with models like GLM-4.6.
-*   **🧠 High Comprehension**: Modern LLMs maintain high understanding of COON format (e.g., GLM-4.6 achieves **62.5% accuracy**, matching Dart baseline).
+*   **📉 30-54% Token Reduction**: Significantly reduces context window usage
+    *   **JavaScript/React**: 33.1% average, up to 54.8% maximum savings
+    *   **Dart/Flutter**: 28-34% on production apps, up to 70% on simple widgets
+*   **💰 Cost Efficiency**: Direct reduction in API costs - **33% savings** on real-world applications
+*   **⚡ Faster Inference**: Compressed prompts lead to faster generation (~2x lower latency with GLM-4.6)
+*   **🧠 High Comprehension**: 
+    *   **JavaScript**: **100% accuracy** with context primer (Kimi K2), 86.7% without
+    *   **Dart**: 62.5% accuracy (GLM-4.6), matching baseline performance
 
 ---
 
