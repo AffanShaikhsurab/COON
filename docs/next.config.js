@@ -5,7 +5,6 @@ const nextConfig = {
   images: {
     domains: [],
   },
-  output: 'standalone',
   // Ensure static generation works
   experimental: {
     // Enable static page generation
