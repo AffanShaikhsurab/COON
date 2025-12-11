@@ -10,6 +10,6 @@ from .registry import LanguageRegistry
 
 __all__ = [
     "LanguageHandler",
-    "LanguageSpec", 
+    "LanguageSpec",
     "LanguageRegistry",
 ]
