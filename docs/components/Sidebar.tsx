@@ -17,27 +17,28 @@ export function Sidebar({ items }: SidebarProps) {
         {items.map((section, idx) => (
           <div key={idx} className="mb-8">
             <h3 className="text-sm font-semibold text-white mb-2">
-              {section.text}
+              {section.title}
             </h3>
-            <ul className="space-y-1">
-              {section.items.map((item) => {
-                const isActive = pathname === item.link
-                return (
-                  <li key={item.link}>
-                    <Link
-                      href={item.link}
-                      className={`block px-3 py-2 rounded-md text-sm transition-colors ${
-                        isActive
-                          ? 'bg-white/10 text-white font-medium'
-                          : 'text-white/70 hover:text-white hover:bg-white/5'
-                      }`}
-                    >
-                      {item.text}
-                    </Link>
-                  </li>
-                )
-              })}
-            </ul>
+            {section.items && (
+              <ul className="space-y-1">
+                {section.items.map((item) => {
+                  const isActive = pathname === item.href
+                  return (
+                    <li key={item.href}>
+                      <Link
+                        href={item.href}
+                        className={`block px-3 py-2 rounded-md text-sm transition-colors ${isActive
+                            ? 'bg-white/10 text-white font-medium'
+                            : 'text-white/70 hover:text-white hover:bg-white/5'
+                          }`}
+                      >
+                        {item.title}
+                      </Link>
+                    </li>
+                  )
+                })}
+              </ul>
+            )}
           </div>
         ))}
       </nav>
