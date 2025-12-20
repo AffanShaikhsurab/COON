@@ -6,11 +6,7 @@
 
 import { DecompressionConfig, createDecompressionConfig } from "./config";
 import { DecompressionResult, createDecompressionResult } from "./result";
-import {
-  getReverseWidgetMap,
-  getReversePropertyMap,
-  getReverseKeywordMap,
-} from "../data";
+import { getReverseWidgetMap, getReversePropertyMap, getReverseKeywordMap } from "../data";
 import { LanguageRegistry, DartLanguageHandler } from "../languages";
 
 /**
@@ -73,11 +69,7 @@ export class Decompressor {
     // Calculate processing time
     const processingTimeMs = Date.now() - startTime;
 
-    return createDecompressionResult(
-      compressedCode,
-      decompressedCode,
-      processingTimeMs,
-    );
+    return createDecompressionResult(compressedCode, decompressedCode, processingTimeMs);
   }
 
   /**
@@ -99,14 +91,11 @@ export class Decompressor {
     result = result.replace(/pd:(\d+(?:\.\d+)?)/g, "EdgeInsets.all($1)");
     result = result.replace(
       /pd:(\d+(?:\.\d+)?),(\d+(?:\.\d+)?)/g,
-      "EdgeInsets.symmetric(horizontal: $1, vertical: $2)",
+      "EdgeInsets.symmetric(horizontal: $1, vertical: $2)"
     );
 
     // Reverse Size shorthand
-    result = result.replace(
-      /sz:(\d+(?:\.\d+)?),(\d+(?:\.\d+)?)/g,
-      "Size($1, $2)",
-    );
+    result = result.replace(/sz:(\d+(?:\.\d+)?),(\d+(?:\.\d+)?)/g, "Size($1, $2)");
 
     // Reverse boolean shorthand
     result = result.replace(/\b1\b(?=[,)\s}])/g, "true");

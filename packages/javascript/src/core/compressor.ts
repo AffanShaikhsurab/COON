@@ -37,7 +37,7 @@ export class Compressor {
    */
   compress(
     code: string,
-    options?: { strategy?: CompressionStrategyType; language?: string },
+    options?: { strategy?: CompressionStrategyType; language?: string }
   ): CompressionResult {
     const startTime = Date.now();
     const language = options?.language || this.language;
@@ -64,12 +64,7 @@ export class Compressor {
     const processingTimeMs = Date.now() - startTime;
 
     // Create result
-    const result = createCompressionResult(
-      code,
-      compressedCode,
-      strategyType,
-      processingTimeMs,
-    );
+    const result = createCompressionResult(code, compressedCode, strategyType, processingTimeMs);
 
     // Add metadata
     result.metadata = this.analyzeCode(code);
@@ -80,7 +75,7 @@ export class Compressor {
       result.percentageSaved / 100,
       result.tokenSavings,
       processingTimeMs,
-      true,
+      true
     );
 
     return result;
@@ -91,7 +86,7 @@ export class Compressor {
    */
   private createStrategy(
     strategyType: CompressionStrategyType,
-    language: string,
+    language: string
   ): CompressionStrategy {
     switch (strategyType) {
       case CompressionStrategyType.AGGRESSIVE:
@@ -111,9 +106,7 @@ export class Compressor {
    */
   private applyCustomAbbreviations(code: string): string {
     let result = code;
-    for (const [full, abbrev] of Object.entries(
-      this.config.customAbbreviations,
-    )) {
+    for (const [full, abbrev] of Object.entries(this.config.customAbbreviations)) {
       result = result.replace(new RegExp(full, "g"), abbrev);
     }
     return result;

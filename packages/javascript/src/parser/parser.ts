@@ -119,21 +119,12 @@ export class DartParser {
     // Parse extends, implements, with
     while (!this.check(TokenType.LBRACE) && !this.isAtEnd()) {
       if (this.match(TokenType.EXTENDS)) {
-        const superToken = this.consume(
-          TokenType.IDENTIFIER,
-          "Expected superclass name",
-        );
+        const superToken = this.consume(TokenType.IDENTIFIER, "Expected superclass name");
         superclass = superToken.value;
-      } else if (
-        this.check(TokenType.IDENTIFIER) &&
-        this.previous().value === "implements"
-      ) {
+      } else if (this.check(TokenType.IDENTIFIER) && this.previous().value === "implements") {
         const ifaceToken = this.advance();
         interfaces.push(ifaceToken.value);
-      } else if (
-        this.check(TokenType.IDENTIFIER) &&
-        this.previous().value === "with"
-      ) {
+      } else if (this.check(TokenType.IDENTIFIER) && this.previous().value === "with") {
         const mixinToken = this.advance();
         mixins.push(mixinToken.value);
       } else {
@@ -209,10 +200,7 @@ export class DartParser {
   /**
    * Try to parse class member
    */
-  private tryParseMember():
-    | MethodDeclarationNode
-    | FieldDeclarationNode
-    | null {
+  private tryParseMember(): MethodDeclarationNode | FieldDeclarationNode | null {
     const startPos = this.pos;
 
     let isOverride = false;
@@ -251,7 +239,7 @@ export class DartParser {
           firstToken.value,
           isOverride,
           isStatic,
-          firstToken,
+          firstToken
         );
       } else {
         // Field
@@ -260,18 +248,12 @@ export class DartParser {
           firstToken.value,
           isFinal,
           isStatic,
-          firstToken,
+          firstToken
         );
       }
     } else if (this.check(TokenType.LPAREN)) {
       // Method with inferred return type
-      return this.parseMethodBody(
-        firstToken.value,
-        undefined,
-        isOverride,
-        isStatic,
-        firstToken,
-      );
+      return this.parseMethodBody(firstToken.value, undefined, isOverride, isStatic, firstToken);
     }
 
     this.pos = startPos;
@@ -286,7 +268,7 @@ export class DartParser {
     returnType: string | undefined,
     isOverride: boolean,
     isStatic: boolean,
-    token: Token,
+    token: Token
   ): MethodDeclarationNode {
     // Parse parameters
     this.consume(TokenType.LPAREN, "Expected (");
@@ -344,7 +326,7 @@ export class DartParser {
     fieldType: string,
     isFinal: boolean,
     isStatic: boolean,
-    token: Token,
+    token: Token
   ): FieldDeclarationNode {
     let initializer: ExpressionNode | undefined;
 
@@ -392,10 +374,7 @@ export class DartParser {
       let paramName: string;
       const isRequired = false;
 
-      if (
-        this.check(TokenType.IDENTIFIER) &&
-        this.peek()?.type === TokenType.IDENTIFIER
-      ) {
+      if (this.check(TokenType.IDENTIFIER) && this.peek()?.type === TokenType.IDENTIFIER) {
         paramType = this.advance().value;
         paramName = this.advance().value;
       } else if (this.check(TokenType.IDENTIFIER)) {
@@ -462,11 +441,7 @@ export class DartParser {
       return this.parseReturnStatement();
     }
 
-    if (
-      this.check(TokenType.FINAL) ||
-      this.check(TokenType.VAR) ||
-      this.check(TokenType.CONST)
-    ) {
+    if (this.check(TokenType.FINAL) || this.check(TokenType.VAR) || this.check(TokenType.CONST)) {
       return this.parseVariableDeclaration();
     }
 
@@ -514,17 +489,11 @@ export class DartParser {
     this.match(TokenType.VAR);
 
     let varType: string | undefined;
-    if (
-      this.check(TokenType.IDENTIFIER) &&
-      this.peek()?.type === TokenType.IDENTIFIER
-    ) {
+    if (this.check(TokenType.IDENTIFIER) && this.peek()?.type === TokenType.IDENTIFIER) {
       varType = this.advance().value;
     }
 
-    const nameToken = this.consume(
-      TokenType.IDENTIFIER,
-      "Expected variable name",
-    );
+    const nameToken = this.consume(TokenType.IDENTIFIER, "Expected variable name");
     let initializer: ExpressionNode | undefined;
 
     if (this.match(TokenType.ASSIGN)) {
@@ -642,9 +611,7 @@ export class DartParser {
   /**
    * Parse function call
    */
-  private parseFunctionCall(
-    nameToken: Token,
-  ): WidgetInstantiationNode | FunctionCallNode {
+  private parseFunctionCall(nameToken: Token): WidgetInstantiationNode | FunctionCallNode {
     this.consume(TokenType.LPAREN, "Expected (");
     const args = this.parseArguments();
     this.consume(TokenType.RPAREN, "Expected )");
@@ -708,10 +675,7 @@ export class DartParser {
    * Parse property access
    */
   private parsePropertyAccess(objectToken: Token): ExpressionNode {
-    const propToken = this.consume(
-      TokenType.IDENTIFIER,
-      "Expected property name",
-    );
+    const propToken = this.consume(TokenType.IDENTIFIER, "Expected property name");
 
     let result: ExpressionNode = {
       type: NodeType.PROPERTY_ACCESS,
@@ -728,10 +692,7 @@ export class DartParser {
 
     // Chain property access
     while (this.match(TokenType.DOT)) {
-      const nextProp = this.consume(
-        TokenType.IDENTIFIER,
-        "Expected property name",
-      );
+      const nextProp = this.consume(TokenType.IDENTIFIER, "Expected property name");
       result = {
         type: NodeType.PROPERTY_ACCESS,
         line: nextProp.line,
@@ -785,10 +746,7 @@ export class DartParser {
   // Helper methods
 
   private isAtEnd(): boolean {
-    return (
-      this.pos >= this.tokens.length ||
-      this.tokens[this.pos].type === TokenType.EOF
-    );
+    return this.pos >= this.tokens.length || this.tokens[this.pos].type === TokenType.EOF;
   }
 
   private check(type: TokenType): boolean {

@@ -4,11 +4,7 @@
  * Intelligent strategy selection based on code analysis.
  */
 
-import {
-  CompressionStrategyType,
-  StrategyConfig,
-  StrategyMetrics,
-} from "./types";
+import { CompressionStrategyType, StrategyConfig, StrategyMetrics } from "./types";
 import { CompressionStrategy } from "./base";
 import { BasicStrategy, BASIC_CONFIG } from "./basic";
 import { AggressiveStrategy, AGGRESSIVE_CONFIG } from "./aggressive";
@@ -18,10 +14,7 @@ import { ComponentRefStrategy, COMPONENT_REF_CONFIG } from "./component_ref";
 /**
  * All strategy configurations
  */
-export const STRATEGY_CONFIGURATIONS: Record<
-  CompressionStrategyType,
-  StrategyConfig
-> = {
+export const STRATEGY_CONFIGURATIONS: Record<CompressionStrategyType, StrategyConfig> = {
   [CompressionStrategyType.AUTO]: {
     name: "Auto",
     description: "Automatically select best strategy",
@@ -77,7 +70,7 @@ export class StrategySelector {
   selectStrategy(
     code: string,
     hasRegistry: boolean = false,
-    preferSpeed: boolean = false,
+    preferSpeed: boolean = false
   ): CompressionStrategyType {
     const codeSize = code.length;
     const widgetCount = (code.match(/\b[A-Z][a-zA-Z]*\(/g) || []).length;
@@ -161,8 +154,7 @@ export class StrategySelector {
     complexity += maxDepth * 5;
 
     // Number of conditionals
-    complexity +=
-      (code.match(/\bif\b|\belse\b|\bswitch\b|\?/g) || []).length * 3;
+    complexity += (code.match(/\bif\b|\belse\b|\bswitch\b|\?/g) || []).length * 3;
 
     // Number of loops
     complexity += (code.match(/\bfor\b|\bwhile\b|\bdo\b/g) || []).length * 4;
@@ -217,7 +209,7 @@ export class StrategySelector {
     compressionRatio: number,
     tokensSaved: number,
     timeMs: number,
-    success: boolean,
+    success: boolean
   ): void {
     const metrics = this.metrics.get(strategy);
     if (!metrics) return;
@@ -225,12 +217,9 @@ export class StrategySelector {
     const count = metrics.useCount;
     metrics.avgCompressionRatio =
       (metrics.avgCompressionRatio * count + compressionRatio) / (count + 1);
-    metrics.avgTokensSaved =
-      (metrics.avgTokensSaved * count + tokensSaved) / (count + 1);
-    metrics.processingTimeMs =
-      (metrics.processingTimeMs * count + timeMs) / (count + 1);
-    metrics.successRate =
-      (metrics.successRate * count + (success ? 1 : 0)) / (count + 1);
+    metrics.avgTokensSaved = (metrics.avgTokensSaved * count + tokensSaved) / (count + 1);
+    metrics.processingTimeMs = (metrics.processingTimeMs * count + timeMs) / (count + 1);
+    metrics.successRate = (metrics.successRate * count + (success ? 1 : 0)) / (count + 1);
     metrics.useCount++;
   }
 

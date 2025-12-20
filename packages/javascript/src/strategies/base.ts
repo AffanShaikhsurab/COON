@@ -5,16 +5,8 @@
  * Implements the Strategy Pattern for flexible compression approaches.
  */
 
-import {
-  CompressionResult,
-  CompressionStrategyType,
-  StrategyConfig,
-} from "./types";
-import {
-  getWidgetAbbreviations,
-  getPropertyAbbreviations,
-  getKeywordAbbreviations,
-} from "../data";
+import { CompressionResult, CompressionStrategyType, StrategyConfig } from "./types";
+import { getWidgetAbbreviations, getPropertyAbbreviations, getKeywordAbbreviations } from "../data";
 import { LanguageHandler, LanguageRegistry } from "../languages";
 
 /**
@@ -71,10 +63,7 @@ export abstract class CompressionStrategy {
       return false;
     }
 
-    if (
-      this.config.maxCodeSize !== null &&
-      codeSize > this.config.maxCodeSize
-    ) {
+    if (this.config.maxCodeSize !== null && codeSize > this.config.maxCodeSize) {
       return false;
     }
 
@@ -141,10 +130,7 @@ export abstract class CompressionStrategy {
     let result = code;
     for (const [prop, abbrev] of Object.entries(this.properties)) {
       // Properties include colons, so match literally
-      result = result.replace(
-        new RegExp(prop.replace(":", "\\:"), "g"),
-        abbrev,
-      );
+      result = result.replace(new RegExp(prop.replace(":", "\\:"), "g"), abbrev);
     }
     return result;
   }
@@ -155,13 +141,12 @@ export abstract class CompressionStrategy {
   protected createResult(
     originalCode: string,
     compressedCode: string,
-    startTime: number,
+    startTime: number
   ): CompressionResult {
     const originalTokens = this.countTokens(originalCode);
     const compressedTokens = this.countTokens(compressedCode);
     const tokenSavings = originalTokens - compressedTokens;
-    const percentageSaved =
-      originalTokens > 0 ? (tokenSavings / originalTokens) * 100 : 0;
+    const percentageSaved = originalTokens > 0 ? (tokenSavings / originalTokens) * 100 : 0;
 
     return {
       compressedCode,

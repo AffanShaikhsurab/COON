@@ -112,10 +112,7 @@ export class AggressiveStrategy extends CompressionStrategy {
     });
 
     // Size shorthand
-    result = result.replace(
-      /Size\((\d+(?:\.\d+)?),\s*(\d+(?:\.\d+)?)\)/g,
-      "sz:$1,$2",
-    );
+    result = result.replace(/Size\((\d+(?:\.\d+)?),\s*(\d+(?:\.\d+)?)\)/g, "sz:$1,$2");
 
     // Boolean shorthand
     result = result.replace(/\btrue\b/g, "1");

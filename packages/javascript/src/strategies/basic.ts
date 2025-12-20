@@ -13,8 +13,7 @@ import { CompressionStrategyType, StrategyConfig } from "./types";
  */
 export const BASIC_CONFIG: StrategyConfig = {
   name: "Basic",
-  description:
-    "Simple keyword and widget abbreviations with minimal processing",
+  description: "Simple keyword and widget abbreviations with minimal processing",
   minCodeSize: 0,
   maxCodeSize: null,
   expectedRatio: 0.4,

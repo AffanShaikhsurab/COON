@@ -111,7 +111,7 @@ import { CompressionStrategyType } from "./strategies";
 export function compressDart(
   code: string,
   strategy: CompressionStrategyType = CompressionStrategyType.AUTO,
-  language: string = "dart",
+  language: string = "dart"
 ): string {
   const compressor = new Compressor({ language });
   const result = compressor.compress(code, { strategy });
@@ -129,7 +129,7 @@ export function compressDart(
 export function compress(
   code: string,
   strategy: CompressionStrategyType = CompressionStrategyType.AUTO,
-  language: string = "dart",
+  language: string = "dart"
 ) {
   const compressor = new Compressor({ language });
   return compressor.compress(code, { strategy });

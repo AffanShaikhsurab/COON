@@ -146,11 +146,7 @@ export class ComponentRefStrategy extends CompressionStrategy {
         // For now, add component reference as comment
         // In full implementation, would replace matching sections
         const matches = result.match(pattern);
-        if (
-          matches &&
-          matches[0].length >
-            (this.config.parameters.componentThreshold as number)
-        ) {
+        if (matches && matches[0].length > (this.config.parameters.componentThreshold as number)) {
           // Could replace large matching sections
           // result = result.replace(pattern, component.abbreviation);
         }

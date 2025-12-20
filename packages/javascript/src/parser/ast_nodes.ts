@@ -82,10 +82,7 @@ export interface ClassDeclarationNode extends ASTNode {
 /**
  * Member types
  */
-export type MemberNode =
-  | MethodDeclarationNode
-  | FieldDeclarationNode
-  | ConstructorNode;
+export type MemberNode = MethodDeclarationNode | FieldDeclarationNode | ConstructorNode;
 
 /**
  * Method declaration node

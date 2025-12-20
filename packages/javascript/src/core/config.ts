@@ -64,9 +64,7 @@ export const DEFAULT_DECOMPRESSION_CONFIG: DecompressionConfig = {
 /**
  * Create compression config with defaults
  */
-export function createCompressionConfig(
-  overrides?: Partial<CompressionConfig>,
-): CompressionConfig {
+export function createCompressionConfig(overrides?: Partial<CompressionConfig>): CompressionConfig {
   return { ...DEFAULT_COMPRESSION_CONFIG, ...overrides };
 }
 
@@ -74,7 +72,7 @@ export function createCompressionConfig(
  * Create decompression config with defaults
  */
 export function createDecompressionConfig(
-  overrides?: Partial<DecompressionConfig>,
+  overrides?: Partial<DecompressionConfig>
 ): DecompressionConfig {
   return { ...DEFAULT_DECOMPRESSION_CONFIG, ...overrides };
 }

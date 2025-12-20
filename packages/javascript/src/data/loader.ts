@@ -38,37 +38,19 @@ const DEFAULT_LANGUAGE = "dart";
  */
 function getLanguageDataPath(language: string = DEFAULT_LANGUAGE): string {
   // Try new language-specific path first
-  const newPath = path.resolve(
-    __dirname,
-    "..",
-    "..",
-    "..",
-    "..",
-    "spec",
-    "languages",
-    language,
-  );
+  const newPath = path.resolve(__dirname, "..", "..", "..", "..", "spec", "languages", language);
   if (fs.existsSync(newPath)) {
     return newPath;
   }
 
   // Fallback to old spec/data path
-  const oldPath = path.resolve(
-    __dirname,
-    "..",
-    "..",
-    "..",
-    "..",
-    "spec",
-    "data",
-  );
+  const oldPath = path.resolve(__dirname, "..", "..", "..", "..", "spec", "data");
   if (fs.existsSync(oldPath)) {
     return oldPath;
   }
 
   throw new Error(
-    `Could not find spec data for language '${language}'. ` +
-      `Tried: ${newPath} and ${oldPath}`,
+    `Could not find spec data for language '${language}'. ` + `Tried: ${newPath} and ${oldPath}`
   );
 }
 

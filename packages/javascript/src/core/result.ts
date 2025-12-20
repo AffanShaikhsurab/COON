@@ -73,13 +73,12 @@ export function createCompressionResult(
   originalCode: string,
   compressedCode: string,
   strategy: CompressionStrategyType,
-  processingTimeMs: number,
+  processingTimeMs: number
 ): CompressionResult {
   const originalTokens = Math.floor(originalCode.length / 4);
   const compressedTokens = Math.floor(compressedCode.length / 4);
   const tokenSavings = originalTokens - compressedTokens;
-  const percentageSaved =
-    originalTokens > 0 ? (tokenSavings / originalTokens) * 100 : 0;
+  const percentageSaved = originalTokens > 0 ? (tokenSavings / originalTokens) * 100 : 0;
 
   return {
     compressedCode,
@@ -108,7 +107,7 @@ export function createCompressionResult(
 export function createDecompressionResult(
   compressedCode: string,
   decompressedCode: string,
-  processingTimeMs: number,
+  processingTimeMs: number
 ): DecompressionResult {
   return {
     decompressedCode,

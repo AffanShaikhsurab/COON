@@ -140,9 +140,7 @@ export class ComponentRegistry {
    * List components by category
    */
   listByCategory(category: string): Component[] {
-    return Array.from(this.components.values()).filter(
-      (c) => c.category === category,
-    );
+    return Array.from(this.components.values()).filter((c) => c.category === category);
   }
 
   /**

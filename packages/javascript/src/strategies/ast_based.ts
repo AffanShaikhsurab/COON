@@ -186,7 +186,7 @@ export class ASTBasedStrategy extends CompressionStrategy {
     // Merge adjacent SizedBox
     result = result.replace(
       /SizedBox\s*\(\s*height:\s*(\d+)\s*\)\s*,\s*SizedBox\s*\(\s*height:\s*(\d+)\s*\)/g,
-      (_, h1, h2) => `SizedBox(height:${parseInt(h1) + parseInt(h2)})`,
+      (_, h1, h2) => `SizedBox(height:${parseInt(h1) + parseInt(h2)})`
     );
 
     return result;

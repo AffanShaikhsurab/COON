@@ -118,40 +118,16 @@ export class DartLexer {
     // Multi-character operators
     const twoChar = char + (this.peek(1) || "");
     if (twoChar === "==") {
-      return this.createToken(
-        TokenType.EQUALS,
-        "==",
-        2,
-        startLine,
-        startColumn,
-      );
+      return this.createToken(TokenType.EQUALS, "==", 2, startLine, startColumn);
     }
     if (twoChar === "!=") {
-      return this.createToken(
-        TokenType.NOT_EQUALS,
-        "!=",
-        2,
-        startLine,
-        startColumn,
-      );
+      return this.createToken(TokenType.NOT_EQUALS, "!=", 2, startLine, startColumn);
     }
     if (twoChar === "<=") {
-      return this.createToken(
-        TokenType.LESS_EQUAL,
-        "<=",
-        2,
-        startLine,
-        startColumn,
-      );
+      return this.createToken(TokenType.LESS_EQUAL, "<=", 2, startLine, startColumn);
     }
     if (twoChar === ">=") {
-      return this.createToken(
-        TokenType.GREATER_EQUAL,
-        ">=",
-        2,
-        startLine,
-        startColumn,
-      );
+      return this.createToken(TokenType.GREATER_EQUAL, ">=", 2, startLine, startColumn);
     }
     if (twoChar === "&&") {
       return this.createToken(TokenType.AND, "&&", 2, startLine, startColumn);
@@ -163,22 +139,10 @@ export class DartLexer {
       return this.createToken(TokenType.ARROW, "->", 2, startLine, startColumn);
     }
     if (twoChar === "=>") {
-      return this.createToken(
-        TokenType.FAT_ARROW,
-        "=>",
-        2,
-        startLine,
-        startColumn,
-      );
+      return this.createToken(TokenType.FAT_ARROW, "=>", 2, startLine, startColumn);
     }
     if (twoChar === "..") {
-      return this.createToken(
-        TokenType.CASCADE,
-        "..",
-        2,
-        startLine,
-        startColumn,
-      );
+      return this.createToken(TokenType.CASCADE, "..", 2, startLine, startColumn);
     }
 
     // Single-character tokens
@@ -206,13 +170,7 @@ export class DartLexer {
     };
 
     if (singleCharTokens[char]) {
-      return this.createToken(
-        singleCharTokens[char],
-        char,
-        1,
-        startLine,
-        startColumn,
-      );
+      return this.createToken(singleCharTokens[char], char, 1, startLine, startColumn);
     }
 
     // Unknown character
@@ -280,11 +238,7 @@ export class DartLexer {
   /**
    * Read string literal
    */
-  private readString(
-    quote: string,
-    startLine: number,
-    startColumn: number,
-  ): Token {
+  private readString(quote: string, startLine: number, startColumn: number): Token {
     let value = quote;
     this.advance(); // Skip opening quote
 
@@ -321,10 +275,7 @@ export class DartLexer {
   private readNumber(startLine: number, startColumn: number): Token {
     let value = "";
 
-    while (
-      this.pos < this.source.length &&
-      this.isDigit(this.source[this.pos])
-    ) {
+    while (this.pos < this.source.length && this.isDigit(this.source[this.pos])) {
       value += this.source[this.pos];
       this.advance();
     }
@@ -333,10 +284,7 @@ export class DartLexer {
     if (this.source[this.pos] === "." && this.isDigit(this.peek(1) || "")) {
       value += ".";
       this.advance();
-      while (
-        this.pos < this.source.length &&
-        this.isDigit(this.source[this.pos])
-      ) {
+      while (this.pos < this.source.length && this.isDigit(this.source[this.pos])) {
         value += this.source[this.pos];
         this.advance();
       }
@@ -351,10 +299,7 @@ export class DartLexer {
   private readIdentifier(startLine: number, startColumn: number): Token {
     let value = "";
 
-    while (
-      this.pos < this.source.length &&
-      this.isAlphaNumeric(this.source[this.pos])
-    ) {
+    while (this.pos < this.source.length && this.isAlphaNumeric(this.source[this.pos])) {
       value += this.source[this.pos];
       this.advance();
     }
@@ -371,7 +316,7 @@ export class DartLexer {
     value: string,
     length: number,
     startLine: number,
-    startColumn: number,
+    startColumn: number
   ): Token {
     for (let i = 0; i < length; i++) {
       this.advance();
@@ -405,11 +350,7 @@ export class DartLexer {
    * Check if character is alphabetic
    */
   private isAlpha(char: string): boolean {
-    return (
-      (char >= "a" && char <= "z") ||
-      (char >= "A" && char <= "Z") ||
-      char === "_"
-    );
+    return (char >= "a" && char <= "z") || (char >= "A" && char <= "Z") || char === "_";
   }
 
   /**

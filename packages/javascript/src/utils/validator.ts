@@ -29,7 +29,7 @@ export class CompressionValidator {
   validateCompression(
     originalCode: string,
     compressedCode: string,
-    decompressedCode: string,
+    decompressedCode: string
   ): ValidationResult {
     const errors: string[] = [];
     const warnings: string[] = [];
@@ -43,22 +43,15 @@ export class CompressionValidator {
     }
 
     // Calculate similarity
-    const similarityScore = this.calculateSimilarity(
-      originalCode,
-      decompressedCode,
-    );
+    const similarityScore = this.calculateSimilarity(originalCode, decompressedCode);
 
     // Check reversibility
     const reversible = similarityScore > 0.8;
 
     if (similarityScore < 0.5) {
-      errors.push(
-        `Low similarity score: ${(similarityScore * 100).toFixed(1)}%`,
-      );
+      errors.push(`Low similarity score: ${(similarityScore * 100).toFixed(1)}%`);
     } else if (similarityScore < 0.8) {
-      warnings.push(
-        `Moderate similarity score: ${(similarityScore * 100).toFixed(1)}%`,
-      );
+      warnings.push(`Moderate similarity score: ${(similarityScore * 100).toFixed(1)}%`);
     }
 
     // Validate compression ratio
@@ -74,7 +67,7 @@ export class CompressionValidator {
       const decompressedIdentifiers = this.extractIdentifiers(decompressedCode);
 
       const missingIdentifiers = originalIdentifiers.filter(
-        (id) => !decompressedIdentifiers.includes(id),
+        (id) => !decompressedIdentifiers.includes(id)
       );
 
       if (missingIdentifiers.length > 0) {

@@ -77,31 +77,19 @@ export class DartLanguageHandler implements LanguageHandler {
       "..",
       "spec",
       "languages",
-      "dart",
+      "dart"
     );
     if (fs.existsSync(newPath)) {
       return newPath;
     }
 
     // Fallback to old path: spec/data/
-    const oldPath = path.resolve(
-      __dirname,
-      "..",
-      "..",
-      "..",
-      "..",
-      "..",
-      "spec",
-      "data",
-    );
+    const oldPath = path.resolve(__dirname, "..", "..", "..", "..", "..", "spec", "data");
     if (fs.existsSync(oldPath)) {
       return oldPath;
     }
 
-    throw new Error(
-      "Could not find spec data directory. " +
-        `Tried: ${newPath} and ${oldPath}`,
-    );
+    throw new Error("Could not find spec data directory. " + `Tried: ${newPath} and ${oldPath}`);
   }
 
   /**
@@ -194,9 +182,7 @@ export class DartLanguageHandler implements LanguageHandler {
     properties: Record<string, string>;
     keywords: Record<string, string>;
   } {
-    const reverseMap = (
-      map: Record<string, string>,
-    ): Record<string, string> => {
+    const reverseMap = (map: Record<string, string>): Record<string, string> => {
       const reverse: Record<string, string> = {};
       for (const [full, abbrev] of Object.entries(map)) {
         reverse[abbrev] = full;

@@ -72,11 +72,7 @@ export class DartFormatter {
       const trimmed = line.trim();
 
       // Decrease depth for closing braces
-      if (
-        trimmed.startsWith("}") ||
-        trimmed.startsWith(")") ||
-        trimmed.startsWith("]")
-      ) {
+      if (trimmed.startsWith("}") || trimmed.startsWith(")") || trimmed.startsWith("]")) {
         depth = Math.max(0, depth - 1);
       }
 
@@ -147,14 +143,10 @@ export class DartFormatter {
       while (remaining.length > 0) {
         const availableLen =
           maxLen -
-          (firstLine
-            ? currentIndent.length
-            : currentIndent.length + this.options.indentSize);
+          (firstLine ? currentIndent.length : currentIndent.length + this.options.indentSize);
 
         if (remaining.length <= availableLen) {
-          lines.push(
-            (firstLine ? currentIndent : currentIndent + indent) + remaining,
-          );
+          lines.push((firstLine ? currentIndent : currentIndent + indent) + remaining);
           break;
         }
 

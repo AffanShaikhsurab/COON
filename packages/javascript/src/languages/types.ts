@@ -103,9 +103,7 @@ export interface LanguageHandler {
  * Helper to check if an extension matches a spec
  */
 export function supportsExtension(spec: LanguageSpec, ext: string): boolean {
-  const normalizedExt = ext.startsWith(".")
-    ? ext.toLowerCase()
-    : `.${ext}`.toLowerCase();
+  const normalizedExt = ext.startsWith(".") ? ext.toLowerCase() : `.${ext}`.toLowerCase();
   return spec.extensions.some((e) => e.toLowerCase() === normalizedExt);
 }
 
@@ -113,7 +111,5 @@ export function supportsExtension(spec: LanguageSpec, ext: string): boolean {
  * Create a default display name from language name
  */
 export function getDisplayName(spec: LanguageSpec): string {
-  return (
-    spec.displayName || spec.name.charAt(0).toUpperCase() + spec.name.slice(1)
-  );
+  return spec.displayName || spec.name.charAt(0).toUpperCase() + spec.name.slice(1);
 }

@@ -24,10 +24,7 @@ export class LanguageRegistry {
   /**
    * Register a language handler
    */
-  static register(
-    name: string,
-    handlerClass: LanguageHandlerConstructor,
-  ): void {
+  static register(name: string, handlerClass: LanguageHandlerConstructor): void {
     const normalizedName = name.toLowerCase();
     this.handlers.set(normalizedName, handlerClass);
     // Clear cached instance if re-registering
@@ -45,9 +42,7 @@ export class LanguageRegistry {
       const HandlerClass = this.handlers.get(normalizedName);
       if (!HandlerClass) {
         const available = Array.from(this.handlers.keys()).join(", ") || "none";
-        throw new Error(
-          `Unknown language: '${name}'. Available languages: ${available}`,
-        );
+        throw new Error(`Unknown language: '${name}'. Available languages: ${available}`);
       }
       this.instances.set(normalizedName, new HandlerClass());
     }
@@ -117,21 +112,23 @@ export class LanguageRegistry {
 
 // Auto-register default languages
 function registerDefaultLanguages(): void {
-    try {
-        // Import and register Dart handler
-        const { DartLanguageHandler } = require('./dart');
-        LanguageRegistry.register('dart', DartLanguageHandler);
-    } catch (e) {
-        // Dart handler not available
-    }
-    
-    try {
-        // Import and register JavaScript handler
-        const { JavaScriptLanguageHandler } = require('./javascript');
-        LanguageRegistry.register('javascript', JavaScriptLanguageHandler);
-    } catch (e) {
-        // JavaScript handler not available
-    }
+  try {
+    // Import and register Dart handler
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    const { DartLanguageHandler } = require("./dart");
+    LanguageRegistry.register("dart", DartLanguageHandler);
+  } catch (e) {
+    // Dart handler not available
+  }
+
+  try {
+    // Import and register JavaScript handler
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    const { JavaScriptLanguageHandler } = require("./javascript");
+    LanguageRegistry.register("javascript", JavaScriptLanguageHandler);
+  } catch (e) {
+    // JavaScript handler not available
+  }
 }
 
 registerDefaultLanguages();

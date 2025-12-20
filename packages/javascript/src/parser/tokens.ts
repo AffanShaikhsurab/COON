@@ -94,7 +94,7 @@ export class Token {
     public type: TokenType,
     public value: string,
     public line: number,
-    public column: number,
+    public column: number
   ) {}
 
   toString(): string {
