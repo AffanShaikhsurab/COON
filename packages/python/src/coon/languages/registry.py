@@ -158,7 +158,7 @@ def _register_default_languages() -> None:
         LanguageRegistry.register("dart", DartLanguageHandler)
     except ImportError:
         pass  # Dart handler not available
-    
+
     try:
         from .javascript import JavaScriptHandler
         LanguageRegistry.register("javascript", JavaScriptHandler)

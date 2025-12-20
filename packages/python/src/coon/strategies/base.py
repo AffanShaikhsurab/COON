@@ -72,7 +72,7 @@ class CompressionStrategy(ABC):
             try:
                 from ..languages import LanguageRegistry
                 from ..languages.dart import DartLanguageHandler
-                
+
                 # Ensure Dart handler is registered
                 if not LanguageRegistry.is_registered(self._language):
                     LanguageRegistry.register("dart", DartLanguageHandler)

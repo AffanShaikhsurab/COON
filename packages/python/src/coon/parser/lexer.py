@@ -271,7 +271,7 @@ class DartLexer:
             start_line = self.line
             start_col = self.column
             value = self._advance() + self._advance()  # 0x
-            
+
             while (curr := self._current_char()) is not None and curr in '0123456789abcdefABCDEF':
                 value += self._advance()
 
@@ -318,9 +318,9 @@ class DartLexer:
             start_line = self.line
             start_col = self.column
             value = ''
-            
+
             while (curr := self._current_char()) is not None and (
-                curr.isalnum() or 
+                curr.isalnum() or
                 curr in '_$'
             ):
                 value += self._advance()

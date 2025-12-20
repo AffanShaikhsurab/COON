@@ -169,7 +169,7 @@ def stats(input_file: str):
 
     best_strategy = None
     best_ratio: float = 0.0
-    
+
     for strategy in strategies:
         result = compressor.compress(dart_code, strategy=strategy)
 
@@ -184,7 +184,7 @@ def stats(input_file: str):
 
     click.echo("\n" + "-" * 50)
     click.echo(f"\n🏆 Best strategy: {best_strategy.upper() if best_strategy else 'N/A'} ({best_ratio*100:.1f}% savings)")
-    
+
     # Cost impact
     tokens_saved = int(len(dart_code) // 4 * best_ratio)
     input_cost_saved = (tokens_saved / 1000) * 0.03

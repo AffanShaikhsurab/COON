@@ -2,10 +2,11 @@
 Dart code parser - converts tokens to AST.
 """
 
-from typing import List, Optional, Any
-from .tokens import Token, TokenType
-from .lexer import DartLexer
+from typing import Any, Optional
+
 from .ast_nodes import ASTNode, create_root_node
+from .lexer import DartLexer
+from .tokens import Token, TokenType
 
 
 class DartParser:
@@ -118,11 +119,11 @@ class DartParser:
 
         if value is not None and token.value != value:
             raise SyntaxError(f"Expected '{value}', got '{token.value}'")
-        
+
         result = self._advance()
         assert result is not None, f"Expected token but got None after {token_type}"
         return result
-    
+
     def _parse_statement(self) -> Optional[ASTNode]:
         """Parse a top-level statement."""
         token = self._current_token()
@@ -179,7 +180,7 @@ class DartParser:
             line=token.line,
             column=token.column
         )
-        
+
         # Import path
         path_token = self._current_token()
         if path_token and path_token.type == TokenType.LITERAL:
@@ -238,7 +239,7 @@ class DartParser:
             column=token.column
         )
         node.properties['is_abstract'] = is_abstract
-        
+
         # Class name
         name_token = self._advance()
         if name_token:
@@ -308,7 +309,7 @@ class DartParser:
         while not self._is_end() and brace_count > 0:
             token = self._current_token()
             assert token is not None
-            
+
             if token.value == '{':
                 brace_count += 1
                 self._advance()
@@ -405,7 +406,7 @@ class DartParser:
             line=token.line,
             column=token.column
         )
-        
+
         # Mixin name
         name_token = self._advance()
         if name_token:
@@ -496,23 +497,23 @@ class DartParser:
         """Parse function parameters."""
         params = []
         self._advance()  # '('
-        
+
         while not self._is_end() and not self._match_value(')'):
             param: dict[str, Any] = {}
-            
+
             # Skip modifiers like 'required'
             while self._match_value('required') or self._match_value('covariant'):
                 modifier_token = self._advance()
                 assert modifier_token is not None
                 modifier = modifier_token.value
                 param.setdefault('modifiers', []).append(modifier)
-            
+
             # Type
             if self._match(TokenType.IDENTIFIER, TokenType.WIDGET, TokenType.KEYWORD):
                 type_token = self._advance()
                 if type_token:
                     param['type'] = type_token.value
-                
+
                 # Generic type
                 if self._match_value("<"):
                     self._skip_balanced("<", ">")
@@ -527,7 +528,7 @@ class DartParser:
                 name_token = self._advance()
                 if name_token:
                     param['name'] = name_token.value
-            
+
             # Default value
             if self._match_value("="):
                 self._advance()
@@ -559,7 +560,7 @@ class DartParser:
             mod_token = self._advance()
             if mod_token:
                 modifiers.append(mod_token.value)
-        
+
         token = self._current_token()
         node = ASTNode(
             node_type="variable",
