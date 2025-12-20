@@ -128,7 +128,7 @@ class DartLexer:
             start_line = self.line
             start_col = self.column
             value = ''
-            while self._current_char() and self._current_char() in ' \t\n\r':
+            while (current := self._current_char()) is not None and current in ' \t\n\r':
                 value += self._advance()
             
             if self.include_whitespace:
@@ -173,7 +173,7 @@ class DartLexer:
         char = self._current_char()
         
         # Raw string
-        if char == 'r' and self._peek_char() in '"\'':
+        if char == 'r' and (peek := self._peek_char()) is not None and peek in '"\'':
             start_line = self.line
             start_col = self.column
             value = self._advance()  # 'r'
@@ -190,7 +190,7 @@ class DartLexer:
             return True
         
         # Triple-quoted string
-        if char in '"\'':
+        if char is not None and char in '"\'':
             if self._peek_char() == char and self._peek_char(2) == char:
                 start_line = self.line
                 start_col = self.column
@@ -209,7 +209,7 @@ class DartLexer:
                 return True
         
         # Single/double quoted string
-        if char in '"\'':
+        if char is not None and char in '"\'':
             start_line = self.line
             start_col = self.column
             quote = char
@@ -238,12 +238,12 @@ class DartLexer:
         char = self._current_char()
         
         # Handle hex numbers
-        if char == '0' and self._peek_char() in 'xX':
+        if char == '0' and (peek := self._peek_char()) is not None and peek in 'xX':
             start_line = self.line
             start_col = self.column
             value = self._advance() + self._advance()  # 0x
             
-            while self._current_char() and self._current_char() in '0123456789abcdefABCDEF':
+            while (curr := self._current_char()) is not None and curr in '0123456789abcdefABCDEF':
                 value += self._advance()
             
             self.tokens.append(Token(TokenType.LITERAL, value, start_line, start_col))
@@ -256,21 +256,25 @@ class DartLexer:
             value = ''
             
             # Integer part
-            while self._current_char() and self._current_char().isdigit():
+            while (curr := self._current_char()) is not None and curr.isdigit():
                 value += self._advance()
             
             # Decimal part
-            if self._current_char() == '.' and self._peek_char() and self._peek_char().isdigit():
+            curr = self._current_char()
+            peek = self._peek_char()
+            if curr == '.' and peek is not None and peek.isdigit():
                 value += self._advance()  # .
-                while self._current_char() and self._current_char().isdigit():
+                while (curr := self._current_char()) is not None and curr.isdigit():
                     value += self._advance()
             
             # Exponent part
-            if self._current_char() in 'eE':
+            curr = self._current_char()
+            if curr is not None and curr in 'eE':
                 value += self._advance()  # e/E
-                if self._current_char() in '+-':
+                curr = self._current_char()
+                if curr is not None and curr in '+-':
                     value += self._advance()  # +/-
-                while self._current_char() and self._current_char().isdigit():
+                while (curr := self._current_char()) is not None and curr.isdigit():
                     value += self._advance()
             
             self.tokens.append(Token(TokenType.LITERAL, value, start_line, start_col))
@@ -286,9 +290,9 @@ class DartLexer:
             start_col = self.column
             value = ''
             
-            while self._current_char() and (
-                self._current_char().isalnum() or 
-                self._current_char() in '_$'
+            while (curr := self._current_char()) is not None and (
+                curr.isalnum() or 
+                curr in '_$'
             ):
                 value += self._advance()
             
