@@ -87,7 +87,8 @@ class ComponentRefStrategy(CompressionStrategy):
             return self._fallback.compress(code)
         
         # Try to find matching component
-        tolerance = self.config.parameters.get("match_tolerance", 0.85)
+        params = self.config.parameters
+        tolerance = params.get("match_tolerance", 0.85) if params else 0.85
         component = self._registry.find_matching_component(code, tolerance=tolerance)
         
         if component:

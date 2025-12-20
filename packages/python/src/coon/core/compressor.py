@@ -127,7 +127,7 @@ class Compressor:
         if analyze_code and self._analyzer is None:
             try:
                 from ..analysis.analyzer import CodeAnalyzer
-                self._analyzer = CodeAnalyzer()
+                self._analyzer = CodeAnalyzer()  # type: ignore[assignment]
             except ImportError:
                 pass
         

@@ -69,7 +69,8 @@ class CompressionStrategy(ABC):
         if self._widgets is None:
             # Try to use language handler first
             try:
-                from ..languages import LanguageRegistry, DartLanguageHandler
+                from ..languages import LanguageRegistry
+                from ..languages.dart import DartLanguageHandler
                 
                 # Ensure Dart handler is registered
                 if not LanguageRegistry.is_registered(self._language):
