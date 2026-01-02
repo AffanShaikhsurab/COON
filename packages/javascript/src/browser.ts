@@ -296,7 +296,7 @@ export function getAbbreviationsByCategory(language: Language): LanguageAbbrevia
  * Estimate token count (4 chars ≈ 1 token)
  */
 function countTokens(text: string): number {
-  return Math.ceil(text.length / 4);
+  return Math.floor(text.length / 4);
 }
 
 /**
