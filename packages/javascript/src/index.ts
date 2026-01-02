@@ -137,4 +137,3 @@ export function compress(
 
 // Browser-compatible module (no Node.js dependencies)
 export * from "./browser";
-
