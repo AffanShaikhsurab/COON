@@ -13,6 +13,7 @@
     "test": "jest",
     "test:coverage": "jest --coverage",
     "test:conformance": "jest --testPathPattern=conformance",
+    "test:npm-integration": "jest --config jest.integration.config.js",
     "lint": "eslint src --ext .ts",
     "format": "prettier --write src/**/*.ts",
     "clean": "rimraf dist",
