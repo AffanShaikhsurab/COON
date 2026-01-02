@@ -9,6 +9,8 @@
     "src"
   ],
   "scripts": {
+    "generate:browser": "node ../../scripts/generate-browser-abbreviations.js",
+    "prebuild": "npm run generate:browser",
     "build": "tsc",
     "test": "jest",
     "test:coverage": "jest --coverage",

@@ -1,4 +1,95 @@
+#!/usr/bin/env node
 /**
+ * Generate browser.ts from canonical spec/data sources
+ * 
+ * This script ensures abbreviations in browser.ts stay synchronized with
+ * the canonical spec/data/ and spec/languages/ sources, following the
+ * project convention: "NEVER hardcode abbreviations - Always load from spec/data/"
+ * 
+ * Usage: node scripts/generate-browser-abbreviations.js
+ */
+
+const fs = require('fs');
+const path = require('path');
+
+// Paths
+const SPEC_LANGUAGES_DIR = path.resolve(__dirname, '..', 'spec', 'languages');
+const OUTPUT_FILE = path.resolve(__dirname, '..', 'packages', 'javascript', 'src', 'browser.ts');
+
+/**
+ * Load JSON file
+ */
+function loadJson(filePath) {
+  const content = fs.readFileSync(filePath, 'utf-8');
+  return JSON.parse(content);
+}
+
+/**
+ * Load Dart abbreviations from spec/languages/dart/
+ */
+function loadDartAbbreviations() {
+  const dartDir = path.join(SPEC_LANGUAGES_DIR, 'dart');
+  
+  const widgets = loadJson(path.join(dartDir, 'widgets.json'));
+  const keywords = loadJson(path.join(dartDir, 'keywords.json'));
+  const properties = loadJson(path.join(dartDir, 'properties.json'));
+  
+  return {
+    widgets: widgets.abbreviations || widgets,
+    keywords: keywords.abbreviations || keywords,
+    properties: properties.abbreviations || properties,
+  };
+}
+
+/**
+ * Load JavaScript abbreviations from spec/languages/javascript/
+ */
+function loadJavaScriptAbbreviations() {
+  const jsDir = path.join(SPEC_LANGUAGES_DIR, 'javascript');
+  
+  const componentsData = loadJson(path.join(jsDir, 'components.json'));
+  const keywords = loadJson(path.join(jsDir, 'keywords.json'));
+  const properties = loadJson(path.join(jsDir, 'properties.json'));
+  
+  // Flatten components structure (react_hooks, jsx_elements, react_components)
+  const components = {};
+  if (componentsData.react_hooks) {
+    Object.assign(components, componentsData.react_hooks);
+  }
+  if (componentsData.jsx_elements) {
+    Object.assign(components, componentsData.jsx_elements);
+  }
+  if (componentsData.react_components) {
+    Object.assign(components, componentsData.react_components);
+  }
+  
+  return {
+    components: components,
+    keywords: keywords,
+    properties: properties,
+  };
+}
+
+/**
+ * Generate TypeScript Record literal from abbreviations object
+ */
+function generateRecordLiteral(obj, indent = '  ') {
+  const entries = Object.entries(obj)
+    .map(([key, value]) => `${indent}${JSON.stringify(key)}: ${JSON.stringify(value)},`)
+    .join('\n');
+  return `{\n${entries}\n}`;
+}
+
+/**
+ * Generate the complete browser.ts file
+ */
+function generateBrowserFile() {
+  const dart = loadDartAbbreviations();
+  const js = loadJavaScriptAbbreviations();
+  
+  const timestamp = new Date().toISOString();
+  
+  return `/**
  * COON Browser Module
  *
  * Browser-compatible compression implementation with embedded abbreviation data.
@@ -14,7 +105,7 @@
  * 2. Run: npm run generate:browser
  * 3. Commit both the spec changes and this generated file
  * 
- * Generated: 2026-01-02T06:03:08.216Z
+ * Generated: ${timestamp}
  * 
  * @packageDocumentation
  */
@@ -23,227 +114,21 @@
 // Embedded Dart/Flutter Abbreviations (from spec/languages/dart/)
 // ============================================================================
 
-export const dartWidgets: Record<string, string> = {
-  "Scaffold": "S",
-  "Column": "C",
-  "Row": "R",
-  "SafeArea": "A",
-  "Padding": "P",
-  "Text": "T",
-  "AppBar": "B",
-  "SizedBox": "Z",
-  "TextField": "F",
-  "ElevatedButton": "E",
-  "TextStyle": "Y",
-  "InputDecoration": "D",
-  "OutlineInputBorder": "O",
-  "TextEditingController": "X",
-  "Container": "K",
-  "Center": "N",
-  "Expanded": "Ex",
-  "ListView": "L",
-  "GridView": "G",
-  "Stack": "St",
-  "Positioned": "Ps",
-  "Card": "Cd",
-  "IconButton": "Ib",
-  "Icon": "Ic",
-  "FloatingActionButton": "Fb",
-  "CircularProgressIndicator": "Cp",
-  "LinearProgressIndicator": "Lp",
-  "Drawer": "Dr",
-  "BottomNavigationBar": "Bn",
-  "TabBar": "Tb",
-  "TabBarView": "Tv",
-  "Image": "Im",
-  "Divider": "Dv",
-  "Flexible": "Fl",
-  "Align": "Al",
-  "CustomScrollView": "Cv",
-  "SingleChildScrollView": "Sv",
-  "TextFormField": "Tf",
-  "TextButton": "Bt",
-};
+export const dartWidgets: Record<string, string> = ${generateRecordLiteral(dart.widgets)};
 
-export const dartKeywords: Record<string, string> = {
-  "class": "c:",
-  "final": "f:",
-  "extends": "<",
-  "import": "im:",
-  "return": "ret",
-  "async": "asy",
-  "await": "awt",
-  "const": "cn:",
-  "static": "st:",
-  "void": "v:",
-  "override": "ov:",
-  "implements": ">",
-  "with": "+",
-  "Widget": "W",
-  "BuildContext": "ctx",
-  "true": "1",
-  "false": "0",
-  "null": "_",
-};
+export const dartKeywords: Record<string, string> = ${generateRecordLiteral(dart.keywords)};
 
-export const dartProperties: Record<string, string> = {
-  "appBar:": "a:",
-  "body:": "b:",
-  "child:": "c:",
-  "children:": "h:",
-  "title:": "t:",
-  "controller:": "r:",
-  "padding:": "p:",
-  "onPressed:": "o:",
-  "style:": "s:",
-  "fontSize:": "z:",
-  "fontWeight:": "w:",
-  "color:": "l:",
-  "decoration:": "d:",
-  "labelText:": "L:",
-  "hintText:": "H:",
-  "border:": "B:",
-  "height:": "e:",
-  "width:": "W:",
-  "obscureText:": "x:",
-  "centerTitle:": "T:",
-  "mainAxisAlignment:": "A:",
-  "crossAxisAlignment:": "X:",
-  "minimumSize:": "M:",
-  "margin:": "m:",
-  "alignment:": "n:",
-  "backgroundColor:": "bg:",
-  "onChanged:": "oc:",
-  "builder:": "bl:",
-  "mainAxisSize:": "ms:",
-  "crossAxisSize:": "xs:",
-};
+export const dartProperties: Record<string, string> = ${generateRecordLiteral(dart.properties)};
 
 // ============================================================================
 // Embedded JavaScript/React Abbreviations (from spec/languages/javascript/)
 // ============================================================================
 
-export const jsKeywords: Record<string, string> = {
-  "function": "fn:",
-  "const": "cn:",
-  "let": "lt:",
-  "var": "vr:",
-  "return": "ret",
-  "export": "exp",
-  "import": "imp",
-  "default": "def",
-  "class": "cls:",
-  "extends": "ext",
-  "constructor": "ctr:",
-  "async": "asn:",
-  "await": "awt",
-  "try": "try:",
-  "catch": "ctch:",
-  "finally": "fnl:",
-  "if": "if:",
-  "else": "els:",
-  "switch": "sw:",
-  "case": "cs:",
-  "break": "brk",
-  "continue": "cnt",
-  "for": "fr:",
-  "while": "whl:",
-  "do": "do:",
-  "throw": "thr",
-  "new": "nw",
-  "this": "ths",
-  "super": "spr",
-  "typeof": "tof",
-  "instanceof": "iof",
-  "null": "nul",
-  "undefined": "udf",
-  "true": "1",
-  "false": "0",
-};
+export const jsKeywords: Record<string, string> = ${generateRecordLiteral(js.keywords)};
 
-export const jsComponents: Record<string, string> = {
-  "useState": "us",
-  "useEffect": "ue",
-  "useContext": "uc",
-  "useReducer": "ur",
-  "useCallback": "ucb",
-  "useMemo": "um",
-  "useRef": "urf",
-  "useImperativeHandle": "uih",
-  "useLayoutEffect": "ule",
-  "useDebugValue": "udv",
-  "div": "D",
-  "span": "S",
-  "button": "B",
-  "input": "I",
-  "form": "F",
-  "label": "L",
-  "textarea": "TA",
-  "select": "SL",
-  "option": "O",
-  "ul": "UL",
-  "ol": "OL",
-  "li": "LI",
-  "p": "P",
-  "h1": "H1",
-  "h2": "H2",
-  "h3": "H3",
-  "h4": "H4",
-  "h5": "H5",
-  "h6": "H6",
-  "a": "A",
-  "img": "IM",
-  "nav": "N",
-  "header": "HD",
-  "footer": "FT",
-  "section": "SC",
-  "article": "AR",
-  "aside": "AS",
-  "main": "M",
-  "Fragment": "Fr",
-  "StrictMode": "SM",
-  "Suspense": "Su",
-  "lazy": "lz",
-};
+export const jsComponents: Record<string, string> = ${generateRecordLiteral(js.components)};
 
-export const jsProperties: Record<string, string> = {
-  "className": "cn",
-  "onClick": "oc",
-  "onChange": "och",
-  "onSubmit": "os",
-  "onFocus": "of",
-  "onBlur": "ob",
-  "onKeyPress": "okp",
-  "onKeyDown": "okd",
-  "onKeyUp": "oku",
-  "onMouseEnter": "ome",
-  "onMouseLeave": "oml",
-  "children": "ch",
-  "style": "st",
-  "id": "id",
-  "key": "k",
-  "ref": "rf",
-  "value": "v",
-  "defaultValue": "dv",
-  "checked": "chk",
-  "disabled": "dis",
-  "readOnly": "ro",
-  "required": "req",
-  "placeholder": "ph",
-  "type": "tp",
-  "name": "nm",
-  "href": "hr",
-  "src": "sr",
-  "alt": "al",
-  "title": "tt",
-  "target": "tg",
-  "rel": "rl",
-  "htmlFor": "hf",
-  "tabIndex": "ti",
-  "aria-label": "al",
-  "aria-describedby": "ad",
-  "role": "ro",
-};
+export const jsProperties: Record<string, string> = ${generateRecordLiteral(js.properties)};
 
 // ============================================================================
 // Types
@@ -313,9 +198,9 @@ function countTokens(text: string): number {
  */
 function removeComments(code: string): string {
   // Remove single-line comments
-  let result = code.replace(/\/\/.*$/gm, "");
+  let result = code.replace(/\\/\\/.*$/gm, "");
   // Remove multi-line comments
-  result = result.replace(/\/\*[\s\S]*?\*\//g, "");
+  result = result.replace(/\\/\\*[\\s\\S]*?\\*\\//g, "");
   return result;
 }
 
@@ -324,9 +209,9 @@ function removeComments(code: string): string {
  */
 function normalizeWhitespace(code: string): string {
   // Collapse multiple spaces to single space
-  let result = code.replace(/\s+/g, " ");
+  let result = code.replace(/\\s+/g, " ");
   // Remove spaces around punctuation
-  result = result.replace(/ ?([:,{}[\]()]) ?/g, "$1");
+  result = result.replace(/ ?([:,{}[\\]()]) ?/g, "$1");
   return result.trim();
 }
 
@@ -336,7 +221,7 @@ function normalizeWhitespace(code: string): string {
 function applyKeywordAbbreviations(code: string, keywords: Record<string, string>): string {
   let result = code;
   for (const [keyword, abbrev] of Object.entries(keywords)) {
-    const regex = new RegExp(`\\b${keyword}\\b`, "g");
+    const regex = new RegExp(\`\\\\b\${keyword}\\\\b\`, "g");
     result = result.replace(regex, abbrev);
   }
   return result;
@@ -348,7 +233,7 @@ function applyKeywordAbbreviations(code: string, keywords: Record<string, string
 function applyWidgetAbbreviations(code: string, widgets: Record<string, string>): string {
   let result = code;
   for (const [widget, abbrev] of Object.entries(widgets)) {
-    const regex = new RegExp(`\\b${widget}\\b`, "g");
+    const regex = new RegExp(\`\\\\b\${widget}\\\\b\`, "g");
     result = result.replace(regex, abbrev);
   }
   return result;
@@ -361,7 +246,7 @@ function applyPropertyAbbreviations(code: string, properties: Record<string, str
   let result = code;
   for (const [prop, abbrev] of Object.entries(properties)) {
     // Properties include colons, so match literally
-    result = result.replace(new RegExp(prop.replace(":", "\\:"), "g"), abbrev);
+    result = result.replace(new RegExp(prop.replace(":", "\\\\:"), "g"), abbrev);
   }
   return result;
 }
@@ -397,7 +282,7 @@ export function compressBrowser(code: string, language: Language): BrowserCompre
   ): void {
     for (const [full, abbrev] of Object.entries(mapping)) {
       if (before.includes(full) && after.includes(abbrev)) {
-        usedAbbreviations.push(`${full} → ${abbrev}`);
+        usedAbbreviations.push(\`\${full} → \${abbrev}\`);
       }
     }
   }
@@ -467,7 +352,7 @@ export function compressJavaScriptBrowser(code: string): BrowserCompressionResul
 // Sample Code for Testing/Demo
 // ============================================================================
 
-export const sampleDartCode = `class LoginScreen extends StatelessWidget {
+export const sampleDartCode = \`class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -503,9 +388,9 @@ export const sampleDartCode = `class LoginScreen extends StatelessWidget {
       ),
     );
   }
-}`;
+}\`;
 
-export const sampleReactCode = `import { useState, useEffect } from 'react';
+export const sampleReactCode = \`import { useState, useEffect } from 'react';
 
 export default function LoginForm() {
   const [username, setUsername] = useState('');
@@ -545,4 +430,33 @@ export default function LoginForm() {
       </button>
     </form>
   );
-}`;
+}\`;
+`;
+}
+
+/**
+ * Main execution
+ */
+function main() {
+  console.log('Generating browser.ts from spec/data sources...');
+  
+  try {
+    const content = generateBrowserFile();
+    fs.writeFileSync(OUTPUT_FILE, content, 'utf-8');
+    
+    console.log(`✓ Successfully generated: ${OUTPUT_FILE}`);
+    console.log('  - Loaded Dart abbreviations from spec/languages/dart/');
+    console.log('  - Loaded JavaScript abbreviations from spec/languages/javascript/');
+    console.log('  - Generated browser-compatible TypeScript module');
+  } catch (error) {
+    console.error('✗ Error generating browser.ts:', error.message);
+    process.exit(1);
+  }
+}
+
+// Run if executed directly
+if (require.main === module) {
+  main();
+}
+
+module.exports = { generateBrowserFile };
