@@ -231,9 +231,9 @@ export const jsProperties: Record<string, string> = {
   rel: "rl",
   htmlFor: "hf",
   tabIndex: "ti",
-  "aria-label": "al",
+  "aria-label": "arl",
   "aria-describedby": "ad",
-  role: "ro",
+  role: "rol",
 };
 
 // ============================================================================
