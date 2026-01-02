@@ -12,6 +12,7 @@ export interface NavItem {
 export const navItems: NavItem[] = [
     { text: 'Docs', link: '/docs' },
     { text: 'Guide', link: '/guide' },
+    { text: 'Playground', link: '/playground' },
     { text: 'CLI Reference', link: '/cli' },
     { text: 'Ecosystem', link: '/ecosystem' },
     { text: 'API Reference', link: '/reference' },

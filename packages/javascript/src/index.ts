@@ -134,3 +134,6 @@ export function compress(
   const compressor = new Compressor({ language });
   return compressor.compress(code, { strategy });
 }
+
+// Browser-compatible module (no Node.js dependencies)
+export * from "./browser";

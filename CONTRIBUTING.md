@@ -103,6 +103,48 @@ Your pull request should:
 - Update documentation if needed
 - Pass all existing tests
 
+## Modifying Abbreviations
+
+**Important**: NEVER hardcode abbreviations in source files. Always edit the canonical spec/data sources.
+
+### Adding or Updating Abbreviations
+
+1. **Edit the canonical source files**:
+   - For Dart/Flutter: Edit files in `spec/languages/dart/`
+     - `widgets.json` - Widget class abbreviations
+     - `keywords.json` - Language keyword abbreviations
+     - `properties.json` - Property name abbreviations
+   - For JavaScript/React: Edit files in `spec/languages/javascript/`
+     - `components.json` - React hooks and JSX elements
+     - `keywords.json` - JavaScript keyword abbreviations
+     - `properties.json` - JSX prop abbreviations
+
+2. **Regenerate browser-compatible file** (JavaScript SDK only):
+   ```bash
+   cd packages/javascript
+   npm run generate:browser
+   ```
+   This updates `src/browser.ts` from the spec sources.
+
+3. **Run conformance tests** to ensure consistency:
+   ```bash
+   python scripts/run_conformance.py
+   ```
+
+4. **Commit both the spec changes AND generated files**:
+   ```bash
+   git add spec/languages/
+   git add packages/javascript/src/browser.ts  # If JavaScript SDK affected
+   git commit -m "feat: Add abbreviation for NewWidget"
+   ```
+
+### Why This Matters
+
+The abbreviation data in `spec/languages/` is the **Single Source of Truth**. This ensures:
+- Both Python and JavaScript SDKs stay synchronized
+- Browser-compatible builds don't drift from Node.js versions
+- Conformance tests validate consistency across implementations
+
 ## Code Style
 
 ### Python Code
