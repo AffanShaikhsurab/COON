@@ -74,7 +74,7 @@ c:LoginScreen<StatelessWidget>;f:emailController=X,passwordController=X;m:b S{a:
 ## Key Benefits
 
 ### 1) **Lower Costs** 💰
-Save **$253 per million requests** with 30-50% token reduction
+Save upto 30-70% token reduction
 
 ### 2) **Faster Responses** ⚡
 AI models process compressed code **2x faster**
