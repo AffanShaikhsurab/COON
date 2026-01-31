@@ -112,6 +112,7 @@ npm install coon-format
 ### 2. Decompression Script
 Use this in your agent's toolchain to handle the LLM's output:
 
+**Python:**
 ```python
 from coon import decompress_dart
 
@@ -125,6 +126,24 @@ print(full_code)
 # class Hello extends StatelessWidget {
 #   Widget build(context) => Text('Hi');
 # }
+```
+
+**JavaScript / TypeScript:**
+```javascript
+import { decompressCoon } from 'coon-format';
+
+// LLM Output
+const coonCode = "c:Hello<StatelessWidget>;m:b T'Hi'";
+
+// Decompress to source
+const fullCode = decompressCoon(coonCode);
+console.log(fullCode);
+// Output:
+// class Hello extends StatelessWidget {
+//   Widget build(BuildContext context) {
+//     return Text('Hi');
+//   }
+// }
 ```
 
 ---
