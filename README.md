@@ -1,86 +1,93 @@
 # COON 🚀
 
-**TL;DR:** COON helps you save **30-50% on AI costs** by compressing your code before sending it to AI models.
+**TL;DR:** COON empowers **Agentic Coding** by allowing LLMs to generate compressed code directly, saving **30-70% on output tokens** and generation time.
 
 ---
 
-## Who We Are
+## The Agentic Shift
 
-COON helps developers save tokens when working with AI models.
+In the era of AI agents, code generation speed and cost are bottlenecks. **COON** flips the script: instead of just compressing code *input*, it enables LLMs to **output** compressed code.
 
-We make your code smaller without losing meaning.
-
----
-
-## Our Mission
-
-We make AI development more efficient by reducing unnecessary token usage.
-
-You pay less and get faster responses.
+You give the LLM a base prompt, it generates concise COON syntax, and you decompress it locally.
 
 ---
 
-## What We Do
+## Why COON?
 
-**🎯 Reduces your API costs** - Save 30-50% on every AI request
+**🚀 Turbocharged Generation** - LLMs write up to 3x faster by generating fewer tokens.
+**💰 Massive Cost Savings** - Pay for 70% fewer output tokens.
+**🧠 Larger Context Window** - Fit more logic into a single response.
+**🤖 Native to Agents** - Designed to be the "machine code" for high-level AI agents.
 
-**⚡ Speeds up response times** - Get answers 2x faster
+---
 
-**🔧 Works with your existing code** - No changes needed
+## How It Works
 
-**💰 Scales with your usage** - More savings as you grow
+### The Agentic Workflow
+
+1.  **Prompt**: You provide the LLM with your request + the COON System Prompt (see below).
+2.  **Generate**: The LLM thinks and outputs code in compressed COON format.
+3.  **Decompress**: Your agent or script uses the `coon` library to expand it into full source code.
+4.  **Save**: The full code is written to your file system.
+
+### Visual Comparison
+
+**Standard Generation (Slow & Expensive):**
+`User Prompt` -> `LLM` -> `[150 Tokens of Dart Code]` -> `File`
+
+**COON Generation (Fast & Efficient):**
+`User Prompt` -> `LLM` -> `[45 Tokens of COON]` -> `Decompressor` -> `[150 Tokens of Dart Code]` -> `File`
 
 ---
 
 ## Token Savings
 
-**Before COON (150 tokens):**
+**Scenario: Generating a Login Screen**
+
+**Traditional Output (150 tokens):**
 ```dart
 class LoginScreen extends StatelessWidget {
   final TextEditingController emailController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
-  
-  @override
+  // ... verbose boilerplate ...
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Login"),
-      ),
-      body: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.all(24.0),
-          child: Column(
-            children: [
-              Text("Welcome Back"),
-              Text("Login to continue"),
-            ],
-          ),
-        ),
-      ),
+      appBar: AppBar(title: Text("Login")),
+      // ... more code ...
     );
   }
 }
 ```
 
-**After COON (45 tokens - 70% smaller):**
+**COON Output (45 tokens - 70% reduction):**
 ```
-c:LoginScreen<StatelessWidget>;f:emailController=X,passwordController=X;m:b S{a:B{t:T"Login"},b:A{c:P{p:@24,c:C{h:[T"Welcome Back",T"Login to continue"]}}}}
+c:LoginScreen<StatelessWidget>;f:emailController=X;m:b S{a:B{t:T"Login"}}...
 ```
 
-**You save 105 tokens per request!**
+**Result:**
+- **Speed:** 3x faster generation
+- **Cost:** 70% cheaper per request
 
 ---
 
-## Key Benefits
+## Agentic Integration
 
-### 1) **Lower Costs** 💰
-Save upto 30-70% token reduction
+To enable your LLM agent (custom script, Cursor, Windsurf, etc.) to speak COON, append this to your system prompt:
 
-### 2) **Faster Responses** ⚡
-AI models process compressed code **2x faster**
+### System Prompt Snippet
 
-### 3) **More Context** 🧠
-Fit **2x more examples** in your prompts
+```text
+You are an expert coder. When asked to generate code, output it in COON (Code-Oriented Object Notation) format to save tokens.
+COON Rules:
+- Class definition: `c:Name<Parent>;`
+- Fields: `f:name=Value,name2=Value;`
+- Methods: `m:name Body` (default name 'b' is build)
+- Widgets: Abbreviate common widgets (S=Scaffold, C=Column, R=Row, T=Text, B=AppBar, etc.)
+- Properties: Abbreviate keys (b=body, c=child/children, a=appBar)
+- Strings: `T"Content"` for Text widgets.
+
+Example Output:
+c:MyWidget<StatelessWidget>;m:b S{b:C{h:[T"Hello",T"World"]}}
+```
 
 ---
 
@@ -95,82 +102,30 @@ Fit **2x more examples** in your prompts
 
 ## Getting Started
 
-### Step 1: Install
+### 1. Install the Library
 ```bash
 pip install coon
+# or
+npm install coon-format
 ```
 
-### Step 2: Try it
+### 2. Decompression Script
+Use this in your agent's toolchain to handle the LLM's output:
+
 ```python
-from coon import compress_dart
+from coon import decompress_dart
 
-# Your code here
-code = """class Hello extends StatelessWidget {
-  Widget build(context) => Text("Hello World");
-}"""
+# LLM Output
+coon_code = "c:Hello<StatelessWidget>;m:b T'Hi'"
 
-# Compress it
-compressed = compress_dart(code)
-print(compressed)  # c:Hello<StatelessWidget>;m:b T"Hello World"
+# Decompress to source
+full_code = decompress_dart(coon_code)
+print(full_code)
+# Output:
+# class Hello extends StatelessWidget {
+#   Widget build(context) => Text('Hi');
+# }
 ```
-
-### Step 3: Save money
-Use compressed code in your AI prompts and watch your costs drop!
-
----
-
-## Pro Tip: Get LLMs to Generate COON Directly 🤯
-
-**Instead of generating normal code and compressing it, tell the LLM to output COON format directly!**
-
-### How It Works
-
-1. **You ask**: "Generate a login screen in COON format"
-2. **LLM outputs**: Compressed code (45 tokens)
-3. **You decompress**: Get full code using COON package
-4. **Result**: Save 70% on generation costs!
-
-### Example Prompt
-```
-Generate a Flutter login screen in COON format. Use these rules:
-- class → c:
-- Scaffold → S
-- Column → C
-- Text → T
-- AppBar → B
-- body: → b:
-- children: → h:
-
-Output format: c:LoginScreen<StatelessWidget>;m:b S{a:B{t:T"Login"},b:C{h:[T"Welcome"]}}
-```
-
-### Why This Saves More Money
-
-**Traditional approach:**
-- Generate code: 150 tokens
-- Compress with COON: 45 tokens  
-- **Total cost**: 150 tokens
-
-**Direct COON generation:**
-- Generate COON: 45 tokens
-- **Total cost**: 45 tokens
-- **You save**: 105 tokens (70% reduction!)
-
----
-
-## Real Example
-
-**Your prompt without COON:**
-```
-Generate a login screen like this: [150 tokens of code]
-```
-
-**Your prompt with COON:**
-```
-Generate a login screen like this: [45 tokens of compressed code]
-```
-
-**Same result, 70% cheaper!** 🎉
 
 ---
 
@@ -187,7 +142,5 @@ Generate a login screen like this: [45 tokens of compressed code]
 ## License
 
 MIT License - Use COON in any project, commercial or personal.
-
----
 
 **Ready to save money?** [Get started now](#getting-started) 🚀
